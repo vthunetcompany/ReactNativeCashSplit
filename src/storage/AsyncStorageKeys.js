@@ -1,5 +1,6 @@
 export const AsyncStorageKeys = {
-  user: 'user',
+  username: 'username',
   password: 'password',
   settings: 'settings',
+  userList: 'userList',
 }
