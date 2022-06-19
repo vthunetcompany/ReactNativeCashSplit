@@ -16,10 +16,9 @@ const DashboardComponent = ({ props }) => {
   };
 
   const personListRenderFooter = () => {
-    // height:
     return (
       <CustomView>
-        <CustomText>Hello</CustomText>
+        <CustomText>this is footer</CustomText>
       </CustomView>
     )
   };
