@@ -1,9 +1,10 @@
 import FlatListWithSpinner from "../../../../../shared/FlatListWithSpinner";
-import styles from "../styles";
+import styles from "./styles";
 import { globalColors as GlobalColors } from "../../../../../shared/GlobalStyles";
 import React from "react";
 import CustomView from "../../../../../shared/Components/CustomView";
 import CustomText from "../../../../../shared/Components/CustomText";
+import { TouchableOpacity } from "react-native";
 
 const DashboardComponent = ({ props }) => {
   const {
@@ -17,9 +18,9 @@ const DashboardComponent = ({ props }) => {
 
   const personListRenderFooter = () => {
     return (
-      <CustomView>
-        <CustomText>this is footer</CustomText>
-      </CustomView>
+      <TouchableOpacity style={styles.dashboardFooterContainer}>
+        <CustomText>+ Add more people</CustomText>
+      </TouchableOpacity>
     )
   };
 
