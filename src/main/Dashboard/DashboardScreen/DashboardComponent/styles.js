@@ -11,9 +11,11 @@ const styles = StyleSheet.create({
   dashboardFooterContainer: {
     backgroundColor: GlobalColors.white,
     borderRadius: 5,
-    marginHorizontal: 10,
     marginVertical: 10,
-    padding: 10,
+    marginHorizontal: 20,
+
+    paddingVertical: 20,
+    paddingHorizontal: 10,
 
     shadowColor: GlobalColors.black,
     shadowOffset: {

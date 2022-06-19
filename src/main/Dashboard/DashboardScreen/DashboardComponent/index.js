@@ -13,7 +13,9 @@ const DashboardComponent = ({ props }) => {
   } = props;
 
   const personRenderItem = ({ item, index }) => {
-
+    <TouchableOpacity style={styles.dashboardFooterContainer}>
+      <CustomText>+ Add more people</CustomText>
+    </TouchableOpacity>
   };
 
   const personListRenderFooter = () => {
