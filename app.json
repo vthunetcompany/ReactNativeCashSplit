@@ -1,4 +1,12 @@
 {
   "name": "ReactNativeCashSplit",
-  "displayName": "ReactNativeCashSplit"
+  "displayName": "ReactNativeCashSplit",
+  "expo": {
+    "name": "cashsplitterapp",
+    "slug": "cashsplitterapp",
+    "version": "0.1.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
 }
