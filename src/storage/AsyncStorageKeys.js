@@ -3,4 +3,5 @@ export const AsyncStorageKeys = {
   password: 'password',
   settings: 'settings',
   userList: 'userList',
+  masterData: 'masterData',
 }
