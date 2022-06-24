@@ -7,45 +7,44 @@ import CustomText from "../../../../../shared/Components/CustomText";
 import { TouchableOpacity } from "react-native";
 import { capitalizeEachWord } from "../../../../../shared/Helpers";
 import { CURRENCY } from "../../../../../shared/GlobalConstants";
-import Swipeable from "react-native-swipeable";
 
 const DashboardComponent = ({ props }) => {
   const {
     isLoading,
     masterData,
     setMasterData,
+    loadData,
   } = props;
+
+  const addPerson = name => {
+    const clonedMasterData = Object.assign([], masterData)
+    clonedMasterData.push({ name: 'hung', amount: 0, })
+
+    setMasterData(clonedMasterData)
+  }
 
   const personRenderItem = ({ item, index }) => {
     return (
-      <Swipeable
-        leftContent={<CustomText bold>hehe</CustomText>}
-        onLeftActionRelease={() => {
-          let masterDataCopy = masterData
-          masterDataCopy.pop(index)
-
-          setMasterData(masterDataCopy);
-        }}
-        leftActionActivationDistance={20}
-      >
-        <TouchableOpacity style={styles.dashboardPersonRowContainer}>
-          <CustomText style={styles.personRowNameText}>
-            {capitalizeEachWord(item.name)}
-          </CustomText>
-          <CustomText bold style={styles.personRowAmountText}>
-            {item.amount}{CURRENCY}
-          </CustomText>
-        </TouchableOpacity>
-      </Swipeable>
+      <TouchableOpacity style={styles.dashboardPersonRowContainer}>
+        <CustomText style={styles.personRowNameText}>
+          {capitalizeEachWord(item.name)}
+        </CustomText>
+        <CustomText bold style={styles.personRowAmountText}>
+          {item.amount}{CURRENCY}
+        </CustomText>
+      </TouchableOpacity>
     );
   };
 
   const personListRenderFooter = () => {
     return (
-      <TouchableOpacity style={styles.dashBoardFooterContainer}>
+      <TouchableOpacity
+        style={styles.dashBoardFooterContainer}
+        onPress={addPerson}
+      >
         <CustomText>+ Add more people</CustomText>
       </TouchableOpacity>
-    )
+    );
   };
 
   return (
@@ -55,7 +54,7 @@ const DashboardComponent = ({ props }) => {
         data={masterData}
         renderItem={personRenderItem}
         emptyText="Start adding people of your group"
-
+        onRefresh={loadData}
         renderFooter={personListRenderFooter}
         bgColor={GlobalColors.background_color}
       />
