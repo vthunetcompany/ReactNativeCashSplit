@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
   ActivityIndicator,
-  FlatList,
+  FlatList, Platform,
   RefreshControl,
   StyleSheet, Text,
   TouchableOpacity,
@@ -25,7 +25,7 @@ const FlatListWithSpinner = ({
       <View style={styles.emptyListContainer}>
         <Text style={styles.emptyListText}>{emptyText}</Text>
         <TouchableOpacity onPress={onRefresh}>
-          <Text bold style={styles.emptyListRefresh}>
+          <Text style={styles.emptyListRefresh}>
             Refresh
           </Text>
         </TouchableOpacity>
@@ -40,7 +40,7 @@ const FlatListWithSpinner = ({
           <View>
             <ActivityIndicator
               size="large"
-              color={GlobalColors.carsten_green}
+              color={GlobalColors.pink1}
             />
           </View>
         </View>
@@ -98,12 +98,11 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: GlobalColors.light_black,
-
     textAlign: 'center',
   },
   emptyListRefresh: {
-    color: GlobalColors.carsten_green,
-
+    color: GlobalColors.pink3,
+    fontWeight: Platform.OS === "ios" ? "700" : "bold",
     paddingTop: 4,
     paddingBottom: 10,
     paddingHorizontal: 70,

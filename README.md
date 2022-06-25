@@ -19,7 +19,7 @@ Mobile Cash Splitter app supports:
 - For each member, add the money they expensed for mutual things. 
 - Record spending of the entire group. 
 - Data is stored locally. Nothing leaves users' devices. 
-- Support both iOS and Android. Support
+- Support both iOS and Android.
 
 
 ## Technicality

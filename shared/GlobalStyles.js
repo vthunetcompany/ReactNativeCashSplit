@@ -31,6 +31,24 @@ export const globalColors = {
   btn_blue: '#3C63EA',
   blue_text: '#043885',
   opacityBgColor: 'rgba(0,0,0,0.4)',
+
+  lightPink1: '#fdebf4',
+  lightPink2: '#ffe5f4',
+  lightPink3: '#ffd6ed',
+
+  mediumPink1: '#ffc6e5',
+  mediumPink2: '#fcb8dc',
+  mediumPink3: '#ffb1db',
+
+  pink: '#fc96c6',
+
+  pink1: '#ff92c8',
+  pink2: '#ff72bb',
+  pink3: '#ff5fb0',
+
+  darkPink1: '#ff4aa2',
+  darkPink2: '#ff2d91',
+  darkPink3: '#ff1483',
 };
 
 export const DEFAULT_FONTSIZE = 14
