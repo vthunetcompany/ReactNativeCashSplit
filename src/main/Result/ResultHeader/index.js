@@ -8,15 +8,22 @@ import Icon from "../../../../shared/Icon";
 import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
 import { ROUTES } from "../../../storage/Routes";
 
-const ResultHeader = ({ navigation }) => {
+const ResultHeader = ({ navigation, dashboardProps }) => {
   const isDarkMode = useColorScheme() === "dark";
+
+  const {
+    isLoading,
+    masterData,
+    setMasterData,
+    loadData,
+  } = dashboardProps;
 
   const onPressLeft = () => {
     navigation.navigate(ROUTES.DASHBOARD_SCREEN)
   }
 
   const onPressRight = () => {
-
+    setMasterData([])
   }
 
   return (
@@ -37,7 +44,7 @@ const ResultHeader = ({ navigation }) => {
         Checkout
       </CustomText>
 
-      <TouchableOpacity style={styles.headerRightButton} onPress={onPressRight}>
+      <TouchableOpacity style={styles.headerRightButton} onLongPress={onPressRight}>
         <Icon
           type={IconRoutes.Feather}
           name={"refresh-ccw"}
