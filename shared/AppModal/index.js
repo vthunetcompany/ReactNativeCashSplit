@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -99,7 +98,7 @@ const AppModal = ({
 
                       <View>
                         <CustomText bold style={styles.title}>
-                          {t(title) || ''}
+                          {title || ''}
                         </CustomText>
                       </View>
                     </View>

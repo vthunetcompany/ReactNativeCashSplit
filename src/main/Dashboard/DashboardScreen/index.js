@@ -1,3 +1,4 @@
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { useEffect, useState } from "react";
 import { useToggle } from "../../../../shared/hooks/useToggle";
 import DashboardComponent from "./DashboardComponent";
@@ -6,8 +7,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AsyncStorageKeys } from "../../../storage/AsyncStorageKeys";
 import DashboardOverviewComponent from "../DashboardOverviewComponent";
 import { DEBUG_MODE, USE_SAMPLE_DATA } from "../../../../shared/GlobalConstants";
-import { isEmpty } from "../../../../shared/Helpers";
 
+const Tab = createMaterialTopTabNavigator();
 const DashboardScreen = ({}) => {
   const [isLoading, toggleLoading] = useToggle(true);
   const [masterData, setMasterData] = useState([]);
@@ -58,8 +59,9 @@ const DashboardScreen = ({}) => {
   }, []);
 
   useEffect(() => {
-    if (!!masterData && !isEmpty(masterData)) {
+    if (!!masterData) {
       console.log("masterData changes::", masterData);
+      setMasterData(masterData.sort((a, b) => b.amount - a.amount))
       saveData(masterData);
     }
   }, [masterData]);
@@ -73,7 +75,7 @@ const DashboardScreen = ({}) => {
 
   return (
     <>
-      <DashboardOverviewComponent />
+      <DashboardOverviewComponent props={dashboardProps}/>
       <DashboardComponent props={dashboardProps} />
     </>
   );

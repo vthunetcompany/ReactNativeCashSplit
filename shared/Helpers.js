@@ -1,3 +1,5 @@
+import { THOUSAND_SEPARATOR } from "./GlobalConstants";
+
 export const capitalize = (str = '') => {
   if (!str || str.length === 0) return '';
   return str && str[0].toUpperCase() + str.toLowerCase().slice(1);
@@ -16,4 +18,8 @@ export const capitalizeEachWord = (str) => {
 
 export const isEmpty = (string) => {
   return !string || string.length === 0;
+};
+
+export const convertPrice = (price) => {
+  return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, THOUSAND_SEPARATOR);
 };

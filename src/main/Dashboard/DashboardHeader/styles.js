@@ -6,11 +6,23 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     backgroundColor: GlobalColors.white,
     alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
 
     borderBottomWidth: 0.25,
     borderColor: GlobalColors.grey,
   },
   headerTitleText: {},
+
+  headerRightButton: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+
+    padding: 10,
+    paddingRight: 15,
+    overflow: "visible",
+  },
 
 });
 

@@ -1,12 +1,14 @@
 import FlatListWithSpinner from "../../../../../shared/FlatListWithSpinner";
 import styles from "./styles";
 import { globalColors as GlobalColors } from "../../../../../shared/GlobalStyles";
-import React from "react";
+import React, { useRef, useState } from "react";
 import CustomView from "../../../../../shared/Components/CustomView";
 import CustomText from "../../../../../shared/Components/CustomText";
 import { TouchableOpacity } from "react-native";
 import { capitalizeEachWord } from "../../../../../shared/Helpers";
 import { CURRENCY } from "../../../../../shared/GlobalConstants";
+import Icon from "../../../../../shared/Icon";
+import { IconRoutes } from "../../../../../shared/Icon/IconRoutes";
 
 const DashboardComponent = ({ props }) => {
   const {
@@ -16,16 +18,31 @@ const DashboardComponent = ({ props }) => {
     loadData,
   } = props;
 
+  const [count, setCount] = useState(0)
+
   const addPerson = name => {
     const clonedMasterData = Object.assign([], masterData)
-    clonedMasterData.push({ name: 'hung', amount: 0, })
+    clonedMasterData.push({ name: 'hung', amount: count, })
+
+    setCount(count => (count + 1))
+    setMasterData(clonedMasterData)
+  }
+
+  const removePerson = index => {
+    const clonedMasterData = Object.assign([], masterData)
+    clonedMasterData.splice(index, 1)
 
     setMasterData(clonedMasterData)
   }
 
   const personRenderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity style={styles.dashboardPersonRowContainer}>
+      <TouchableOpacity
+        style={styles.dashboardPersonRowContainer}
+        onPress={() => {
+          removePerson(index);
+        }}
+      >
         <CustomText style={styles.personRowNameText}>
           {capitalizeEachWord(item.name)}
         </CustomText>
@@ -42,7 +59,13 @@ const DashboardComponent = ({ props }) => {
         style={styles.dashBoardFooterContainer}
         onPress={addPerson}
       >
-        <CustomText>+ Add more people</CustomText>
+        <Icon
+          type={IconRoutes.Ionicon}
+          name={'md-person-add'}
+          size={18}
+          style={{ color: GlobalColors.shadowColor, marginRight: 5 }}
+        />
+        <CustomText>Add more people</CustomText>
       </TouchableOpacity>
     );
   };

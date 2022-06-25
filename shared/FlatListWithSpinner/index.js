@@ -19,6 +19,7 @@ const FlatListWithSpinner = ({
   bgColor,
   renderFooter,
   fetchMoreData,
+  ref,
 }) => {
   const ListEmptyComponent = () => {
     return (
@@ -58,6 +59,7 @@ const FlatListWithSpinner = ({
             ListFooterComponent={renderFooter}
             onEndReachedThreshold={0.2}
             onEndReached={fetchMoreData}
+            ref={ref}
           />
         </View>
       )}
@@ -75,6 +77,7 @@ FlatListWithSpinner.propTypes = {
   bgColor: PropTypes.string,
   renderFooter: PropTypes.func,
   fetchMoreData: PropTypes.func,
+  ref: PropTypes.func,
 };
 
 FlatListWithSpinner.defaultProps = {
