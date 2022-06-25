@@ -15,6 +15,7 @@ const App = () => {
     "Animated: `useNativeDriver`",
     "Warning: Each child in a list should have a unique \"key\" prop.",
     "Material Top Tab Navigator: 'tabBarOptions' is deprecated",
+    "Sending `onAnimatedValueUpdate` with no listeners registered.",
   ]);
 
   const backgroundStyle = {
