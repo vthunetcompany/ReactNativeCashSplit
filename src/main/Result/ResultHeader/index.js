@@ -11,15 +11,19 @@ import { ROUTES } from "../../../storage/Routes";
 const ResultHeader = ({ navigation }) => {
   const isDarkMode = useColorScheme() === "dark";
 
-  const onPress = () => {
+  const onPressLeft = () => {
     navigation.navigate(ROUTES.DASHBOARD_SCREEN)
+  }
+
+  const onPressRight = () => {
+
   }
 
   return (
     <CustomView style={[styles.headerTitleContainer,
       isDarkMode ? { backgroundColor: GlobalColors.grey } : {},
     ]}>
-      <TouchableOpacity style={styles.headerLeftButton} onPress={onPress}>
+      <TouchableOpacity style={styles.headerLeftButton} onPress={onPressLeft}>
         <Icon
           type={IconRoutes.AntDesign}
           name={"left"}
@@ -32,6 +36,15 @@ const ResultHeader = ({ navigation }) => {
       <CustomText style={styles.headerTitleText} supportDarkMode large>
         Checkout
       </CustomText>
+
+      <TouchableOpacity style={styles.headerRightButton} onPress={onPressRight}>
+        <Icon
+          type={IconRoutes.Feather}
+          name={"refresh-ccw"}
+          size={24}
+          style={{ color: GlobalColors.pink2 }}
+        />
+      </TouchableOpacity>
     </CustomView>
   );
 };

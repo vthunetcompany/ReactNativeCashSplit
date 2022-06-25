@@ -1,5 +1,5 @@
 import React from "react";
-import ResultHeader from "./DashboardHeader";
+import ResultHeader from "./ResultHeader";
 
 const Result = ({navigation}) => {
 

@@ -24,6 +24,15 @@ const styles = StyleSheet.create({
     overflow: "visible",
   },
 
+  headerRightButton: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+
+    padding: 10,
+    paddingRight: 15,
+    overflow: "visible",
+  },
 });
 
 export default styles

@@ -1,7 +1,6 @@
 import DashboardHeader from "./DashboardHeader";
 import DashboardScreen from "./DashboardScreen";
 import React from "react";
-import CustomView from "../../../shared/Components/CustomView";
 import { SafeAreaView } from "react-native";
 
 const Dashboard = ({ navigation }) => {
