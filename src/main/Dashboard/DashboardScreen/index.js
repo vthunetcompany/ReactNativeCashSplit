@@ -73,7 +73,7 @@ const DashboardScreen = ({}) => {
 
   return (
     <>
-      <DashboardOverviewComponent />
+      <DashboardOverviewComponent props={dashboardProps}/>
       <DashboardComponent props={dashboardProps} />
     </>
   );

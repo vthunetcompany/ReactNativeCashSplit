@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   dashBoardFooterContainer: {
     ...dashboardRowContainer,
     backgroundColor: GlobalColors.white,
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: GlobalColors.darkPink1,
   },
 

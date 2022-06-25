@@ -1,7 +1,7 @@
 import FlatListWithSpinner from "../../../../../shared/FlatListWithSpinner";
 import styles from "./styles";
 import { globalColors as GlobalColors } from "../../../../../shared/GlobalStyles";
-import React from "react";
+import React, { useRef, useState } from "react";
 import CustomView from "../../../../../shared/Components/CustomView";
 import CustomText from "../../../../../shared/Components/CustomText";
 import { TouchableOpacity } from "react-native";
@@ -16,16 +16,31 @@ const DashboardComponent = ({ props }) => {
     loadData,
   } = props;
 
+  const [count, setCount] = useState(0)
+
   const addPerson = name => {
     const clonedMasterData = Object.assign([], masterData)
-    clonedMasterData.push({ name: 'hung', amount: 0, })
+    clonedMasterData.push({ name: 'hung', amount: count, })
+
+    setCount(count => count + 1)
+    setMasterData(clonedMasterData)
+  }
+
+  const removePerson = index => {
+    const clonedMasterData = Object.assign([], masterData)
+    clonedMasterData.splice(index, 1)
 
     setMasterData(clonedMasterData)
   }
 
   const personRenderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity style={styles.dashboardPersonRowContainer}>
+      <TouchableOpacity
+        style={styles.dashboardPersonRowContainer}
+        onLongPress={() => {
+          removePerson(index);
+        }}
+      >
         <CustomText style={styles.personRowNameText}>
           {capitalizeEachWord(item.name)}
         </CustomText>
