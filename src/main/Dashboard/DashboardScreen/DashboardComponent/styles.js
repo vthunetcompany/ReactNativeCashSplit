@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   dashboardScreenScrollViewContainer: {
     backgroundColor: GlobalColors.background_color,
     alignSelf: "stretch",
-    flex: 4,
+    flex: 7,
   },
 
   dashboardPersonRowContainer: {

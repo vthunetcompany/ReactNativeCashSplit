@@ -6,7 +6,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AsyncStorageKeys } from "../../../storage/AsyncStorageKeys";
 import DashboardOverviewComponent from "../DashboardOverviewComponent";
 import { DEBUG_MODE, USE_SAMPLE_DATA } from "../../../../shared/GlobalConstants";
-import { isEmpty } from "../../../../shared/Helpers";
 
 const DashboardScreen = ({}) => {
   const [isLoading, toggleLoading] = useToggle(true);
@@ -58,8 +57,9 @@ const DashboardScreen = ({}) => {
   }, []);
 
   useEffect(() => {
-    if (!!masterData && !isEmpty(masterData)) {
+    if (!!masterData) {
       console.log("masterData changes::", masterData);
+      setMasterData(masterData.sort((a, b) => a.amount - b.amount))
       saveData(masterData);
     }
   }, [masterData]);

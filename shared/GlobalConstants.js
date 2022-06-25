@@ -5,3 +5,5 @@ export const APP_NAME = 'Money Splitter'
 
 export const USE_SAMPLE_DATA = false
 export const CURRENCY = '₫'
+
+export const THOUSAND_SEPARATOR = ','

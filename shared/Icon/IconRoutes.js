@@ -1,0 +1,16 @@
+export const IconRoutes = {
+  Fontisto: 'Fontisto',
+  MaterialIcon: 'MaterialIcon',
+  EvilIcon: 'EvilIcon',
+  Feather: 'Feather',
+  AntDesign: 'AntDesign',
+  SimpleLineIcon: 'SimpleLineIcon',
+  ZocialIcon: 'ZocialIcon',
+  FoundationIcon: 'FoundationIcon',
+  FAIcon5: 'FAIcon5',
+  FAIcon: 'FAIcon',
+  Ionicon: 'Ionicon',
+  MaterialCommunityIcons: 'MaterialCommunityIcons',
+  EntypoIcon: 'EntypoIcon',
+  OcticonIcon: 'OcticonIcon',
+};

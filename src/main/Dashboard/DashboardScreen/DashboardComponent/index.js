@@ -22,7 +22,7 @@ const DashboardComponent = ({ props }) => {
     const clonedMasterData = Object.assign([], masterData)
     clonedMasterData.push({ name: 'hung', amount: count, })
 
-    setCount(count => count + 1)
+    setCount(count => (count + 1))
     setMasterData(clonedMasterData)
   }
 
@@ -37,7 +37,7 @@ const DashboardComponent = ({ props }) => {
     return (
       <TouchableOpacity
         style={styles.dashboardPersonRowContainer}
-        onLongPress={() => {
+        onPress={() => {
           removePerson(index);
         }}
       >
