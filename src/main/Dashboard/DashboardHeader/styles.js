@@ -15,12 +15,14 @@ const styles = StyleSheet.create({
   headerTitleText: {},
 
   headerRightButton: {
-  position: 'absolute',
-    right: 5,
-    bottom: 2,
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+
     padding: 10,
-    overflow: 'visible'
-},
+    paddingRight: 15,
+    overflow: "visible",
+  },
 
 });
 

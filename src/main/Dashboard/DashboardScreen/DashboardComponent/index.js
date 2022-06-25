@@ -7,6 +7,8 @@ import CustomText from "../../../../../shared/Components/CustomText";
 import { TouchableOpacity } from "react-native";
 import { capitalizeEachWord } from "../../../../../shared/Helpers";
 import { CURRENCY } from "../../../../../shared/GlobalConstants";
+import Icon from "../../../../../shared/Icon";
+import { IconRoutes } from "../../../../../shared/Icon/IconRoutes";
 
 const DashboardComponent = ({ props }) => {
   const {
@@ -57,7 +59,13 @@ const DashboardComponent = ({ props }) => {
         style={styles.dashBoardFooterContainer}
         onPress={addPerson}
       >
-        <CustomText>+ Add more people</CustomText>
+        <Icon
+          type={IconRoutes.Ionicon}
+          name={'md-person-add'}
+          size={18}
+          style={{ color: GlobalColors.shadowColor, marginRight: 5 }}
+        />
+        <CustomText>Add more people</CustomText>
       </TouchableOpacity>
     );
   };

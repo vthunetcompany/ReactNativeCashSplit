@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { globalColors as GlobalColors } from "../../../../shared/GlobalStyles";
 
-const CLOCK_SIZE = 160
+const CLOCK_SIZE = 165
 const styles = StyleSheet.create({
   dashboardOverviewContainer: {
     backgroundColor: GlobalColors.background_color,
@@ -28,7 +28,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  clockText: {
+  clockText: {},
+
+  overviewInfoContainer: {
+    flex: 1,
+    marginLeft: 15,
+
+    alignItems: "center",
+    overflow: "hidden",
 
   },
 })

@@ -1,3 +1,4 @@
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { useEffect, useState } from "react";
 import { useToggle } from "../../../../shared/hooks/useToggle";
 import DashboardComponent from "./DashboardComponent";
@@ -7,6 +8,7 @@ import { AsyncStorageKeys } from "../../../storage/AsyncStorageKeys";
 import DashboardOverviewComponent from "../DashboardOverviewComponent";
 import { DEBUG_MODE, USE_SAMPLE_DATA } from "../../../../shared/GlobalConstants";
 
+const Tab = createMaterialTopTabNavigator();
 const DashboardScreen = ({}) => {
   const [isLoading, toggleLoading] = useToggle(true);
   const [masterData, setMasterData] = useState([]);
@@ -59,7 +61,7 @@ const DashboardScreen = ({}) => {
   useEffect(() => {
     if (!!masterData) {
       console.log("masterData changes::", masterData);
-      setMasterData(masterData.sort((a, b) => a.amount - b.amount))
+      setMasterData(masterData.sort((a, b) => b.amount - a.amount))
       saveData(masterData);
     }
   }, [masterData]);

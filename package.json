@@ -21,7 +21,8 @@
     "proptypes": "^1.1.0",
     "react-native-elements": "^3.4.2",
     "react-native-vector-icons": "^9.1.0",
-    "react-native-swipeable": "^0.6.0"
+    "react-native-swipeable": "^0.6.0",
+    "@react-navigation/material-top-tabs": "^6.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",

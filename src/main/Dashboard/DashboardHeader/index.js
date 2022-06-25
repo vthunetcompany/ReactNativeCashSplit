@@ -22,9 +22,9 @@ const DashboardHeader = () => {
 
       <TouchableOpacity style={styles.headerRightButton}>
         <Icon
-          type={IconRoutes.FAIcon5}
-          name={"money-check"}
-          size={18}
+          type={IconRoutes.MaterialCommunityIcons}
+          name={"credit-card-scan"}
+          size={24}
           style={{ color: GlobalColors.pink2 }}
         />
       </TouchableOpacity>
