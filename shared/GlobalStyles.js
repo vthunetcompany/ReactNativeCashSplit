@@ -1,4 +1,4 @@
-export const globalColors = {
+export const GlobalColors = {
   shadowColor: '#000000',
   black: '#333333',
   light_black: '#6B6B6B',

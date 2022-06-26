@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { globalColors as GlobalColors } from "../../../../../shared/GlobalStyles";
+import { GlobalColors as GlobalColors } from "../../../../../shared/GlobalStyles";
 
 const dashboardRowContainer = {
   borderRadius: 5,

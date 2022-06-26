@@ -1,27 +1,26 @@
 import { StyleSheet } from "react-native";
-import { globalColors as GlobalColors } from "../../../../shared/GlobalStyles";
+import { GlobalColors as GlobalColors } from "../../../../shared/GlobalStyles";
 
 const styles = StyleSheet.create({
   headerTitleContainer: {
-    paddingBottom: 10,
+    height: 45,
     backgroundColor: GlobalColors.white,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
     flexDirection: "row",
 
     borderBottomWidth: 0.25,
     borderColor: GlobalColors.grey,
   },
-  headerTitleText: {},
+  headerTitleText: {
+    marginLeft: 20,
+    paddingBottom: 5,
+  },
 
   headerRightButton: {
-    position: "absolute",
-    right: 0,
-    bottom: 0,
-
-    padding: 10,
-    paddingRight: 15,
-    overflow: "visible",
+    paddingHorizontal: 20,
+    paddingTop: 6,
+    paddingBottom: 10,
   },
 
 });

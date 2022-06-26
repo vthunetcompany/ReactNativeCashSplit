@@ -1,12 +1,13 @@
 import React from "react";
 import { Platform, Text, useColorScheme } from "react-native";
-import { DEFAULT_FONTSIZE, globalColors as GlobalColors } from "../GlobalStyles";
+import { DEFAULT_FONTSIZE, GlobalColors as GlobalColors } from "../GlobalStyles";
 
 const CustomText = ({
                       children,
                       style,
                       small,
                       large,
+                      xLarge,
                       supportDarkMode,
                       bold,
                       ...props
@@ -16,6 +17,7 @@ const CustomText = ({
 
   if (small) FONTSIZE = 12;
   else if (large) FONTSIZE = 20;
+  else if (xLarge) FONTSIZE = 26
 
   const getFontWeight = () => {
     if (bold) return Platform.OS === "ios" ? "600" : "bold";

@@ -2,25 +2,27 @@ import CustomView from "../../../../shared/Components/CustomView";
 import CustomText from "../../../../shared/Components/CustomText";
 import { APP_NAME } from "../../../../shared/GlobalConstants";
 import { TouchableOpacity, useColorScheme } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./styles";
-import { globalColors as GlobalColors } from "../../../../shared/GlobalStyles";
+import { GlobalColors as GlobalColors } from "../../../../shared/GlobalStyles";
 import Icon from "../../../../shared/Icon";
 import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
+import { ROUTES } from "../../../storage/Routes";
 
-const DashboardHeader = () => {
-  useEffect(() => {
-
-  }, []);
+const DashboardHeader = ({navigation}) => {
   const isDarkMode = useColorScheme() === "dark";
+
+  const onPress = () => {
+    navigation.navigate(ROUTES.RESULT_SCREEN);
+  }
 
   return (
     <CustomView style={[styles.headerTitleContainer,
       isDarkMode ? { backgroundColor: GlobalColors.grey } : {},
     ]}>
-      <CustomText style={styles.headerTitleText} supportDarkMode large>{APP_NAME}</CustomText>
+      <CustomText style={styles.headerTitleText} supportDarkMode bold xLarge>{APP_NAME}</CustomText>
 
-      <TouchableOpacity style={styles.headerRightButton}>
+      <TouchableOpacity style={styles.headerRightButton} onPress={onPress}>
         <Icon
           type={IconRoutes.MaterialCommunityIcons}
           name={"credit-card-scan"}
