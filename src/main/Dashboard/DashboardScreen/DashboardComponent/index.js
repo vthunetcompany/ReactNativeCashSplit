@@ -5,7 +5,7 @@ import React, { useRef, useState } from "react";
 import CustomView from "../../../../../shared/Components/CustomView";
 import CustomText from "../../../../../shared/Components/CustomText";
 import { TouchableOpacity } from "react-native";
-import { capitalizeEachWord } from "../../../../../shared/Helpers";
+import { capitalizeEachWord, getUuidV4 } from "../../../../../shared/Helpers";
 import { CURRENCY } from "../../../../../shared/GlobalConstants";
 import Icon from "../../../../../shared/Icon";
 import { IconRoutes } from "../../../../../shared/Icon/IconRoutes";
@@ -17,12 +17,11 @@ const DashboardComponent = ({ props }) => {
     setMasterData,
     loadData,
   } = props;
-
   const [count, setCount] = useState(0)
 
   const addPerson = name => {
     const clonedMasterData = Object.assign([], masterData)
-    clonedMasterData.push({ name: 'hung', amount: count, })
+    clonedMasterData.push({ id: getUuidV4(), name: 'hung', amount: count, })
 
     setCount(count => (count + 1))
     setMasterData(clonedMasterData)

@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
-import { GlobalColors as GlobalColors } from "../GlobalStyles";
+import { GlobalColors } from "../GlobalStyles";
 import CustomText from "../Components/CustomText";
 import Loading from "../Loading";
 
@@ -30,8 +30,6 @@ const AppModal = ({
   showExitIcon,
 }) => {
   LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-
-  const { t } = useTranslation();
 
   return (
     <Modal animationType={'fade'} visible={modalVisible} transparent>

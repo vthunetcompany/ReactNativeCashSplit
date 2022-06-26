@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { globalColors } from '../../../assets/styles/global';
+import {GlobalColors} from "../GlobalStyles";
 
 export default StyleSheet.create({
   wrapper: {
@@ -9,7 +9,7 @@ export default StyleSheet.create({
     paddingTop: 40,
   },
   modalView: {
-    backgroundColor: globalColors.white,
+    backgroundColor: GlobalColors.white,
     marginHorizontal: 20,
     borderRadius: 4,
     minHeight: 200,
@@ -24,7 +24,7 @@ export default StyleSheet.create({
 
   title: {
     fontSize: 25,
-    color: globalColors.black,
+    color: GlobalColors.black,
   },
 
   body: {
@@ -44,12 +44,12 @@ export default StyleSheet.create({
     width: 5,
     height: 5,
     borderRadius: 100,
-    backgroundColor: globalColors.grey,
+    backgroundColor: GlobalColors.grey,
   },
 
   footerSeparator: {
     height: 0.5,
-    backgroundColor: globalColors.grey,
+    backgroundColor: GlobalColors.grey,
   },
 
   footerItems: {

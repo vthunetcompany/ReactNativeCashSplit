@@ -1,15 +1,15 @@
 import { StyleSheet } from 'react-native';
-import { globalColors } from '../../../assets/styles/global';
+import { GlobalColors } from "../GlobalStyles";
 
 export default StyleSheet.create({
   overlay: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: globalColors.opacityBgColor,
+    backgroundColor: GlobalColors.opacityBgColor,
     alignItems: 'center',
     justifyContent: 'center',
   },
   container: {
-    backgroundColor: globalColors.white,
+    backgroundColor: GlobalColors.white,
     flexDirection: 'row',
     padding: 20,
     borderRadius: 10,

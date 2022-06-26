@@ -24,6 +24,7 @@ const ResultScreen = ({
     }
     return str
   }
+
   return (
     <ScrollView style={styles.resultScrollContainer}>
       <CustomView style={styles.resultViewContainer}>
