@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import DashboardOverviewComponent from "../DashboardOverviewComponent";
 import { useToggle } from "../../../../shared/hooks/useToggle";
 import AppModal from "../../../../shared/AppModal";
+import ExpenseModalComponent from "../ExpenseModalComponent/styles";
 
 const modalInfoInitialState = {
   id: '',
@@ -31,7 +32,10 @@ const DashboardScreen = ({ dashboardProps }) => {
       <AppModal
         title={modalInfo.name}
         modalBody={
-          <></>
+          <ExpenseModalComponent
+            masterDataProp={dashboardProps}
+            modalProp={modalProp}
+          />
         }
         modalVisible={isShowExpenseModal}
         modalFooter={<></>}
