@@ -5,23 +5,31 @@ import React, { useRef, useState } from "react";
 import CustomView from "../../../../../shared/Components/CustomView";
 import CustomText from "../../../../../shared/Components/CustomText";
 import { TouchableOpacity } from "react-native";
-import { capitalizeEachWord, getUuidV4 } from "../../../../../shared/Helpers";
+import { capitalizeEachWord, getRandomName, getUuidV4 } from "../../../../../shared/Helpers";
 import { CURRENCY } from "../../../../../shared/GlobalConstants";
 import Icon from "../../../../../shared/Icon";
 import { IconRoutes } from "../../../../../shared/Icon/IconRoutes";
 
-const DashboardComponent = ({ props }) => {
+const DashboardComponent = ({ props, modalProp }) => {
   const {
     isLoading,
     masterData,
     setMasterData,
     loadData,
   } = props;
+
+  const {
+    isShowExpenseModal,
+    setIsShowExpenseModal,
+    modalInfo,
+    setModalInfo,
+  } = modalProp
+
   const [count, setCount] = useState(0)
 
   const addPerson = name => {
     const clonedMasterData = Object.assign([], masterData)
-    clonedMasterData.push({ id: getUuidV4(), name: 'hung', amount: count, })
+    clonedMasterData.push({ id: getUuidV4(), name: getRandomName(), amount: count, })
 
     setCount(count => (count + 1))
     setMasterData(clonedMasterData)
@@ -39,8 +47,10 @@ const DashboardComponent = ({ props }) => {
       <TouchableOpacity
         style={styles.dashboardPersonRowContainer}
         onPress={() => {
-          removePerson(index);
+          setIsShowExpenseModal(true)
+          setModalInfo(item)
         }}
+        onLongPress={() => removePerson(index)}
       >
         <CustomText style={styles.personRowNameText}>
           {capitalizeEachWord(item.name)}

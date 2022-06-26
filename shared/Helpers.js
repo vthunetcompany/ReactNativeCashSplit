@@ -1,4 +1,5 @@
 import { THOUSAND_SEPARATOR } from "./GlobalConstants";
+import { Names } from "../src/storage/Names";
 
 export const capitalize = (str = '') => {
   if (!str || str.length === 0) return '';
@@ -46,3 +47,20 @@ export const getUuidV4 = () => {
     return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
   });
 };
+
+export const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
+export const getRandomName = (isMale) => {
+  console.log('isMale', isMale);
+  if (!isMale) isMale = !!getRandomInt(0,2)
+
+  let nameArr
+  if (isMale) nameArr = Names.male
+  else nameArr = Names.female
+
+  return nameArr[getRandomInt(0, nameArr.length)].concat(' ').concat(Names.surname[getRandomInt(0, Names.surname.length)])
+}

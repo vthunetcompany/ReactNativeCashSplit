@@ -16,7 +16,6 @@ const ResultScreen = ({
     loadData,
   } = dashboardProps;
 
-  console.log('guid', getUuidV4());
   const heeh = () => {
     let i, str = ''
     for (i = 0; i < 60; i++) {
