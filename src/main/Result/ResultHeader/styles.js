@@ -3,6 +3,7 @@ import { globalColors as GlobalColors } from "../../../../shared/GlobalStyles";
 
 const styles = StyleSheet.create({
   headerTitleContainer: {
+    height: 45,
     paddingBottom: 10,
     backgroundColor: GlobalColors.white,
     alignItems: "center",
@@ -12,15 +13,19 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.25,
     borderColor: GlobalColors.grey,
   },
-  headerTitleText: {},
+  headerTitleText: {
+    marginTop: 7,
+  },
 
   headerLeftButton: {
     position: "absolute",
     left: 0,
     bottom: 0,
 
-    padding: 10,
+    paddingTop: 10,
     paddingLeft: 10,
+    paddingRight: 20,
+    paddingBottom: 12,
     overflow: "visible",
   },
 
@@ -29,8 +34,10 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
 
-    padding: 10,
+    paddingTop: 10,
+    paddingLeft: 10,
     paddingRight: 15,
+    paddingBottom: 12,
     overflow: "visible",
   },
 });

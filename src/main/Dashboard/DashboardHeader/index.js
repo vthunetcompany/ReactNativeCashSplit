@@ -20,7 +20,7 @@ const DashboardHeader = ({navigation}) => {
     <CustomView style={[styles.headerTitleContainer,
       isDarkMode ? { backgroundColor: GlobalColors.grey } : {},
     ]}>
-      <CustomText style={styles.headerTitleText} supportDarkMode large>{APP_NAME}</CustomText>
+      <CustomText style={styles.headerTitleText} supportDarkMode bold xLarge>{APP_NAME}</CustomText>
 
       <TouchableOpacity style={styles.headerRightButton} onPress={onPress}>
         <Icon
