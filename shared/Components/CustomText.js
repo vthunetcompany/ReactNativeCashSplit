@@ -1,6 +1,6 @@
 import React from "react";
 import { Platform, Text, useColorScheme } from "react-native";
-import { DEFAULT_FONTSIZE, globalColors as GlobalColors } from "../GlobalStyles";
+import { DEFAULT_FONTSIZE, GlobalColors as GlobalColors } from "../GlobalStyles";
 
 const CustomText = ({
                       children,

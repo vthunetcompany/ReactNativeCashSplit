@@ -4,7 +4,7 @@ import { APP_NAME } from "../../../../shared/GlobalConstants";
 import { TouchableOpacity, useColorScheme } from "react-native";
 import React from "react";
 import styles from "./styles";
-import { globalColors as GlobalColors } from "../../../../shared/GlobalStyles";
+import { GlobalColors as GlobalColors } from "../../../../shared/GlobalStyles";
 import Icon from "../../../../shared/Icon";
 import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
 import { ROUTES } from "../../../storage/Routes";

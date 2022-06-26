@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { globalColors as GlobalColors } from "../GlobalStyles";
+import { GlobalColors as GlobalColors } from "../GlobalStyles";
 
 const FlatListWithSpinner = ({
   loading,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { LogBox, StyleSheet, useColorScheme } from "react-native";
-import { globalColors as GlobalColors } from "./shared/GlobalStyles";
+import { GlobalColors as GlobalColors } from "./shared/GlobalStyles";
 import { NavigationContainer } from "@react-navigation/native";
 import { ROUTES } from "./src/storage/Routes";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
@@ -83,7 +83,7 @@ const App = () => {
     }
   }, [masterData]);
 
-  const dashboardProps = {
+  const masterDataProps = {
     isLoading,
     masterData,
     setMasterData,
@@ -101,13 +101,13 @@ const App = () => {
           >
             <Tab.Screen name={ROUTES.DASHBOARD_SCREEN}>
               {(props) =>
-                <Dashboard {...props} dashboardProps={dashboardProps}/>
+                <Dashboard {...props} dashboardProps={masterDataProps}/>
               }
             </Tab.Screen>
 
             <Tab.Screen name={ROUTES.RESULT_SCREEN}>
               {(props) =>
-                <Result {...props} dashboardProps={dashboardProps} />
+                <Result {...props} dashboardProps={masterDataProps} />
               }
             </Tab.Screen>
           </Tab.Navigator>

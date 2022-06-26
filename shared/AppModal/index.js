@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
-import { globalColors as GlobalColors } from "../GlobalStyles";
+import { GlobalColors as GlobalColors } from "../GlobalStyles";
 import CustomText from "../Components/CustomText";
 import Loading from "../Loading";
 

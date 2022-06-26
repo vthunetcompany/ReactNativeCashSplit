@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { globalColors as GlobalColors } from "../../../../shared/GlobalStyles";
+import { GlobalColors as GlobalColors } from "../../../../shared/GlobalStyles";
 
 const styles = StyleSheet.create({
   headerTitleContainer: {

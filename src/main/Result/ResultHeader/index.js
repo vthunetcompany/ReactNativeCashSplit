@@ -3,12 +3,15 @@ import CustomText from "../../../../shared/Components/CustomText";
 import { TouchableOpacity, useColorScheme } from "react-native";
 import React from "react";
 import styles from "./styles";
-import { globalColors as GlobalColors } from "../../../../shared/GlobalStyles";
+import { GlobalColors } from "../../../../shared/GlobalStyles";
 import Icon from "../../../../shared/Icon";
 import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
 import { ROUTES } from "../../../storage/Routes";
 
-const ResultHeader = ({ navigation, dashboardProps }) => {
+const ResultHeader = ({
+                        navigation,
+                        dashboardProps,
+                      }) => {
   const isDarkMode = useColorScheme() === "dark";
 
   const {
@@ -40,7 +43,7 @@ const ResultHeader = ({ navigation, dashboardProps }) => {
       </TouchableOpacity>
 
 
-      <CustomText style={styles.headerTitleText} supportDarkMode large>
+      <CustomText style={styles.headerTitleText} supportDarkMode bold large>
         Checkout
       </CustomText>
 
