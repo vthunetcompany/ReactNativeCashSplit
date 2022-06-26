@@ -25,6 +25,12 @@ export const convertPrice = (price) => {
   return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, THOUSAND_SEPARATOR);
 };
 
+export const customReplaceAll = (string, searchString, replaceString) => {
+  let str = string.toString();
+  str = str.split(searchString).join(replaceString);
+  return str;
+};
+
 export const getUuidV4 = () => {
   // Timestamp
   let d = new Date().getTime();
@@ -63,4 +69,11 @@ export const getRandomName = (isMale) => {
   else nameArr = Names.female
 
   return nameArr[getRandomInt(0, nameArr.length)].concat(' ').concat(Names.surname[getRandomInt(0, Names.surname.length)])
+}
+
+export const removeItemFromArray = (array, item) => {
+  const index = array.indexOf(item);
+  if (index > -1) {
+    array.splice(index, 1); // 2nd parameter means remove one item only
+  }
 }

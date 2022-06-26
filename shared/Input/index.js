@@ -31,7 +31,7 @@ const Input = ({
     if (focused) {
       return GlobalColors.darkPink1;
     } else {
-      return GlobalColors.pink;
+      return GlobalColors.pink3;
     }
   };
 

@@ -15,8 +15,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   leftButton: {
-    backgroundColor: GlobalColors.pure_red,
+    backgroundColor: GlobalColors.white,
     borderRadius: 5,
+    borderWidth: 1.5,
+    borderColor: GlobalColors.pure_red,
 
     flex: 2,
     alignItems: 'center',
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   rightButton: {
-    backgroundColor: GlobalColors.pink,
+    backgroundColor: GlobalColors.pink3,
     borderRadius: 5,
 
     flex: 5,
