@@ -35,7 +35,8 @@ export const getUuidV4 = () => {
   // Timestamp
   let d = new Date().getTime();
   // Time in microseconds since page-load or 0 if unsupported
-  let d2 = ((typeof performance !== "undefined") && performance.now && (performance.now() * 1000)) || 0;
+  let d2 = ((typeof performance !== "undefined")
+    && performance.now && (performance.now() * 1000)) || 0;
 
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
     // random number between 0 and 16
@@ -68,7 +69,8 @@ export const getRandomName = (isMale) => {
   if (isMale) nameArr = Names.male
   else nameArr = Names.female
 
-  return nameArr[getRandomInt(0, nameArr.length)].concat(' ').concat(Names.surname[getRandomInt(0, Names.surname.length)])
+  return nameArr[getRandomInt(0, nameArr.length)].concat(' ')
+    .concat(Names.surname[getRandomInt(0, Names.surname.length)])
 }
 
 export const removeItemFromArray = (array, item) => {

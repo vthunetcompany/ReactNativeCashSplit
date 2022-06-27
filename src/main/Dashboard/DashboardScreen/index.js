@@ -5,6 +5,8 @@ import DashboardOverviewComponent from "../DashboardOverviewComponent";
 import { useToggle } from "../../../../shared/hooks/useToggle";
 import AppModal from "../../../../shared/AppModal";
 import ExpenseModalComponent from "../ExpenseModalComponent/styles";
+import EditNameModalComponent from "../EditNameModalComponent";
+import { capitalizeEachWord } from "../../../../shared/Helpers";
 
 const modalInfoInitialState = {
   id: '',
@@ -13,14 +15,18 @@ const modalInfoInitialState = {
 }
 
 const DashboardScreen = ({ dashboardProps }) => {
-  const [isShowExpenseModal, setIsShowExpenseModal] = useToggle(false)
-  const [modalInfo, setModalInfo] = useState(modalInfoInitialState)
+  const [isShowExpenseModal, setIsShowExpenseModal] = useToggle(false);
+  const [isShowNameModal, setIsShowNameModal] = useToggle(false);
+  const [modalInfo, setModalInfo] = useState(modalInfoInitialState);
   const modalProp = {
     isShowExpenseModal,
     setIsShowExpenseModal,
     modalInfo,
     setModalInfo,
-  }
+
+    isShowNameModal,
+    setIsShowNameModal,
+  };
 
   return (
     <>
@@ -29,8 +35,9 @@ const DashboardScreen = ({ dashboardProps }) => {
         props={dashboardProps}
         modalProp={modalProp}
       />
+
       <AppModal
-        title={modalInfo.name}
+        title={capitalizeEachWord(modalInfo.name)}
         modalBody={
           <ExpenseModalComponent
             masterDataProp={dashboardProps}
@@ -40,9 +47,24 @@ const DashboardScreen = ({ dashboardProps }) => {
         modalVisible={isShowExpenseModal}
         modalFooter={<></>}
         setModalVisible={setIsShowExpenseModal}
-        showExitIcon/>
+        showExitIcon />
+
+      <AppModal
+        title={"Edit name"}
+        modalBody={
+          <EditNameModalComponent
+            masterDataProp={dashboardProps}
+            modalProp={modalProp}
+          />
+        }
+        modalVisible={isShowNameModal}
+        modalFooter={<></>}
+        setModalVisible={setIsShowNameModal}
+        showExitIcon
+      />
     </>
   );
+
 };
 
 DashboardScreen.propTypes = {

@@ -5,7 +5,13 @@ import React, { useRef, useState } from "react";
 import CustomView from "../../../../../shared/Components/CustomView";
 import CustomText from "../../../../../shared/Components/CustomText";
 import { TouchableOpacity } from "react-native";
-import { capitalizeEachWord, getRandomName, getUuidV4 } from "../../../../../shared/Helpers";
+import {
+  capitalizeEachWord,
+  convertPrice,
+  getRandomInt,
+  getRandomName,
+  getUuidV4,
+} from "../../../../../shared/Helpers";
 import { CURRENCY } from "../../../../../shared/GlobalConstants";
 import Icon from "../../../../../shared/Icon";
 import { IconRoutes } from "../../../../../shared/Icon/IconRoutes";
@@ -23,15 +29,15 @@ const DashboardComponent = ({ props, modalProp }) => {
     setIsShowExpenseModal,
     modalInfo,
     setModalInfo,
+
+    isShowNameModal,
+    setIsShowNameModal,
   } = modalProp
 
-  const [count, setCount] = useState(0)
-
-  const addPerson = name => {
+  const addPerson = () => {
     const clonedMasterData = Object.assign([], masterData)
-    clonedMasterData.push({ id: getUuidV4(), name: getRandomName(), amount: count, })
+    clonedMasterData.push({ id: getUuidV4(), name: getRandomName(), amount: 0, })
 
-    setCount(count => (count + 1))
     setMasterData(clonedMasterData)
   }
 
@@ -47,16 +53,20 @@ const DashboardComponent = ({ props, modalProp }) => {
       <TouchableOpacity
         style={styles.dashboardPersonRowContainer}
         onPress={() => {
-          setIsShowExpenseModal(true)
           setModalInfo(item)
+          setIsShowExpenseModal(true)
         }}
-        onLongPress={() => removePerson(index)}
+        onLongPress={() => {
+          // removePerson(index);
+          setModalInfo(item)
+          setIsShowNameModal(true)
+        }}
       >
         <CustomText style={styles.personRowNameText}>
           {capitalizeEachWord(item.name)}
         </CustomText>
         <CustomText bold style={styles.personRowAmountText}>
-          {item.amount}{CURRENCY}
+          {convertPrice(item.amount)}{CURRENCY}
         </CustomText>
       </TouchableOpacity>
     );

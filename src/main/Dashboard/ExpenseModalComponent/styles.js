@@ -5,9 +5,7 @@ import CustomText from "../../../../shared/Components/CustomText";
 import { TouchableOpacity } from "react-native";
 import { GlobalColors } from "../../../../shared/GlobalStyles";
 import Input from "../../../../shared/Input";
-import Icon from "../../../../shared/Icon";
-import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
-import { CURRENCY, THOUSAND_SEPARATOR } from "../../../../shared/GlobalConstants";
+import { CURRENCY, MONEY_INCREMENT_LEVEL, THOUSAND_SEPARATOR } from "../../../../shared/GlobalConstants";
 import { convertPrice, customReplaceAll, removeItemFromArray } from "../../../../shared/Helpers";
 
 const modalInfoInitialState = {
@@ -55,29 +53,33 @@ const ExpenseModalComponent = ({
 
   const addMoney = () => {
     // find user in masterData using id
-    const clonedMasterData = Object.assign([], masterData)
-    removeItemFromArray(clonedMasterData, currentPersonInMasterData)
-    clonedMasterData.push({
-      id: modalInfo.id,
-      amount: modalInfo.amount + inputValue,
-      name: modalInfo.name,
-    })
+    if (!!inputValue) {
+      const clonedMasterData = Object.assign([], masterData);
+      removeItemFromArray(clonedMasterData, currentPersonInMasterData);
+      clonedMasterData.push({
+        id: modalInfo.id,
+        amount: modalInfo.amount + inputValue * MONEY_INCREMENT_LEVEL,
+        name: modalInfo.name,
+      });
 
-    setMasterData(clonedMasterData)
-    setIsShowExpenseModal(false)
+      setMasterData(clonedMasterData.sort((a, b) => b.amount - a.amount));
+    }
+    setIsShowExpenseModal(false);
   }
 
   const subtractMoney = () => {
-    const clonedMasterData = Object.assign([], masterData)
-    removeItemFromArray(clonedMasterData, currentPersonInMasterData)
-    clonedMasterData.push({
-      id: modalInfo.id,
-      amount: modalInfo.amount - inputValue,
-      name: modalInfo.name,
-    })
+    if (!!inputValue) {
+      const clonedMasterData = Object.assign([], masterData);
+      removeItemFromArray(clonedMasterData, currentPersonInMasterData);
+      clonedMasterData.push({
+        id: modalInfo.id,
+        amount: modalInfo.amount - inputValue * MONEY_INCREMENT_LEVEL,
+        name: modalInfo.name,
+      });
 
-    setMasterData(clonedMasterData)
-    setIsShowExpenseModal(false)
+      setMasterData(clonedMasterData.sort((a, b) => b.amount - a.amount));
+    }
+    setIsShowExpenseModal(false);
   }
 
   return (
@@ -101,12 +103,14 @@ const ExpenseModalComponent = ({
           }}
           onSubmitEditing={addMoney}
           keyboardType="number-pad"
+          textAlign={"right"}
           placeholder={"0"}
           returnKeyType={"done"}
           icon={
-            <CustomText bold style={{marginRight: 5,}}>{CURRENCY}</CustomText>
+            <CustomText bold style={{ marginRight: 5 }}>{THOUSAND_SEPARATOR}000{CURRENCY}</CustomText>
           }
           iconPosition="right"
+          maxLength={8}
         />
       </CustomView>
 

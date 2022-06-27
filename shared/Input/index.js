@@ -9,18 +9,18 @@ const Input = ({
   error,
   label,
   icon,
-  iconPosition,
-  innerRef,
-  onChangeText,
-  onSubmitEditing,
-  styleTextInput,
-  styleWrapper,
-  styleContainer,
-  value,
-  maxLength,
-  placeholder,
-  ...props
-}) => {
+                 iconPosition,
+                 innerRef,
+                 onChangeText,
+                 onSubmitEditing,
+                 styleTextInput,
+                 styleWrapper,
+                 styleContainer,
+                 value,
+                 maxLength,
+                 placeholder,
+                 ...props
+               }) => {
   const [focused, setFocused] = useState(false);
 
 

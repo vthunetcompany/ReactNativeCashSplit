@@ -2,10 +2,9 @@ import {StyleSheet} from 'react-native'
 import { GlobalColors } from "../../../../shared/GlobalStyles";
 
 const styles = StyleSheet.create({
-  modalContainer: {
-    height: 200,
-  },
+  editNameModalContainer: {
 
+  },
 
   modalButtonsContainer: {
     flexDirection: 'row',
@@ -15,8 +14,6 @@ const styles = StyleSheet.create({
   leftButton: {
     backgroundColor: GlobalColors.white,
     borderRadius: 5,
-    borderWidth: 1.5,
-    borderColor: GlobalColors.pure_red,
 
     flex: 1,
     alignItems: 'center',
@@ -35,4 +32,5 @@ const styles = StyleSheet.create({
   },
 
 })
+
 export default styles

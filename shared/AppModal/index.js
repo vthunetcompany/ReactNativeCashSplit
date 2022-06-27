@@ -54,6 +54,7 @@ const AppModal = ({
               justifyContent: 'center',
               flexGrow: 1,
             }}
+            keyboardShouldPersistTaps="handled"
           >
             <View style={styles.modalView}>
               <ScrollView
