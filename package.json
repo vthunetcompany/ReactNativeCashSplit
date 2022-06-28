@@ -7,7 +7,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "ios-VTH-11P": "react-native run-ios --device \"VTH 11P\""
+    "ios-physical": "react-native run-ios --device"
   },
   "dependencies": {
     "react": "17.0.2",
