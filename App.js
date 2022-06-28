@@ -49,17 +49,16 @@ const App = () => {
     if (USE_SAMPLE_DATA) {
       const setData = () => {
         const sampleData = [
-          // { name: "hung vu", amount: 69000 },
-          // { name: "alice", amount: 25000 },
-          // { name: "xi peso", amount: 1200000 },
-          // { name: "johnny walker", amount: 1200000 },
-          // { name: "moon peso", amount: 1200000 },
-          // { name: "john doe", amount: 1200000 },
-          // { name: "vu hung", amount: 1200000 },
-          // { name: "george bush", amount: 1200000 },
-          // { name: "the queen of england", amount: 1200000 },
+          { name: "hung vu", amount: 69000 },
+          { name: "alice", amount: 25000 },
+          { name: "xi peso", amount: 1200000 },
+          { name: "johnny walker", amount: 1200000 },
+          { name: "moon peso", amount: 1200000 },
+          { name: "john doe", amount: 1200000 },
+          { name: "vu hung", amount: 1200000 },
+          { name: "george bush", amount: 1200000 },
+          { name: "the queen of england", amount: 1200000 },
         ];
-
         saveData(sampleData);
       };
       setData();

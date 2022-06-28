@@ -12,7 +12,7 @@ const Loading = ({ loading, style }) => {
   return (
     <View style={[styles.overlay, style]}>
       <View style={styles.container}>
-        <ActivityIndicator color={GlobalColors.carsten_green} />
+        <ActivityIndicator color={GlobalColors.pink1} />
       </View>
     </View>
   );

@@ -10,6 +10,7 @@ const CustomText = ({
                       xLarge,
                       supportDarkMode,
                       bold,
+                      color,
                       ...props
                     }) => {
   let FONTSIZE = DEFAULT_FONTSIZE;
@@ -24,11 +25,16 @@ const CustomText = ({
     return Platform.OS === "ios" ? "400" : "normal";
   };
 
+  const getColor = () => {
+    if (!!color) return color
+    return supportDarkMode && isDarkMode ? GlobalColors.white : GlobalColors.shadowColor
+  }
+
   return (
     <Text
       style={[style, {
         fontSize: FONTSIZE,
-        color: supportDarkMode && isDarkMode ? GlobalColors.white : GlobalColors.shadowColor,
+        color: getColor(),
         fontWeight: getFontWeight(),
       }]}
       {...props}

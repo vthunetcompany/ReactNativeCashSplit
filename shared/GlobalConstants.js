@@ -6,5 +6,6 @@ export const APP_NAME = 'Money Splitter'
 export const USE_SAMPLE_DATA = false
 export const CURRENCY = '₫'
 export const CURRENCY_CODE = 'VND'
+export const MONEY_INCREMENT_LEVEL = 1000
 
 export const THOUSAND_SEPARATOR = ','

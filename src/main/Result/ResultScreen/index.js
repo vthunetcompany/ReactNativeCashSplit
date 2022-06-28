@@ -3,7 +3,6 @@ import { ScrollView } from "react-native";
 import styles from "./styles";
 import CustomText from "../../../../shared/Components/CustomText";
 import CustomView from "../../../../shared/Components/CustomView";
-import { getUuidV4 } from "../../../../shared/Helpers";
 
 const ResultScreen = ({
                         dashboardProps,
@@ -16,13 +15,8 @@ const ResultScreen = ({
     loadData,
   } = dashboardProps;
 
-  console.log('guid', getUuidV4());
-  const heeh = () => {
-    let i, str = ''
-    for (i = 0; i < 60; i++) {
-      str += getUuidV4() + '\n'
-    }
-    return str
+  const debugPrint = () => {
+    return masterData.reduce((prev, curr) => prev + curr.id.concat('\n'), '')
   }
 
   return (
@@ -30,7 +24,7 @@ const ResultScreen = ({
       <CustomView style={styles.resultViewContainer}>
         <CustomText>
           {
-            heeh()
+            debugPrint()
           }
         </CustomText>
       </CustomView>

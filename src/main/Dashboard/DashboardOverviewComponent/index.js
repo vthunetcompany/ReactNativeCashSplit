@@ -59,7 +59,7 @@ const DashboardOverviewComponent = ({ props }) => {
         </CustomText>
 
         <CustomText bold large style={styles.clockText}>
-          {convertPrice(totalSpending * 1000000)}{CURRENCY}
+          {convertPrice(totalSpending)}{CURRENCY}
         </CustomText>
 
         <CustomText bold style={{ marginTop: 5 }}>
