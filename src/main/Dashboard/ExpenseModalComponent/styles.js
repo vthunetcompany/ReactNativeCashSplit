@@ -54,11 +54,12 @@ const ExpenseModalComponent = ({
   const addMoney = () => {
     // find user in masterData using id
     if (!!inputValue) {
+      const priceAfterIncrement = inputValue * MONEY_INCREMENT_LEVEL
       const clonedMasterData = Object.assign([], masterData);
       removeItemFromArray(clonedMasterData, currentPersonInMasterData);
       clonedMasterData.push({
         id: modalInfo.id,
-        amount: modalInfo.amount + inputValue * MONEY_INCREMENT_LEVEL,
+        amount: modalInfo.amount + priceAfterIncrement,
         name: modalInfo.name,
       });
 
@@ -69,11 +70,12 @@ const ExpenseModalComponent = ({
 
   const subtractMoney = () => {
     if (!!inputValue) {
+      const priceAfterIncrement = inputValue * MONEY_INCREMENT_LEVEL
       const clonedMasterData = Object.assign([], masterData);
       removeItemFromArray(clonedMasterData, currentPersonInMasterData);
       clonedMasterData.push({
         id: modalInfo.id,
-        amount: modalInfo.amount - inputValue * MONEY_INCREMENT_LEVEL,
+        amount: priceAfterIncrement > modalInfo.amount ? 0 : modalInfo.amount - priceAfterIncrement,
         name: modalInfo.name,
       });
 
@@ -110,7 +112,7 @@ const ExpenseModalComponent = ({
             <CustomText bold style={{ marginRight: 5 }}>{THOUSAND_SEPARATOR}000{CURRENCY}</CustomText>
           }
           iconPosition="right"
-          maxLength={8}
+          maxLength={6}
         />
       </CustomView>
 
