@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import CustomView from "../../../../shared/Components/CustomView";
 import styles from "./styles";
-import { convertPrice, customReplaceAll, removeItemFromArray } from "../../../../shared/Helpers";
+import { convertPrice, customReplaceAll, isEmpty, removeItemFromArray } from "../../../../shared/Helpers";
 import { CURRENCY, THOUSAND_SEPARATOR } from "../../../../shared/GlobalConstants";
 import CustomText from "../../../../shared/Components/CustomText";
 import Input from "../../../../shared/Input";
 import { TouchableOpacity } from "react-native";
 import { GlobalColors } from "../../../../shared/GlobalStyles";
+import Icon from "../../../../shared/Icon";
+import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
 
 const modalInfoInitialState = {
-  id: '',
-  name: '',
-  amount: ''
-}
+  id: "",
+  name: "",
+  amount: "",
+};
 
 const EditNameModalComponent = ({
                                   modalProp,
@@ -48,9 +50,13 @@ const EditNameModalComponent = ({
     setIsShowNameModal(false)
   }
 
+  const clearName = () => {
+    setInputValue('')
+  }
+
   const onSubmit = () => {
-    if (!!inputValue &&
-      inputValue.toString() !== currentPersonInMasterData?.name) {
+    if (!!inputValue && !isEmpty(inputValue.toString().trim()) &&
+      inputValue.toString().trim() !== currentPersonInMasterData?.name) {
       console.log('currentPersonInMasterData', masterData);
       const clonedMasterData = Object.assign([], masterData)
       removeItemFromArray(clonedMasterData, currentPersonInMasterData)
@@ -60,7 +66,7 @@ const EditNameModalComponent = ({
       clonedMasterData.push({
         id: modalInfo.id,
         amount: modalInfo.amount,
-        name: inputValue.toString(),
+        name: inputValue.toString().trim(),
       })
       setMasterData(clonedMasterData.sort((a, b) => b.amount - a.amount))
     }
@@ -74,13 +80,27 @@ const EditNameModalComponent = ({
         <Input
           value={inputValue}
           onChangeText={text => {
-            setInputValue(text)
+            setInputValue(text);
           }}
           onSubmitEditing={onSubmit}
           textAlign="center"
           placeholder={modalInfo.name}
           returnKeyType={"done"}
-          maxLength={20}
+          maxLength={25}
+          icon={
+            <TouchableOpacity
+              hitSlop={{ top: 10, left: 0, bottom: 15, right: 15 }}
+              onPress={clearName}
+            >
+              <Icon
+                type={IconRoutes.Ionicon}
+                name={"close-circle"}
+                size={20}
+                style={{ color: GlobalColors.disabled }}
+              />
+            </TouchableOpacity>
+          }
+          iconPosition="right"
         />
       </CustomView>
 
@@ -89,14 +109,14 @@ const EditNameModalComponent = ({
           style={styles.leftButton}
           onPress={onCancel}
         >
-          <CustomText bold color={GlobalColors.pure_red}>Cancel</CustomText>
+          <CustomText bold color={GlobalColors.pure_red}>CANCEL</CustomText>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.rightButton}
           onPress={onSubmit}
         >
-          <CustomText bold color={GlobalColors.white}>Edit</CustomText>
+          <CustomText bold color={GlobalColors.white}>EDIT</CustomText>
         </TouchableOpacity>
       </CustomView>
     </CustomView>
