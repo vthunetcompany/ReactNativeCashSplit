@@ -1,5 +1,6 @@
 export const GlobalColors = {
   shadowColor: '#000000',
+  logo_grey: 'rgb(52,50,48)',
   black: '#333333',
   light_black: '#6B6B6B',
   dark_grey: '#6C6C6C',

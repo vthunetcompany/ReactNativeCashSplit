@@ -9,3 +9,4 @@ export const CURRENCY_CODE = 'VND'
 export const MONEY_INCREMENT_LEVEL = 1000
 
 export const THOUSAND_SEPARATOR = ','
+export const SPLASH_DURATION_IN_MILLIS = 1500

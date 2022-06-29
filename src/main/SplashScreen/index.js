@@ -3,14 +3,14 @@ import CustomView from "../../../shared/Components/CustomView";
 import { ActivityIndicator, Image, StyleSheet } from "react-native";
 import { GlobalColors } from "../../../shared/GlobalStyles";
 import CustomText from "../../../shared/Components/CustomText";
-import Loading from "../../../shared/Loading";
+import { SPLASH_DURATION_IN_MILLIS, VERSION } from "../../../shared/GlobalConstants";
 
 const SplashScreen = ({ setIsShowSplash }) => {
 
   useEffect(() => {
     setTimeout(() => {
       setIsShowSplash(false);
-    }, 2000);
+    }, SPLASH_DURATION_IN_MILLIS);
   }, []);
 
   return (
@@ -30,10 +30,11 @@ const SplashScreen = ({ setIsShowSplash }) => {
 
       <CustomText
         bold
-        style={styles.signatureSplash}
+        style={styles.signatureSplashText}
         color={GlobalColors.white}
       >
-        A product by VTH® Corp
+        {`A product by VTH® Corp\n\n`}
+        {`Version ${VERSION}`}
       </CustomText>
     </CustomView>
   );
@@ -41,7 +42,7 @@ const SplashScreen = ({ setIsShowSplash }) => {
 
 const styles = StyleSheet.create({
   splashContainer: {
-    backgroundColor: GlobalColors.black,
+    backgroundColor: GlobalColors.logo_grey,
 
     flex: 1,
     justifyContent: "center",
@@ -57,10 +58,11 @@ const styles = StyleSheet.create({
     bottom: 200,
   },
 
-  signatureSplash: {
+  signatureSplashText: {
     position: "absolute",
     bottom: 30,
     alignSelf: "center",
+    textAlign: 'center',
   },
 });
 
