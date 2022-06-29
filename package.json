@@ -7,7 +7,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "ios-physical": "react-native run-ios --device"
+    "ios-physical": "react-native run-ios --device",
+    "ios-physical-release": "react-native run-ios --device --configuration \"Release\""
   },
   "dependencies": {
     "react": "17.0.2",

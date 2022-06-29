@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   dashboardPersonRowContainer: {
     ...dashboardRowContainer,
     backgroundColor: GlobalColors.white,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: GlobalColors.black,
 
     flexDirection: 'row',

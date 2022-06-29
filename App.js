@@ -11,6 +11,7 @@ import { useToggle } from "./shared/hooks/useToggle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AsyncStorageKeys } from "./src/storage/AsyncStorageKeys";
 import { DEBUG_MODE, USE_SAMPLE_DATA } from "./shared/GlobalConstants";
+import SplashScreen from "./src/main/SplashScreen";
 
 const Tab = createMaterialTopTabNavigator();
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
   // start configuring masterData
   const [isLoading, toggleLoading] = useToggle(true);
   const [masterData, setMasterData] = useState([]);
+  const [isShowSplash, setIsShowSplash] = useState(true);
 
   const loadData = async () => {
     return JSON.parse(await AsyncStorage.getItem(AsyncStorageKeys.masterData));
@@ -88,6 +90,8 @@ const App = () => {
     setMasterData,
     loadData,
   };
+
+  if (isShowSplash) return <SplashScreen setIsShowSplash={setIsShowSplash}/>;
 
   return (
     <SafeAreaView style={[backgroundStyle, styles.safeAreaViewContainer]}>

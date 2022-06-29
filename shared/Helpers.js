@@ -62,7 +62,6 @@ export const getRandomInt = (min, max) => {
 }
 
 export const getRandomName = (isMale) => {
-  console.log('isMale', isMale);
   if (!isMale) isMale = !!getRandomInt(0,2)
 
   let nameArr

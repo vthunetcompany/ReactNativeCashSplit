@@ -101,6 +101,7 @@ const EditNameModalComponent = ({
             </TouchableOpacity>
           }
           iconPosition="right"
+          selectTextOnFocus
         />
       </CustomView>
 

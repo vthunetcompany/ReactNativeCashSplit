@@ -7,7 +7,6 @@ import CustomView from "../../../../shared/Components/CustomView";
 const ResultScreen = ({
                         dashboardProps,
                       }) => {
-
   const {
     isLoading,
     masterData,
@@ -19,6 +18,19 @@ const ResultScreen = ({
     return masterData.reduce((prev, curr) => prev + curr.id.concat('\n'), '')
   }
 
+  const getSection = (item, index) => {
+    return (
+      <CustomView style={styles.sectionViewContainer}>
+        <CustomView style={styles.leftCol}>
+          <CustomText>{masterData[index].name}</CustomText>
+        </CustomView>
+        <CustomView style={styles.rightCol}>
+          <CustomText>{masterData[index].id}</CustomText>
+        </CustomView>
+      </CustomView>
+    )
+  }
+
   return (
     <ScrollView style={styles.resultScrollContainer}>
       <CustomView style={styles.resultViewContainer}>
@@ -27,6 +39,8 @@ const ResultScreen = ({
             debugPrint()
           }
         </CustomText>
+
+        {masterData.map((i1, i2) => getSection(i1, i2))}
       </CustomView>
     </ScrollView>
   );

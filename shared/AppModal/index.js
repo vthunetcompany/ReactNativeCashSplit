@@ -96,7 +96,7 @@ const AppModal = ({
                       ) : null}
 
                       <View>
-                        <CustomText bold style={styles.title}>
+                        <CustomText bold large style={styles.title}>
                           {title || ''}
                         </CustomText>
                       </View>
