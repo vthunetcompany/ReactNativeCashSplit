@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import styles from "./styles";
 import CustomText from "../../../../shared/Components/CustomText";
@@ -18,9 +18,11 @@ const ResultScreen = ({
 
   const AVG = masterData.reduce((p, c) => p + c.amount, 0) / masterData.length;
   const numberOfChecks = Math.ceil(masterData.length / 2);
-  let transaction = [];
 
+  let transaction = [];
   let currentSpendBalance = [];
+
+  const [resultData, setResultData] = useState([])
 
   const calculateTransactions = () => {
     console.log("currentBalance", currentSpendBalance);
@@ -33,8 +35,10 @@ const ResultScreen = ({
       // start from first person, end at half the list
       while (differenceBalance[i] > 0) {
         for (let j = differenceBalance.length - 1; j > i; j--) {
-          console.log('Current:', i, j);
+          if (differenceBalance[i] === 0) break
+
           // start from the last person, end at the current person "i"
+          console.log('Current:', i, j);
           if (differenceBalance[j] < 0) {
             differenceBalance = doTransfer(
               j,
@@ -63,11 +67,15 @@ const ResultScreen = ({
     }
   };
 
+
   useEffect(() => {
     masterData.forEach(datum => currentSpendBalance.push(datum.amount));
 
     calculateTransactions();
     console.log("Result::", transaction);
+    setResultData(transaction)
+
+
   }, []);
 
   const debugPrint = () => {
