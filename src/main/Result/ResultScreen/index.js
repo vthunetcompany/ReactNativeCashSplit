@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ScrollView } from "react-native";
 import styles from "./styles";
 import CustomText from "../../../../shared/Components/CustomText";
 import CustomView from "../../../../shared/Components/CustomView";
+import { CURRENCY } from "../../../../shared/GlobalConstants";
+import { isEmpty } from "../../../../shared/Helpers";
 
 const ResultScreen = ({
                         dashboardProps,
@@ -14,9 +16,67 @@ const ResultScreen = ({
     loadData,
   } = dashboardProps;
 
+  const AVG = masterData.reduce((p, c) => p + c.amount, 0) / masterData.length;
+  const numberOfChecks = Math.ceil(masterData.length / 2);
+  let transaction = [];
+
+  let currentSpendBalance = [];
+
+  const calculateTransactions = () => {
+    console.log("currentBalance", currentSpendBalance);
+
+    let differenceBalance = [];
+    masterData.forEach(datum => differenceBalance.push(datum.amount - AVG));
+    console.log("differenceBalance", differenceBalance);  // 625000 -14500 -22500 -25500
+
+    for (let i = 0; i < numberOfChecks; i++) {
+      // start from first person, end at half the list
+      while (differenceBalance[i] > 0) {
+        for (let j = differenceBalance.length - 1; j > i; j--) {
+          console.log('Current:', i, j);
+          // start from the last person, end at the current person "i"
+          if (differenceBalance[j] < 0) {
+            differenceBalance = doTransfer(
+              j,
+              i,
+              Math.min(Math.abs(differenceBalance[i]), Math.abs(differenceBalance[j])),
+              differenceBalance,
+            );
+          }
+        }
+      }
+    }
+
+  };
+
+  const doTransfer = (sender, receiver, amount, statusArray = []) => {
+    console.log('doTransfer', sender, receiver, amount, statusArray);
+    currentSpendBalance[sender] += amount;
+    currentSpendBalance[receiver] -= amount;
+
+    transaction.push({ sender, receiver, amount });
+
+    if (!!statusArray || !isEmpty(statusArray)) {
+      statusArray[sender] += amount;
+      statusArray[receiver] -= amount;
+      return statusArray;
+    }
+  };
+
+  useEffect(() => {
+    masterData.forEach(datum => currentSpendBalance.push(datum.amount));
+
+    calculateTransactions();
+    console.log("Result::", transaction);
+  }, []);
+
   const debugPrint = () => {
-    return masterData.reduce((prev, curr) => prev + curr.id.concat('\n'), '')
-  }
+    return masterData.reduce((prev, curr) => prev + curr.amount.toString().concat(CURRENCY + "\n"), "")
+        .concat("Avg: ").concat(AVG).concat(CURRENCY + "\n\n")
+        .concat(masterData.reduce((prev, curr) => prev + (curr.amount - AVG).toString().concat(CURRENCY + "\n"), ""))
+      + numberOfChecks;
+  };
+
 
   const getSection = (item, index) => {
     return (
