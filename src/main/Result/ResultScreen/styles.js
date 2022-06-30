@@ -1,10 +1,36 @@
 import { StyleSheet } from "react-native";
 import { GlobalColors } from "../../../../shared/GlobalStyles";
 
-const styles = StyleSheet.create({
-  resultScrollContainer: {
-    backgroundColor: GlobalColors.background_color,
+const leftColFlex = 2,
+  midColFlex = 3, rightColFlex = 2
 
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: GlobalColors.background_color,
+    flex: 1,
+  },
+
+  scrollViewHeader: {
+    paddingTop: 20,
+    paddingHorizontal: 20,
+    paddingBottom: 5,
+
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+  },
+  leftColHeader: {
+    flex: leftColFlex,
+  },
+  midColHeader: {
+    flex: midColFlex,
+  },
+  rightColHeader: {
+    flex: rightColFlex,
+    alignItems: 'flex-end',
+    textAlign: 'right',
+  },
+
+  resultScrollContainer: {
     flex: 1,
     paddingTop: 10,
     paddingHorizontal: 20,
@@ -35,14 +61,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   leftCol: {
-    flex: 2,
+    flex: leftColFlex,
 
     justifyContent: 'flex-start',
   },
 
   midCol: {
     // backgroundColor: GlobalColors.pure_red,
-    flex: 3,
+    flex: midColFlex,
     marginLeft: 10,
 
     flexDirection: 'row',
@@ -58,7 +84,7 @@ const styles = StyleSheet.create({
   },
 
   rightCol: {
-    flex: 2,
+    flex: rightColFlex,
 
     marginLeft: 10,
     justifyContent: 'center',

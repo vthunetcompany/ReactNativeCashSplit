@@ -134,11 +134,25 @@ const ResultScreen = ({
   }
 
   return (
-    <ScrollView style={styles.resultScrollContainer}>
-      <CustomView style={styles.resultViewContainer}>
-        {transactionHistory.map((i1, i2) => getSection(i1, i2))}
+    <CustomView style={styles.container}>
+      <CustomView style={styles.scrollViewHeader}>
+        <CustomText bold large style={styles.leftColHeader}>
+          Sender
+        </CustomText>
+        <CustomText bold large style={styles.midColHeader}>
+
+        </CustomText>
+        <CustomText bold large style={styles.rightColHeader}>
+          Receiver
+        </CustomText>
       </CustomView>
-    </ScrollView>
+
+      <ScrollView style={styles.resultScrollContainer}>
+        <CustomView style={styles.resultViewContainer}>
+          {transactionHistory.map((i1, i2) => getSection(i1, i2))}
+        </CustomView>
+      </ScrollView>
+    </CustomView>
   );
 };
 
