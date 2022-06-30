@@ -4,7 +4,7 @@ import styles from "./styles";
 import CustomText from "../../../../shared/Components/CustomText";
 import CustomView from "../../../../shared/Components/CustomView";
 import { CURRENCY, MONEY_INCREMENT_LEVEL } from "../../../../shared/GlobalConstants";
-import { convertPrice, isEmpty } from "../../../../shared/Helpers";
+import { capitalizeEachWord, convertPrice, isEmpty } from "../../../../shared/Helpers";
 import Icon from "../../../../shared/Icon";
 import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
 import { GlobalColors } from "../../../../shared/GlobalStyles";
@@ -140,8 +140,8 @@ const ResultScreen = ({
     return (
       <CustomView style={styles.sectionViewContainer}>
         <CustomView style={styles.leftCol}>
-          <CustomText large bold>
-            {item.sender.name}
+          <CustomText medium bold>
+            {capitalizeEachWord(item.sender.name)}
           </CustomText>
         </CustomView>
 
@@ -174,15 +174,15 @@ const ResultScreen = ({
           </CustomView>
 
           <CustomView style={styles.midColAmountContainer}>
-            <CustomText bold>
+            <CustomText large bold>
               {convertPrice(Math.ceil(item.transferAmount / MONEY_INCREMENT_LEVEL) * MONEY_INCREMENT_LEVEL)}{CURRENCY}
             </CustomText>
           </CustomView>
         </CustomView>
 
         <CustomView style={styles.rightCol}>
-          <CustomText large bold style={styles.rightColText}>
-            {item.receiver.name}
+          <CustomText medium bold style={styles.rightColText}>
+            {capitalizeEachWord(item.receiver.name)}
           </CustomText>
         </CustomView>
       </CustomView>

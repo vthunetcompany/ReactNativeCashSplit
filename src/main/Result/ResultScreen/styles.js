@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     flex: midColFlex,
     marginLeft: 10,
 
-    flexDirection: 'row',
+    // flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
