@@ -126,25 +126,37 @@ const ResultScreen = ({
           })
 
           if (!isSenderExist) {
-            pushToArray(arr, historyItem)
+            pushToArray(arr, historyItem);
           }
         }
       })
 
-      console.log('arr', JSON.stringify(arr));
-      setGroupedTransactionHistory(arr)
+      console.log("arr", JSON.stringify(arr));
+      setGroupedTransactionHistory(arr);
     }
   }, [transactionHistory])
 
-  const getSection = (item, index) => {
+  const getGroupedSection = (item, index) => {
     return (
       <CustomView style={styles.sectionViewContainer}>
         <CustomView style={styles.leftCol}>
-          <CustomText bold>
+          <CustomText large bold>
             {item.sender.name}
           </CustomText>
         </CustomView>
 
+        <CustomView style={styles.midAndRightContainer}>
+          {item.receiverList.map((item, index) =>
+            renderGroupedReceiver(item, index)
+          )}
+        </CustomView>
+      </CustomView>
+    );
+  };
+
+  const renderGroupedReceiver = (item, index) => {
+    return (
+      <CustomView style={styles.midAndRightRowContainer}>
         <CustomView style={styles.midCol}>
           <CustomView style={styles.midColIcons}>
             <Icon
@@ -169,13 +181,13 @@ const ResultScreen = ({
         </CustomView>
 
         <CustomView style={styles.rightCol}>
-          <CustomText bold style={styles.rightColText}>
+          <CustomText large bold style={styles.rightColText}>
             {item.receiver.name}
           </CustomText>
         </CustomView>
       </CustomView>
-    )
-  }
+    );
+  };
 
   return (
     <CustomView style={styles.container}>
@@ -193,7 +205,7 @@ const ResultScreen = ({
 
       <ScrollView style={styles.resultScrollContainer}>
         <CustomView style={styles.resultViewContainer}>
-          {!calculateLoading && transactionHistory.map((i1, i2) => getSection(i1, i2))}
+          {!calculateLoading && groupedTransactionHistory.map((i1, i2) => getGroupedSection(i1, i2))}
         </CustomView>
       </ScrollView>
     </CustomView>

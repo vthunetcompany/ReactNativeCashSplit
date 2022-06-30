@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 5,
 
-    alignSelf: 'stretch',
-    flexDirection: 'row',
+    alignSelf: "stretch",
+    flexDirection: "row",
   },
   leftColHeader: {
     flex: leftColFlex,
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
   },
   rightColHeader: {
     flex: rightColFlex,
-    alignItems: 'flex-end',
-    textAlign: 'right',
+    alignItems: "flex-end",
+    textAlign: "right",
   },
 
   resultScrollContainer: {
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
 
   resultViewContainer: {
     flex: 1,
+    marginBottom: 10,
   },
 
   sectionViewContainer: {
@@ -54,7 +55,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
 
     paddingHorizontal: 10,
-    paddingVertical: 20,
+    paddingTop: 20,
+    paddingBottom: 5,
     marginBottom: 15,
 
     flexDirection: 'row',
@@ -62,8 +64,19 @@ const styles = StyleSheet.create({
   },
   leftCol: {
     flex: leftColFlex,
-
     justifyContent: 'flex-start',
+    marginBottom: 20,
+    // backgroundColor: GlobalColors.yellow
+  },
+
+  midAndRightContainer: {
+    flex: midColFlex + rightColFlex,
+    // backgroundColor: GlobalColors.yellow
+  },
+
+  midAndRightRowContainer: {
+    flexDirection: 'row',
+    marginBottom: 20,
   },
 
   midCol: {
@@ -76,14 +89,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   midColIcons: {
-    flex: 2,
+    flex: 1,
     flexDirection: 'row',
   },
   midColAmountContainer: {
-    flex: 3,
+    // backgroundColor: GlobalColors.pure_red,
+    flex: 2,
   },
 
   rightCol: {
+    // backgroundColor: GlobalColors.yellow,
     flex: rightColFlex,
 
     marginLeft: 10,
