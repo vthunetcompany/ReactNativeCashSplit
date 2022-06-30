@@ -8,6 +8,7 @@ import { convertPrice, isEmpty } from "../../../../shared/Helpers";
 import Icon from "../../../../shared/Icon";
 import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
 import { GlobalColors } from "../../../../shared/GlobalStyles";
+import { useToggle } from "../../../../shared/hooks/useToggle";
 
 const ResultScreen = ({
                         dashboardProps,
@@ -18,6 +19,7 @@ const ResultScreen = ({
     setMasterData,
     loadData,
   } = dashboardProps;
+  const [calculateLoading, setCalculateLoading] = useToggle(true)
 
   const AVG = masterData.reduce((p, c) => p + c.amount, 0) / masterData.length;
   const numberOfChecks = Math.ceil(masterData.length / 2);
@@ -72,6 +74,9 @@ const ResultScreen = ({
   };
 
   useEffect(() => {
+    setTransactionHistory([])
+    setCalculateLoading(true)
+
     transaction = [];
     currentSpendBalance = [];
 
@@ -81,16 +86,17 @@ const ResultScreen = ({
     console.log("\n-----------------------------------------------\nResult::",
       transaction,
       "\n-----------------------------------------------");
+
     setTransactionHistory(transaction);
+    setCalculateLoading(false)
   }, [masterData]);
 
-  const debugPrint = () => {
-    return masterData.reduce((prev, curr) => prev + curr.amount.toString().concat(CURRENCY + "\n"), "")
-        .concat("Avg: ").concat(AVG).concat(CURRENCY + "\n\n")
-        .concat(masterData.reduce((prev, curr) => prev + (curr.amount - AVG).toString().concat(CURRENCY + "\n"), ""))
-      + numberOfChecks;
-  };
-
+  // const debugPrint = () => {
+  //   return masterData.reduce((prev, curr) => prev + curr.amount.toString().concat(CURRENCY + "\n"), "")
+  //       .concat("Avg: ").concat(AVG).concat(CURRENCY + "\n\n")
+  //       .concat(masterData.reduce((prev, curr) => prev + (curr.amount - AVG).toString().concat(CURRENCY + "\n"), ""))
+  //     + numberOfChecks;
+  // };
 
   const getSection = (item, index) => {
     return (
@@ -147,11 +153,13 @@ const ResultScreen = ({
         </CustomText>
       </CustomView>
 
+      {/*{!calculateLoading &&*/}
       <ScrollView style={styles.resultScrollContainer}>
         <CustomView style={styles.resultViewContainer}>
-          {transactionHistory.map((i1, i2) => getSection(i1, i2))}
+          {!calculateLoading && transactionHistory.map((i1, i2) => getSection(i1, i2))}
         </CustomView>
       </ScrollView>
+      {/*}*/}
     </CustomView>
   );
 };

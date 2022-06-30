@@ -78,7 +78,7 @@ const App = () => {
 
   useEffect(() => {
     if (!!masterData) {
-      // console.log("masterData changes::", masterData);
+      console.log("masterData changes::", masterData);
       setMasterData(masterData.sort((a, b) => b.amount - a.amount))
       saveData(masterData);
     }

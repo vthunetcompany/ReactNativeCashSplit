@@ -54,6 +54,13 @@ const EditNameModalComponent = ({
     setInputValue('')
   }
 
+  const removePerson = index => {
+    const clonedMasterData = Object.assign([], masterData)
+    clonedMasterData.splice(index, 1)
+
+    setMasterData(clonedMasterData)
+  }
+
   const onSubmit = () => {
     if (!!inputValue && !isEmpty(inputValue.toString().trim()) &&
       inputValue.toString().trim() !== currentPersonInMasterData?.name) {
@@ -108,9 +115,9 @@ const EditNameModalComponent = ({
       <CustomView style={styles.modalButtonsContainer}>
         <TouchableOpacity
           style={styles.leftButton}
-          onPress={onCancel}
+          onPress={removePerson}
         >
-          <CustomText bold color={GlobalColors.pure_red}>CANCEL</CustomText>
+          <CustomText bold color={GlobalColors.pure_red}>REMOVE</CustomText>
         </TouchableOpacity>
 
         <TouchableOpacity

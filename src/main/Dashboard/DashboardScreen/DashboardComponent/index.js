@@ -57,7 +57,6 @@ const DashboardComponent = ({ props, modalProp }) => {
           setIsShowExpenseModal(true)
         }}
         onLongPress={() => {
-          // removePerson(index);
           setModalInfo(item)
           setIsShowNameModal(true)
         }}
