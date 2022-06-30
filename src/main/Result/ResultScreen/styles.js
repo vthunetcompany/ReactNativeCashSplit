@@ -35,11 +35,37 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   leftCol: {
+    flex: 2,
 
+    justifyContent: 'flex-start',
   },
+
+  midCol: {
+    // backgroundColor: GlobalColors.pure_red,
+    flex: 3,
+    marginLeft: 10,
+
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  midColIcons: {
+    flex: 2,
+    flexDirection: 'row',
+  },
+  midColAmountContainer: {
+    flex: 3,
+  },
+
   rightCol: {
+    flex: 2,
+
+    marginLeft: 10,
+    justifyContent: 'center',
+  },
+  rightColText: {
+    textAlign: 'right',
 
   },
-
 })
 export default styles

@@ -3,8 +3,11 @@ import { ScrollView } from "react-native";
 import styles from "./styles";
 import CustomText from "../../../../shared/Components/CustomText";
 import CustomView from "../../../../shared/Components/CustomView";
-import { CURRENCY } from "../../../../shared/GlobalConstants";
-import { isEmpty } from "../../../../shared/Helpers";
+import { CURRENCY, MONEY_INCREMENT_LEVEL } from "../../../../shared/GlobalConstants";
+import { convertPrice, isEmpty } from "../../../../shared/Helpers";
+import Icon from "../../../../shared/Icon";
+import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
+import { GlobalColors } from "../../../../shared/GlobalStyles";
 
 const ResultScreen = ({
                         dashboardProps,
@@ -29,7 +32,7 @@ const ResultScreen = ({
 
     let differenceBalance = [];
     masterData.forEach(datum => differenceBalance.push(Math.floor(datum.amount - AVG)));
-    console.log("differenceBalance", differenceBalance);  // 625000 -14500 -22500 -25500
+    console.log("differenceBalance", differenceBalance);
 
     for (let i = 0; i < numberOfChecks; i++) {
       // start from first person, end at half the list
@@ -93,10 +96,38 @@ const ResultScreen = ({
     return (
       <CustomView style={styles.sectionViewContainer}>
         <CustomView style={styles.leftCol}>
-          <CustomText>{item.sender} gives {item.amount} to {item.receiver}</CustomText>
+          <CustomText bold>
+            {masterData[item.sender].name}
+          </CustomText>
         </CustomView>
+
+        <CustomView style={styles.midCol}>
+          <CustomView style={styles.midColIcons}>
+            <Icon
+              type={IconRoutes.Ionicon}
+              name={"send"}
+              size={15}
+              style={{ color: GlobalColors.darkPink1, marginRight: 3 }}
+            />
+            <Icon
+              type={IconRoutes.FAIcon}
+              name={"money"}
+              size={18}
+              style={{ color: GlobalColors.darkPink3 }}
+            />
+          </CustomView>
+
+          <CustomView style={styles.midColAmountContainer}>
+            <CustomText bold>
+              {convertPrice(Math.ceil(item.amount / MONEY_INCREMENT_LEVEL) * MONEY_INCREMENT_LEVEL)}{CURRENCY}
+            </CustomText>
+          </CustomView>
+        </CustomView>
+
         <CustomView style={styles.rightCol}>
-          <CustomText>{item.id}</CustomText>
+          <CustomText bold style={styles.rightColText}>
+            {masterData[item.receiver].name}
+          </CustomText>
         </CustomView>
       </CustomView>
     )
@@ -105,12 +136,6 @@ const ResultScreen = ({
   return (
     <ScrollView style={styles.resultScrollContainer}>
       <CustomView style={styles.resultViewContainer}>
-        {/*<CustomText>*/}
-        {/*  {*/}
-        {/*    debugPrint()*/}
-        {/*  }*/}
-        {/*</CustomText>*/}
-
         {transactionHistory.map((i1, i2) => getSection(i1, i2))}
       </CustomView>
     </ScrollView>
