@@ -64,7 +64,7 @@ const DashboardComponent = ({ props, modalProp }) => {
           setIsShowNameModal(true)
         }}
       >
-        <CustomText style={styles.personRowNameText}>
+        <CustomText bold style={styles.personRowNameText}>
           {capitalizeEachWord(item.name)}
         </CustomText>
         <CustomText bold style={styles.personRowAmountText}>

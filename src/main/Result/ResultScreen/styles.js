@@ -66,12 +66,10 @@ const styles = StyleSheet.create({
     flex: leftColFlex,
     justifyContent: 'flex-start',
     marginBottom: 20,
-    // backgroundColor: GlobalColors.yellow
   },
 
   midAndRightContainer: {
     flex: midColFlex + rightColFlex,
-    // backgroundColor: GlobalColors.yellow
   },
 
   midAndRightRowContainer: {
@@ -80,11 +78,9 @@ const styles = StyleSheet.create({
   },
 
   midCol: {
-    // backgroundColor: GlobalColors.pure_red,
     flex: midColFlex,
     marginLeft: 10,
 
-    // flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -93,12 +89,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   midColAmountContainer: {
-    // backgroundColor: GlobalColors.pure_red,
     flex: 2,
   },
 
   rightCol: {
-    // backgroundColor: GlobalColors.yellow,
     flex: rightColFlex,
 
     marginLeft: 10,
@@ -106,7 +100,6 @@ const styles = StyleSheet.create({
   },
   rightColText: {
     textAlign: 'right',
-
   },
 })
 export default styles
