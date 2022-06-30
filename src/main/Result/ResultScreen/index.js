@@ -203,11 +203,21 @@ const ResultScreen = ({
         </CustomText>
       </CustomView>
 
-      <ScrollView style={styles.resultScrollContainer}>
-        <CustomView style={styles.resultViewContainer}>
-          {!calculateLoading && groupedTransactionHistory.map((i1, i2) => getGroupedSection(i1, i2))}
+      {!isEmpty(groupedTransactionHistory)
+        ? <ScrollView style={styles.resultScrollContainer}>
+          <CustomView style={styles.resultViewContainer}>
+            {!calculateLoading && groupedTransactionHistory.map((i1, i2) => getGroupedSection(i1, i2))}
+          </CustomView>
+        </ScrollView>
+        : <CustomView style={[{
+          alignItems: "center",
+          marginTop: 100,
+        }, styles.resultScrollContainer]}>
+          <CustomText style={styles.resultScrollContainer}>
+            Start spending to see something here
+          </CustomText>
         </CustomView>
-      </ScrollView>
+      }
     </CustomView>
   );
 };

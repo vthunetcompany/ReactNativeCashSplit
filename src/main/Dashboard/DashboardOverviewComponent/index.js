@@ -28,7 +28,7 @@ const DashboardOverviewComponent = ({ props }) => {
     return masterData.reduce((prev, curr) => prev + curr.amount, 0);
   };
 
-  const getAvg = () => Math.ceil((totalSpending / masterData.length) / MONEY_INCREMENT_LEVEL) * MONEY_INCREMENT_LEVEL ?? 0
+  const getAvg = () => isEmpty(masterData) ? 0 : Math.ceil((totalSpending / masterData.length) / MONEY_INCREMENT_LEVEL) * MONEY_INCREMENT_LEVEL ?? 0
 
   const getHeadcountIcons = () => {
     if (isEmpty(masterData)) {
