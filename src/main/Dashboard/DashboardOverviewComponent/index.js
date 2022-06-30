@@ -28,8 +28,7 @@ const DashboardOverviewComponent = ({ props }) => {
     return masterData.reduce((prev, curr) => prev + curr.amount, 0);
   };
 
-  const getAvg = () => Math.ceil((totalSpending / masterData.length) / MONEY_INCREMENT_LEVEL) * MONEY_INCREMENT_LEVEL
-
+  const getAvg = () => Math.ceil((totalSpending / masterData.length) / MONEY_INCREMENT_LEVEL) * MONEY_INCREMENT_LEVEL ?? 0
 
   const getHeadcountIcons = () => {
     if (isEmpty(masterData)) {
@@ -78,7 +77,7 @@ const DashboardOverviewComponent = ({ props }) => {
         </CustomView>
 
         <CustomText bold large style={styles.averageText}>
-          {`Average 💸:\n${convertPrice(getAvg())}${CURRENCY}`}
+          {`Average 💸\n${convertPrice(getAvg())}${CURRENCY}`}
         </CustomText>
       </CustomView>
     </CustomView>

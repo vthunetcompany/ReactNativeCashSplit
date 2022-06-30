@@ -25,6 +25,7 @@ const ResultScreen = ({
   const numberOfChecks = Math.ceil(masterData.length / 2);
 
   const [transactionHistory, setTransactionHistory] = useState([]);
+  const [groupedTransactionHistory, setGroupedTransactionHistory] = useState([]);
 
   let transaction = [];
   let currentSpendBalance = [];
@@ -64,7 +65,11 @@ const ResultScreen = ({
     currentSpendBalance[sender] += amount;
     currentSpendBalance[receiver] -= amount;
 
-    transaction.push({ sender, receiver, amount });
+    transaction.push({
+      sender: masterData[sender],
+      receiver: masterData[receiver],
+      transferAmount: amount
+    });
 
     if (!!statusArray || !isEmpty(statusArray)) {
       statusArray[sender] += amount;
@@ -81,29 +86,62 @@ const ResultScreen = ({
     currentSpendBalance = [];
 
     masterData.forEach(datum => currentSpendBalance.push(datum.amount));
-
     calculateTransactions();
-    console.log("\n-----------------------------------------------\nResult::",
-      transaction,
-      "\n-----------------------------------------------");
 
     setTransactionHistory(transaction);
     setCalculateLoading(false)
   }, [masterData]);
 
-  // const debugPrint = () => {
-  //   return masterData.reduce((prev, curr) => prev + curr.amount.toString().concat(CURRENCY + "\n"), "")
-  //       .concat("Avg: ").concat(AVG).concat(CURRENCY + "\n\n")
-  //       .concat(masterData.reduce((prev, curr) => prev + (curr.amount - AVG).toString().concat(CURRENCY + "\n"), ""))
-  //     + numberOfChecks;
-  // };
+  useEffect(() => {
+    const pushToArray = (arr, historyItem) => {
+      arr.push({
+        sender: historyItem.sender,
+        receiverList: [
+          {
+            receiver: historyItem.receiver,
+            transferAmount: historyItem.transferAmount
+          }
+        ],
+      })
+    }
+
+    if (!!transactionHistory) {
+      let arr = []
+      transactionHistory.forEach(historyItem => {
+        if (isEmpty(arr)) {
+          pushToArray(arr, historyItem)
+        } else {
+          let isSenderExist = false
+          arr.forEach(arrItem => {
+            if (isSenderExist) return
+
+            if (historyItem.sender.id === arrItem.sender.id) {
+              isSenderExist = true
+
+              arrItem.receiverList.push({
+                receiver: historyItem.receiver,
+                transferAmount: historyItem.transferAmount,
+              })
+            }
+          })
+
+          if (!isSenderExist) {
+            pushToArray(arr, historyItem)
+          }
+        }
+      })
+
+      console.log('arr', JSON.stringify(arr));
+      setGroupedTransactionHistory(arr)
+    }
+  }, [transactionHistory])
 
   const getSection = (item, index) => {
     return (
       <CustomView style={styles.sectionViewContainer}>
         <CustomView style={styles.leftCol}>
           <CustomText bold>
-            {masterData[item.sender].name}
+            {item.sender.name}
           </CustomText>
         </CustomView>
 
@@ -125,14 +163,14 @@ const ResultScreen = ({
 
           <CustomView style={styles.midColAmountContainer}>
             <CustomText bold>
-              {convertPrice(Math.ceil(item.amount / MONEY_INCREMENT_LEVEL) * MONEY_INCREMENT_LEVEL)}{CURRENCY}
+              {convertPrice(Math.ceil(item.transferAmount / MONEY_INCREMENT_LEVEL) * MONEY_INCREMENT_LEVEL)}{CURRENCY}
             </CustomText>
           </CustomView>
         </CustomView>
 
         <CustomView style={styles.rightCol}>
           <CustomText bold style={styles.rightColText}>
-            {masterData[item.receiver].name}
+            {item.receiver.name}
           </CustomText>
         </CustomView>
       </CustomView>
@@ -153,13 +191,11 @@ const ResultScreen = ({
         </CustomText>
       </CustomView>
 
-      {/*{!calculateLoading &&*/}
       <ScrollView style={styles.resultScrollContainer}>
         <CustomView style={styles.resultViewContainer}>
           {!calculateLoading && transactionHistory.map((i1, i2) => getSection(i1, i2))}
         </CustomView>
       </ScrollView>
-      {/*}*/}
     </CustomView>
   );
 };

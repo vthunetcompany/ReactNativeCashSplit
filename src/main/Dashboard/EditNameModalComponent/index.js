@@ -34,6 +34,8 @@ const EditNameModalComponent = ({
     setModalInfo,
     isShowNameModal,
     setIsShowNameModal,
+    listIndex,
+    setListIndex,
   } = modalProp;
 
   const [inputValue, setInputValue] = useState(modalInfo.name);
@@ -56,9 +58,12 @@ const EditNameModalComponent = ({
 
   const removePerson = index => {
     const clonedMasterData = Object.assign([], masterData)
+    console.log('before splice', clonedMasterData, index);
     clonedMasterData.splice(index, 1)
+    console.log('after splice', clonedMasterData);
 
     setMasterData(clonedMasterData)
+    setIsShowNameModal(false)
   }
 
   const onSubmit = () => {
@@ -115,7 +120,9 @@ const EditNameModalComponent = ({
       <CustomView style={styles.modalButtonsContainer}>
         <TouchableOpacity
           style={styles.leftButton}
-          onPress={removePerson}
+          onPress={() => {
+            removePerson(listIndex)
+          }}
         >
           <CustomText bold color={GlobalColors.pure_red}>REMOVE</CustomText>
         </TouchableOpacity>

@@ -32,6 +32,8 @@ const DashboardComponent = ({ props, modalProp }) => {
 
     isShowNameModal,
     setIsShowNameModal,
+    listIndex,
+    setListIndex,
   } = modalProp
 
   const addPerson = () => {
@@ -57,6 +59,7 @@ const DashboardComponent = ({ props, modalProp }) => {
           setIsShowExpenseModal(true)
         }}
         onLongPress={() => {
+          setListIndex(index)
           setModalInfo(item)
           setIsShowNameModal(true)
         }}

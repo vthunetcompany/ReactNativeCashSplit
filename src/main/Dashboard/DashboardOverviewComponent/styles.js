@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 
   averageText: {
-    marginTop: 20,
+    marginTop: 30,
 
     textAlign: "center",
   },
