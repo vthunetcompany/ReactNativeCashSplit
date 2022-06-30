@@ -19,22 +19,23 @@ const ResultScreen = ({
   const AVG = masterData.reduce((p, c) => p + c.amount, 0) / masterData.length;
   const numberOfChecks = Math.ceil(masterData.length / 2);
 
+  const [transactionHistory, setTransactionHistory] = useState([]);
+
   let transaction = [];
   let currentSpendBalance = [];
-
-  const [resultData, setResultData] = useState([])
 
   const calculateTransactions = () => {
     console.log("currentBalance", currentSpendBalance);
 
     let differenceBalance = [];
-    masterData.forEach(datum => differenceBalance.push(datum.amount - AVG));
+    masterData.forEach(datum => differenceBalance.push(Math.floor(datum.amount - AVG)));
     console.log("differenceBalance", differenceBalance);  // 625000 -14500 -22500 -25500
 
     for (let i = 0; i < numberOfChecks; i++) {
       // start from first person, end at half the list
       while (differenceBalance[i] > 0) {
         for (let j = differenceBalance.length - 1; j > i; j--) {
+          setTimeout(() => {},1000)
           if (differenceBalance[i] === 0) break
 
           // start from the last person, end at the current person "i"
@@ -67,16 +68,18 @@ const ResultScreen = ({
     }
   };
 
-
   useEffect(() => {
+    transaction = [];
+    currentSpendBalance = [];
+
     masterData.forEach(datum => currentSpendBalance.push(datum.amount));
 
     calculateTransactions();
-    console.log("Result::", transaction);
-    setResultData(transaction)
-
-
-  }, []);
+    console.log("\n-----------------------------------------------\nResult::",
+      transaction,
+      "\n-----------------------------------------------");
+    setTransactionHistory(transaction);
+  }, [masterData]);
 
   const debugPrint = () => {
     return masterData.reduce((prev, curr) => prev + curr.amount.toString().concat(CURRENCY + "\n"), "")
@@ -90,10 +93,10 @@ const ResultScreen = ({
     return (
       <CustomView style={styles.sectionViewContainer}>
         <CustomView style={styles.leftCol}>
-          <CustomText>{masterData[index].name}</CustomText>
+          <CustomText>{item.sender} gives {item.amount} to {item.receiver}</CustomText>
         </CustomView>
         <CustomView style={styles.rightCol}>
-          <CustomText>{masterData[index].id}</CustomText>
+          <CustomText>{item.id}</CustomText>
         </CustomView>
       </CustomView>
     )
@@ -102,13 +105,13 @@ const ResultScreen = ({
   return (
     <ScrollView style={styles.resultScrollContainer}>
       <CustomView style={styles.resultViewContainer}>
-        <CustomText>
-          {
-            debugPrint()
-          }
-        </CustomText>
+        {/*<CustomText>*/}
+        {/*  {*/}
+        {/*    debugPrint()*/}
+        {/*  }*/}
+        {/*</CustomText>*/}
 
-        {masterData.map((i1, i2) => getSection(i1, i2))}
+        {transactionHistory.map((i1, i2) => getSection(i1, i2))}
       </CustomView>
     </ScrollView>
   );
