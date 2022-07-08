@@ -22,7 +22,7 @@ const ResultScreen = ({
   const [calculateLoading, setCalculateLoading] = useToggle(true)
 
   const AVG = masterData.reduce((p, c) => p + c.amount, 0) / masterData.length;
-  const numberOfChecks = Math.ceil(masterData.length / 2);
+  const numberOfChecks = masterData.length;
 
   const [transactionHistory, setTransactionHistory] = useState([]);
   const [groupedTransactionHistory, setGroupedTransactionHistory] = useState([]);
@@ -131,7 +131,6 @@ const ResultScreen = ({
         }
       })
 
-      console.log("arr", JSON.stringify(arr));
       setGroupedTransactionHistory(arr);
     }
   }, [transactionHistory])
