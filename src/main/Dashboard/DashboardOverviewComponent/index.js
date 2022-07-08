@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import CustomText from "../../../../shared/Components/CustomText";
 import { TouchableOpacity } from "react-native";
-import { CURRENCY, CURRENCY_CODE } from "../../../../shared/GlobalConstants";
+import { CURRENCY, CURRENCY_CODE, MONEY_INCREMENT_LEVEL } from "../../../../shared/GlobalConstants";
 import { convertPrice, isEmpty } from "../../../../shared/Helpers";
 import Icon from "../../../../shared/Icon";
 import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
@@ -27,6 +27,8 @@ const DashboardOverviewComponent = ({ props }) => {
     if (masterData.length === 1) return masterData[0].amount;
     return masterData.reduce((prev, curr) => prev + curr.amount, 0);
   };
+
+  const getAvg = () => isEmpty(masterData) ? 0 : Math.ceil((totalSpending / masterData.length) / MONEY_INCREMENT_LEVEL) * MONEY_INCREMENT_LEVEL ?? 0
 
   const getHeadcountIcons = () => {
     if (isEmpty(masterData)) {
@@ -73,6 +75,10 @@ const DashboardOverviewComponent = ({ props }) => {
         <CustomView style={{ flexDirection: "row", marginTop: 2 }}>
           {getHeadcountIcons()}
         </CustomView>
+
+        <CustomText bold large style={styles.averageText}>
+          {`Average 💸\n${convertPrice(getAvg())}${CURRENCY}`}
+        </CustomText>
       </CustomView>
     </CustomView>
   );

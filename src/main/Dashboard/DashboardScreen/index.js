@@ -18,6 +18,8 @@ const DashboardScreen = ({ dashboardProps }) => {
   const [isShowExpenseModal, setIsShowExpenseModal] = useToggle(false);
   const [isShowNameModal, setIsShowNameModal] = useToggle(false);
   const [modalInfo, setModalInfo] = useState(modalInfoInitialState);
+  const [listIndex, setListIndex] = useState(0)
+
   const modalProp = {
     isShowExpenseModal,
     setIsShowExpenseModal,
@@ -26,6 +28,8 @@ const DashboardScreen = ({ dashboardProps }) => {
 
     isShowNameModal,
     setIsShowNameModal,
+    listIndex,
+    setListIndex,
   };
 
   return (

@@ -32,6 +32,8 @@ const DashboardComponent = ({ props, modalProp }) => {
 
     isShowNameModal,
     setIsShowNameModal,
+    listIndex,
+    setListIndex,
   } = modalProp
 
   const addPerson = () => {
@@ -57,12 +59,12 @@ const DashboardComponent = ({ props, modalProp }) => {
           setIsShowExpenseModal(true)
         }}
         onLongPress={() => {
-          // removePerson(index);
+          setListIndex(index)
           setModalInfo(item)
           setIsShowNameModal(true)
         }}
       >
-        <CustomText style={styles.personRowNameText}>
+        <CustomText bold style={styles.personRowNameText}>
           {capitalizeEachWord(item.name)}
         </CustomText>
         <CustomText bold style={styles.personRowAmountText}>

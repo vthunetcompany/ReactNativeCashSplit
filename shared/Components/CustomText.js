@@ -6,6 +6,7 @@ const CustomText = ({
                       children,
                       style,
                       small,
+                      medium,
                       large,
                       xLarge,
                       supportDarkMode,
@@ -17,8 +18,9 @@ const CustomText = ({
   const isDarkMode = useColorScheme() === "dark";
 
   if (small) FONTSIZE = 12;
+  else if (medium) FONTSIZE = 16;
   else if (large) FONTSIZE = 20;
-  else if (xLarge) FONTSIZE = 26
+  else if (xLarge) FONTSIZE = 26;
 
   const getFontWeight = () => {
     if (bold) return Platform.OS === "ios" ? "600" : "bold";

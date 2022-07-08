@@ -6,9 +6,9 @@ import { GlobalColors } from "../GlobalStyles";
 import CustomText from "../Components/CustomText";
 
 const Input = ({
-  error,
-  label,
-  icon,
+                 error,
+                 label,
+                 icon,
                  iconPosition,
                  innerRef,
                  onChangeText,

@@ -38,6 +38,12 @@ const styles = StyleSheet.create({
     overflow: "hidden",
 
   },
+
+  averageText: {
+    marginTop: 30,
+
+    textAlign: "center",
+  },
 })
 
 export default styles

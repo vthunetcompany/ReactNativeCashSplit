@@ -30,6 +30,8 @@ const ExpenseModalComponent = ({
     setIsShowExpenseModal,
     modalInfo,
     setModalInfo,
+    listIndex,
+    setListIndex,
   } = modalProp
 
   const [inputValue, setInputValue] = useState(0);
