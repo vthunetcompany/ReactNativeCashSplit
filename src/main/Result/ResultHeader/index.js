@@ -22,7 +22,7 @@ const ResultHeader = ({
   } = dashboardProps;
 
   const onPressLeft = () => {
-    navigation.navigate(ROUTES.DASHBOARD_SCREEN)
+    navigation.navigate(ROUTES.HISTORY_SCREEN)
   }
 
   const onPressRight = () => {

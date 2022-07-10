@@ -6,6 +6,7 @@ import { ROUTES } from "./src/storage/Routes";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Dashboard from "./src/main/Dashboard";
 import Result from "./src/main/Result";
+import History from "./src/main/History";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useToggle } from "./shared/hooks/useToggle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -31,13 +32,19 @@ const App = () => {
   const [isLoading, toggleLoading] = useToggle(true);
   const [masterData, setMasterData] = useState([]);
   const [isShowSplash, setIsShowSplash] = useState(true);
+  const [spendingHistory, setSpendingHistory] = useState([])
 
   const loadData = async () => {
-    return JSON.parse(await AsyncStorage.getItem(AsyncStorageKeys.masterData));
+    return {
+      masterData: JSON.parse(await AsyncStorage.getItem(AsyncStorageKeys.masterData)),
+      spendingHistory: JSON.parse(await AsyncStorage.getItem(AsyncStorageKeys.spendingHistory)),
+    };
   };
 
   const saveData = masterData => {
+    console.log('saveData', JSON.stringify(spendingHistory));
     AsyncStorage.setItem(AsyncStorageKeys.masterData, JSON.stringify(masterData));
+    AsyncStorage.setItem(AsyncStorageKeys.spendingHistory, JSON.stringify(spendingHistory))
   };
 
   useEffect(() => {
@@ -70,7 +77,8 @@ const App = () => {
     loadData().then(res => {
       console.log("Startup::", res);
       if (!!res) {
-        setMasterData(res);
+        setMasterData(res?.masterData);
+        setSpendingHistory(res?.spendingHistory);
       }
       toggleLoading(false)
     });
@@ -89,6 +97,8 @@ const App = () => {
     masterData,
     setMasterData,
     loadData,
+    spendingHistory,
+    setSpendingHistory,
   };
 
   if (isShowSplash) return <SplashScreen setIsShowSplash={setIsShowSplash}/>;
@@ -104,7 +114,13 @@ const App = () => {
           >
             <Tab.Screen name={ROUTES.DASHBOARD_SCREEN}>
               {(props) =>
-                <Dashboard {...props} dashboardProps={masterDataProps}/>
+                <Dashboard {...props} masterDataProps={masterDataProps}/>
+              }
+            </Tab.Screen>
+
+            <Tab.Screen name={ROUTES.HISTORY_SCREEN}>
+              {(props) =>
+                <History {...props} dashboardProps={masterDataProps} />
               }
             </Tab.Screen>
 

@@ -19,6 +19,7 @@ const ResultScreen = ({
     setMasterData,
     loadData,
   } = dashboardProps;
+
   const [calculateLoading, setCalculateLoading] = useToggle(true)
 
   const AVG = masterData.reduce((p, c) => p + c.amount, 0) / masterData.length;

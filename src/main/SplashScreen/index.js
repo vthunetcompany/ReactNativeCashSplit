@@ -33,7 +33,7 @@ const SplashScreen = ({ setIsShowSplash }) => {
         style={styles.signatureSplashText}
         color={GlobalColors.white}
       >
-        {`A product by VTH®. All rights reserved\n\n`}
+        {`A pet product of VTH®. All rights reserved\n\n`}
         {`Version ${VERSION}`}
       </CustomText>
     </CustomView>

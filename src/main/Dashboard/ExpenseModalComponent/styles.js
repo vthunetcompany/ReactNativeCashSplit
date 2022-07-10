@@ -5,8 +5,13 @@ import CustomText from "../../../../shared/Components/CustomText";
 import { TouchableOpacity } from "react-native";
 import { GlobalColors } from "../../../../shared/GlobalStyles";
 import Input from "../../../../shared/Input";
-import { CURRENCY, MONEY_INCREMENT_LEVEL, THOUSAND_SEPARATOR } from "../../../../shared/GlobalConstants";
-import { convertPrice, customReplaceAll, removeItemFromArray } from "../../../../shared/Helpers";
+import {
+  CURRENCY,
+  MONEY_INCREMENT_LEVEL,
+  THOUSAND_SEPARATOR,
+  TRANSACTION_TYPE,
+} from "../../../../shared/GlobalConstants";
+import { convertPrice, customReplaceAll, getUuidV4, removeItemFromArray } from "../../../../shared/Helpers";
 
 const modalInfoInitialState = {
   id: '',
@@ -23,6 +28,8 @@ const ExpenseModalComponent = ({
     masterData,
     setMasterData,
     loadData,
+    spendingHistory,
+    setSpendingHistory,
   } = masterDataProp;
 
   const {
@@ -35,19 +42,20 @@ const ExpenseModalComponent = ({
   } = modalProp
 
   const [inputValue, setInputValue] = useState(0);
-  const [showValue, setShowValue] = useState('')
-  const [currentPersonInMasterData, setCurrentPersonInMasterData] = useState(modalInfoInitialState)
+  const [showValue, setShowValue] = useState("");
+  const [currentPersonInMasterData, setCurrentPersonInMasterData] = useState(modalInfoInitialState);
+  const [spendingType, setSpendingType] = useState("TAXI");
 
   const getRealValue = (v) => {
-    return customReplaceAll(v, THOUSAND_SEPARATOR, '')
-  }
+    return customReplaceAll(v, THOUSAND_SEPARATOR, "");
+  };
 
   useEffect(() => {
-    const clonedMasterData = Object.assign([], masterData)
-    const currentPersonInMasterData = clonedMasterData.find(ele => ele.id === modalInfo.id)
+    const clonedMasterData = Object.assign([], masterData);
+    const currentPersonInMasterData = clonedMasterData.find(ele => ele.id === modalInfo.id);
 
-    setCurrentPersonInMasterData(currentPersonInMasterData)
-  }, [])
+    setCurrentPersonInMasterData(currentPersonInMasterData);
+  }, []);
 
   useEffect(() => {
     setInputValue(parseInt(getRealValue(showValue)))
@@ -56,35 +64,66 @@ const ExpenseModalComponent = ({
   const addMoney = () => {
     // find user in masterData using id
     if (!!inputValue) {
-      const priceAfterIncrement = inputValue * MONEY_INCREMENT_LEVEL
+      const priceAfterIncrement = inputValue * MONEY_INCREMENT_LEVEL;
+      const change = priceAfterIncrement
+      const amount = modalInfo.amount + change
+
       const clonedMasterData = Object.assign([], masterData);
       removeItemFromArray(clonedMasterData, currentPersonInMasterData);
       clonedMasterData.push({
         id: modalInfo.id,
-        amount: modalInfo.amount + priceAfterIncrement,
+        amount: amount,
         name: modalInfo.name,
       });
 
       setMasterData(clonedMasterData.sort((a, b) => b.amount - a.amount));
+
+      setSpendingHistory(oldHistory => {
+        const clonedHistory = Object.assign([], oldHistory);
+        clonedHistory.push(currentSpendingHistory(change, TRANSACTION_TYPE.ADD));
+
+        return clonedHistory
+      });
     }
     setIsShowExpenseModal(false);
   }
 
   const subtractMoney = () => {
     if (!!inputValue) {
-      const priceAfterIncrement = inputValue * MONEY_INCREMENT_LEVEL
+      const priceAfterIncrement = inputValue * MONEY_INCREMENT_LEVEL;
+      const change = priceAfterIncrement > modalInfo.amount ? modalInfo.amount : priceAfterIncrement
+      const amount = modalInfo.amount - change
+
       const clonedMasterData = Object.assign([], masterData);
       removeItemFromArray(clonedMasterData, currentPersonInMasterData);
       clonedMasterData.push({
         id: modalInfo.id,
-        amount: priceAfterIncrement > modalInfo.amount ? 0 : modalInfo.amount - priceAfterIncrement,
+        amount: amount,
         name: modalInfo.name,
       });
 
       setMasterData(clonedMasterData.sort((a, b) => b.amount - a.amount));
+
+      setSpendingHistory(oldHistory => {
+        const clonedHistory = Object.assign([], oldHistory);
+        clonedHistory.push(currentSpendingHistory(change, TRANSACTION_TYPE.SUBTRACT));
+
+        return clonedHistory
+      });
     }
     setIsShowExpenseModal(false);
   }
+
+  const currentSpendingHistory = (change, transactionType) => {
+    return {
+      id: getUuidV4(),
+      spendingType: spendingType,
+      spendingAmount: change,
+      spenderId: modalInfo.id,
+      spenderName: modalInfo.name,
+      transactionType: transactionType,
+    };
+  };
 
   return (
     <CustomView styles={styles.modalContainer}>
@@ -93,7 +132,7 @@ const ExpenseModalComponent = ({
         <Input
           value={showValue.toString()}
           onChangeText={(rawText) => {
-            const text = customReplaceAll(rawText, THOUSAND_SEPARATOR, '');
+            const text = customReplaceAll(rawText, THOUSAND_SEPARATOR, "");
 
             const handledValue =
               text.length > 0 && parseInt(text)
