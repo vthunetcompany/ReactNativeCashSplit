@@ -11,8 +11,9 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useToggle } from "./shared/hooks/useToggle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AsyncStorageKeys } from "./src/storage/AsyncStorageKeys";
-import { DEBUG_MODE, USE_SAMPLE_DATA } from "./shared/GlobalConstants";
+import { DEBUG_MODE, RESET_ALL_DATA, USE_SAMPLE_DATA } from "./shared/GlobalConstants";
 import SplashScreen from "./src/main/SplashScreen";
+import { handleException, isEmpty } from "./shared/Helpers";
 
 const Tab = createMaterialTopTabNavigator();
 const App = () => {
@@ -35,14 +36,32 @@ const App = () => {
   const [spendingHistory, setSpendingHistory] = useState([])
 
   const loadData = async () => {
-    return {
-      masterData: JSON.parse(await AsyncStorage.getItem(AsyncStorageKeys.masterData)),
-      spendingHistory: JSON.parse(await AsyncStorage.getItem(AsyncStorageKeys.spendingHistory)),
-    };
+    if (RESET_ALL_DATA) {
+      // always false
+      AsyncStorage.setItem(AsyncStorageKeys.masterData, '[]')
+      AsyncStorage.setItem(AsyncStorageKeys.spendingHistory, '[]')
+    }
+
+    const getMasterDataFromLocalStorage = AsyncStorage.getItem(AsyncStorageKeys.masterData);
+    const getSpendingHistoryFromLocalStorage = AsyncStorage.getItem(AsyncStorageKeys.spendingHistory);
+
+    return Promise.all([getMasterDataFromLocalStorage, getSpendingHistoryFromLocalStorage])
+      .then(res => {
+        return {
+          masterData: JSON.parse(res[0]),
+          spendingHistory: JSON.parse(res[1]),
+        };
+      })
+      .catch(error => {
+        handleException(error, "App > loadData()")
+        return {
+          masterData: [],
+          spendingHistory: [],
+        }
+      });
   };
 
   const saveData = masterData => {
-    console.log('saveData', JSON.stringify(spendingHistory));
     AsyncStorage.setItem(AsyncStorageKeys.masterData, JSON.stringify(masterData));
     AsyncStorage.setItem(AsyncStorageKeys.spendingHistory, JSON.stringify(spendingHistory))
   };
@@ -85,8 +104,9 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (!!masterData) {
+    if (!!masterData && !isEmpty(masterData)) {
       console.log("masterData changes::", masterData);
+
       setMasterData(masterData.sort((a, b) => b.amount - a.amount))
       saveData(masterData);
     }

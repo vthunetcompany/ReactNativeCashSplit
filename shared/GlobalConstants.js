@@ -4,6 +4,7 @@ export const VERSION = '0.1.0'
 export const APP_NAME = 'Cash Splitter'
 
 export const USE_SAMPLE_DATA = false
+export const RESET_ALL_DATA = false
 export const CURRENCY = '₫'
 export const CURRENCY_CODE = 'VND'
 export const MONEY_INCREMENT_LEVEL = 1000

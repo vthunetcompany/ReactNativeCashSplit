@@ -1,4 +1,4 @@
-import { THOUSAND_SEPARATOR } from "./GlobalConstants";
+import { DEBUG_MODE, DEMO_MODE, THOUSAND_SEPARATOR } from "./GlobalConstants";
 import { Names } from "../src/storage/Names";
 
 export const capitalize = (str = '') => {
@@ -77,4 +77,9 @@ export const removeItemFromArray = (array, item) => {
   if (index > -1) {
     array.splice(index, 1); // 2nd parameter means remove one item only
   }
+}
+
+export const handleException = (error, origin) => {
+  const logFunction = DEBUG_MODE && !DEMO_MODE ? console.error : console.log
+  logFunction("Error::", origin ? 'in '.concat(origin).concat(' ::') : '', error);
 }
