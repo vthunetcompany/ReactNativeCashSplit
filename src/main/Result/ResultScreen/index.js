@@ -39,7 +39,7 @@ const ResultScreen = ({
     console.log("differenceBalance", differenceBalance);
 
     for (let i = 0; i < numberOfChecks; i++) {
-      // start from first person, end at half the list
+      // start from first person, end at final person of the list
       while (differenceBalance[i] > 0) {
         for (let j = differenceBalance.length - 1; j > i; j--) {
           setTimeout(() => {},1000)
@@ -58,7 +58,6 @@ const ResultScreen = ({
         }
       }
     }
-
   };
 
   const doTransfer = (sender, receiver, amount, statusArray = []) => {

@@ -45,7 +45,8 @@ const App = () => {
     const getMasterDataFromLocalStorage = AsyncStorage.getItem(AsyncStorageKeys.masterData);
     const getSpendingHistoryFromLocalStorage = AsyncStorage.getItem(AsyncStorageKeys.spendingHistory);
 
-    return Promise.all([getMasterDataFromLocalStorage, getSpendingHistoryFromLocalStorage])
+    return Promise
+      .all([getMasterDataFromLocalStorage, getSpendingHistoryFromLocalStorage])
       .then(res => {
         return {
           masterData: JSON.parse(res[0]),
@@ -104,7 +105,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (!!masterData && !isEmpty(masterData)) {
+    if (!!masterData) {
       console.log("masterData changes::", masterData);
 
       setMasterData(masterData.sort((a, b) => b.amount - a.amount))

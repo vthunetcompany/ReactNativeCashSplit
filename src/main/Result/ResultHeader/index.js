@@ -19,6 +19,7 @@ const ResultHeader = ({
     masterData,
     setMasterData,
     loadData,
+    setSpendingHistory,
   } = dashboardProps;
 
   const onPressLeft = () => {
@@ -26,6 +27,9 @@ const ResultHeader = ({
   }
 
   const onPressRight = () => {
+    setSpendingHistory([])
+
+    // to be set last because masterData changing triggers local storage save
     setMasterData([])
   }
 

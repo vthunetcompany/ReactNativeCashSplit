@@ -104,12 +104,14 @@ const ExpenseModalComponent = ({
 
       setMasterData(clonedMasterData.sort((a, b) => b.amount - a.amount));
 
-      setSpendingHistory(oldHistory => {
-        const clonedHistory = Object.assign([], oldHistory);
-        clonedHistory.push(currentSpendingHistory(change, TRANSACTION_TYPE.SUBTRACT));
+      if (modalInfo.amount > 0) {
+        setSpendingHistory(oldHistory => {
+          const clonedHistory = Object.assign([], oldHistory);
+          clonedHistory.push(currentSpendingHistory(change, TRANSACTION_TYPE.SUBTRACT));
 
-        return clonedHistory
-      });
+          return clonedHistory
+        });
+      }
     }
     setIsShowExpenseModal(false);
   }
