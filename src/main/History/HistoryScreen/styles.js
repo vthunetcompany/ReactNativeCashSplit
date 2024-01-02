@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { GlobalColors } from "../../../../shared/GlobalStyles";
+import { GlobalColors } from '../../../../shared/GlobalStyles';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 5,
 
-    alignSelf: "stretch",
-    flexDirection: "row",
+    alignSelf: 'stretch',
+    flexDirection: 'row',
   },
 
 

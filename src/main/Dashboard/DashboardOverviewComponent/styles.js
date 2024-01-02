@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { GlobalColors as GlobalColors } from "../../../../shared/GlobalStyles";
+import { StyleSheet } from 'react-native';
+import { GlobalColors as GlobalColors } from '../../../../shared/GlobalStyles';
 
 const CLOCK_SIZE = 165
 const styles = StyleSheet.create({
@@ -8,9 +8,9 @@ const styles = StyleSheet.create({
 
     flex: 2,
     flexDirection: 'row',
-    alignItems: "center",
+    alignItems: 'center',
     overflow: 'hidden',
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
 
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     borderColor: GlobalColors.pink,
     backgroundColor: GlobalColors.white,
 
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   clockText: {},
 
@@ -34,15 +34,15 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 15,
 
-    alignItems: "center",
-    overflow: "hidden",
+    alignItems: 'center',
+    overflow: 'hidden',
 
   },
 
   averageText: {
     marginTop: 30,
 
-    textAlign: "center",
+    textAlign: 'center',
   },
 })
 

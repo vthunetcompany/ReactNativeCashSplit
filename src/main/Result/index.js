@@ -1,7 +1,7 @@
-import React from "react";
-import ResultHeader from "./ResultHeader";
-import SafeAreaView from "react-native/Libraries/Components/SafeAreaView/SafeAreaView";
-import ResultScreen from "./ResultScreen";
+import React from 'react';
+import ResultHeader from './ResultHeader';
+import SafeAreaView from 'react-native/Libraries/Components/SafeAreaView/SafeAreaView';
+import ResultScreen from './ResultScreen';
 
 const Result = ({navigation, dashboardProps}) => {
 

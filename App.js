@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { LogBox, StyleSheet, useColorScheme } from "react-native";
-import { GlobalColors as GlobalColors } from "./shared/GlobalStyles";
-import { NavigationContainer } from "@react-navigation/native";
-import { ROUTES } from "./src/storage/Routes";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import Dashboard from "./src/main/Dashboard";
-import Result from "./src/main/Result";
-import History from "./src/main/History";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { useToggle } from "./shared/hooks/useToggle";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AsyncStorageKeys } from "./src/storage/AsyncStorageKeys";
-import { DEBUG_MODE, RESET_ALL_DATA, USE_SAMPLE_DATA } from "./shared/GlobalConstants";
-import SplashScreen from "./src/main/SplashScreen";
-import { handleException, isEmpty } from "./shared/Helpers";
+import React, { useEffect, useState } from 'react';
+import { LogBox, StyleSheet, useColorScheme } from 'react-native';
+import { GlobalColors as GlobalColors } from './shared/GlobalStyles';
+import { NavigationContainer } from '@react-navigation/native';
+import { ROUTES } from './src/storage/Routes';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Dashboard from './src/main/Dashboard';
+import Result from './src/main/Result';
+import History from './src/main/History';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { useToggle } from './shared/hooks/useToggle';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AsyncStorageKeys } from './src/storage/AsyncStorageKeys';
+import { DEBUG_MODE, RESET_ALL_DATA, USE_SAMPLE_DATA } from './shared/GlobalConstants';
+import SplashScreen from './src/main/SplashScreen';
+import { handleException, isEmpty } from './shared/Helpers';
 
 const Tab = createMaterialTopTabNavigator();
 const App = () => {
-  const isDarkMode = useColorScheme() === "dark";
+  const isDarkMode = useColorScheme() === 'dark';
   LogBox.ignoreLogs([
     "Animated: `useNativeDriver`",
-    "Warning: Each child in a list should have a unique \"key\" prop.",
     "Material Top Tab Navigator: 'tabBarOptions' is deprecated",
     "Sending `onAnimatedValueUpdate` with no listeners registered.",
   ]);
@@ -54,7 +53,7 @@ const App = () => {
         };
       })
       .catch(error => {
-        handleException(error, "App > loadData()")
+        handleException(error, 'App > loadData()')
         return {
           masterData: [],
           spendingHistory: [],
@@ -78,15 +77,15 @@ const App = () => {
     if (USE_SAMPLE_DATA) {
       const setData = () => {
         const sampleData = [
-          { name: "hung vu", amount: 69000 },
-          { name: "alice", amount: 25000 },
-          { name: "xi peso", amount: 1200000 },
-          { name: "johnny walker", amount: 1200000 },
-          { name: "moon peso", amount: 1200000 },
-          { name: "john doe", amount: 1200000 },
-          { name: "vu hung", amount: 1200000 },
-          { name: "george bush", amount: 1200000 },
-          { name: "the queen of england", amount: 1200000 },
+          { name: 'hung vu', amount: 69000 },
+          { name: 'alice', amount: 25000 },
+          { name: 'xi peso', amount: 1200000 },
+          { name: 'johnny walker', amount: 1200000 },
+          { name: 'moon peso', amount: 1200000 },
+          { name: 'john doe', amount: 1200000 },
+          { name: 'vu hung', amount: 1200000 },
+          { name: 'george bush', amount: 1200000 },
+          { name: 'the queen of england', amount: 1200000 },
         ];
         saveData(sampleData);
       };
@@ -95,7 +94,7 @@ const App = () => {
 
     // load masterData from local storage on startup
     loadData().then(res => {
-      console.log("Startup::", res);
+      console.log('Startup::', res);
       if (!!res) {
         setMasterData(res?.masterData);
         setSpendingHistory(res?.spendingHistory);
@@ -106,7 +105,7 @@ const App = () => {
 
   useEffect(() => {
     if (!!masterData) {
-      console.log("masterData changes::", masterData);
+      console.log('masterData changes::', masterData);
 
       setMasterData(masterData.sort((a, b) => b.amount - a.amount))
       saveData(masterData);
@@ -130,7 +129,7 @@ const App = () => {
         <NavigationContainer>
           <Tab.Navigator
             tabBarOptions={{
-              style: { display: "none" },
+              style: { display: 'none' },
             }}
           >
             <Tab.Screen name={ROUTES.DASHBOARD_SCREEN}>

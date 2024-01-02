@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { GlobalColors } from "../GlobalStyles";
+import { GlobalColors } from '../GlobalStyles';
 
 export default StyleSheet.create({
   inputContainer: {

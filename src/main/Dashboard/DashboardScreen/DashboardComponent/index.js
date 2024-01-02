@@ -1,20 +1,20 @@
-import FlatListWithSpinner from "../../../../../shared/FlatListWithSpinner";
-import styles from "./styles";
-import { GlobalColors as GlobalColors } from "../../../../../shared/GlobalStyles";
-import React, { useRef, useState } from "react";
-import CustomView from "../../../../../shared/Components/CustomView";
-import CustomText from "../../../../../shared/Components/CustomText";
-import { TouchableOpacity } from "react-native";
+import FlatListWithSpinner from '../../../../../shared/FlatListWithSpinner';
+import styles from './styles';
+import { GlobalColors as GlobalColors } from '../../../../../shared/GlobalStyles';
+import React, { useRef, useState } from 'react';
+import CustomView from '../../../../../shared/Components/CustomView';
+import CustomText from '../../../../../shared/Components/CustomText';
+import { TouchableOpacity } from 'react-native';
 import {
   capitalizeEachWord,
   convertPrice,
   getRandomInt,
   getRandomName,
   getUuidV4,
-} from "../../../../../shared/Helpers";
-import { CURRENCY } from "../../../../../shared/GlobalConstants";
-import Icon from "../../../../../shared/Icon";
-import { IconRoutes } from "../../../../../shared/Icon/IconRoutes";
+} from '../../../../../shared/Helpers';
+import { CURRENCY } from '../../../../../shared/GlobalConstants';
+import Icon from '../../../../../shared/Icon';
+import { IconRoutes } from '../../../../../shared/Icon/IconRoutes';
 
 const DashboardComponent = ({ props, modalProp }) => {
   const {
@@ -97,7 +97,7 @@ const DashboardComponent = ({ props, modalProp }) => {
         loading={isLoading}
         data={masterData}
         renderItem={personRenderItem}
-        emptyText="Start adding people of your group"
+        emptyText='Start adding people of your group'
         onRefresh={loadData}
         renderFooter={personListRenderFooter}
         bgColor={GlobalColors.background_color}

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import CustomView from "../../../shared/Components/CustomView";
-import { ActivityIndicator, Image, StyleSheet } from "react-native";
-import { GlobalColors } from "../../../shared/GlobalStyles";
-import CustomText from "../../../shared/Components/CustomText";
-import { SPLASH_DURATION_IN_MILLIS, VERSION } from "../../../shared/GlobalConstants";
+import React, { useEffect } from 'react';
+import CustomView from '../../../shared/Components/CustomView';
+import { ActivityIndicator, Image, StyleSheet } from 'react-native';
+import { GlobalColors } from '../../../shared/GlobalStyles';
+import CustomText from '../../../shared/Components/CustomText';
+import { SPLASH_DURATION_IN_MILLIS, VERSION } from '../../../shared/GlobalConstants';
 
 const SplashScreen = ({ setIsShowSplash }) => {
 
@@ -17,7 +17,7 @@ const SplashScreen = ({ setIsShowSplash }) => {
     <CustomView style={styles.splashContainer}>
       <Image
         style={styles.logoImg}
-        source={require("../../assets/images/appLogo.png")}
+        source={require('../../assets/images/appLogo.png')}
         width={200}
         height={200}
       />
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalColors.logo_grey,
 
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   logoImg: {
@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
   },
 
   loading: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 200,
   },
 
   signatureSplashText: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 30,
-    alignSelf: "center",
+    alignSelf: 'center',
     textAlign: 'center',
   },
 });

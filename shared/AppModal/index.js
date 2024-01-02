@@ -13,9 +13,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
-import { GlobalColors } from "../GlobalStyles";
-import CustomText from "../Components/CustomText";
-import Loading from "../Loading";
+import { GlobalColors } from '../GlobalStyles';
+import CustomText from '../Components/CustomText';
+import Loading from '../Loading';
 
 const AppModal = ({
   modalVisible,
@@ -54,11 +54,11 @@ const AppModal = ({
               justifyContent: 'center',
               flexGrow: 1,
             }}
-            keyboardShouldPersistTaps="handled"
+            keyboardShouldPersistTaps='handled'
           >
             <View style={styles.modalView}>
               <ScrollView
-                keyboardShouldPersistTaps="handled"
+                keyboardShouldPersistTaps='handled'
                 scrollEnabled={false}
               >
                 <TouchableWithoutFeedback
@@ -90,7 +90,7 @@ const AppModal = ({
                               setModalVisible(false);
                             }}
                           >
-                            <Icon size={27} name="close" />
+                            <Icon size={27} name='close' />
                           </TouchableOpacity>
                         </View>
                       ) : null}

@@ -1,16 +1,16 @@
-import CustomView from "../../../../shared/Components/CustomView";
-import CustomText from "../../../../shared/Components/CustomText";
-import { APP_NAME } from "../../../../shared/GlobalConstants";
-import { TouchableOpacity, useColorScheme } from "react-native";
-import React from "react";
-import styles from "./styles";
-import { GlobalColors as GlobalColors } from "../../../../shared/GlobalStyles";
-import Icon from "../../../../shared/Icon";
-import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
-import { ROUTES } from "../../../storage/Routes";
+import CustomView from '../../../../shared/Components/CustomView';
+import CustomText from '../../../../shared/Components/CustomText';
+import { APP_NAME } from '../../../../shared/GlobalConstants';
+import { TouchableOpacity, useColorScheme } from 'react-native';
+import React from 'react';
+import styles from './styles';
+import { GlobalColors as GlobalColors } from '../../../../shared/GlobalStyles';
+import Icon from '../../../../shared/Icon';
+import { IconRoutes } from '../../../../shared/Icon/IconRoutes';
+import { ROUTES } from '../../../storage/Routes';
 
 const DashboardHeader = ({navigation}) => {
-  const isDarkMode = useColorScheme() === "dark";
+  const isDarkMode = useColorScheme() === 'dark';
 
   const onPress = () => {
     navigation.navigate(ROUTES.HISTORY_SCREEN);
@@ -25,7 +25,7 @@ const DashboardHeader = ({navigation}) => {
       <TouchableOpacity style={styles.headerRightButton} onPress={onPress}>
         <Icon
           type={IconRoutes.MaterialCommunityIcons}
-          name={"history"}
+          name={'history'}
           size={28}
           style={{ color: GlobalColors.pink2 }}
         />

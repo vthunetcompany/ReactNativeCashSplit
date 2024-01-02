@@ -1,14 +1,14 @@
-import { StyleSheet } from "react-native";
-import { GlobalColors as GlobalColors } from "../../../../shared/GlobalStyles";
+import { StyleSheet } from 'react-native';
+import { GlobalColors as GlobalColors } from '../../../../shared/GlobalStyles';
 
 const styles = StyleSheet.create({
   headerTitleContainer: {
     height: 45,
     paddingBottom: 10,
     backgroundColor: GlobalColors.white,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
 
     borderBottomWidth: 0.25,
     borderColor: GlobalColors.grey,
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 
   headerLeftButton: {
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     bottom: 0,
 
@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 20,
     paddingBottom: 12,
-    overflow: "visible",
+    overflow: 'visible',
   },
 
   headerRightButton: {
-    position: "absolute",
+    position: 'absolute',
     right: 0,
     bottom: 0,
 
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 15,
     paddingBottom: 12,
-    overflow: "visible",
+    overflow: 'visible',
   },
 });
 

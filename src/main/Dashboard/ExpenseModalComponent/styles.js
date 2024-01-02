@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import CustomView from "../../../../shared/Components/CustomView";
-import styles from "./index";
-import CustomText from "../../../../shared/Components/CustomText";
-import { TouchableOpacity } from "react-native";
-import { GlobalColors } from "../../../../shared/GlobalStyles";
-import Input from "../../../../shared/Input";
+import React, { useEffect, useState } from 'react';
+import CustomView from '../../../../shared/Components/CustomView';
+import styles from './index';
+import CustomText from '../../../../shared/Components/CustomText';
+import { TouchableOpacity } from 'react-native';
+import { GlobalColors } from '../../../../shared/GlobalStyles';
+import Input from '../../../../shared/Input';
 import {
   CURRENCY,
   MONEY_INCREMENT_LEVEL,
   THOUSAND_SEPARATOR,
   TRANSACTION_TYPE,
-} from "../../../../shared/GlobalConstants";
-import { convertPrice, customReplaceAll, getUuidV4, removeItemFromArray } from "../../../../shared/Helpers";
+} from '../../../../shared/GlobalConstants';
+import { convertPrice, customReplaceAll, getUuidV4, removeItemFromArray } from '../../../../shared/Helpers';
 
 const modalInfoInitialState = {
   id: '',
@@ -42,12 +42,12 @@ const ExpenseModalComponent = ({
   } = modalProp
 
   const [inputValue, setInputValue] = useState(0);
-  const [showValue, setShowValue] = useState("");
+  const [showValue, setShowValue] = useState('');
   const [currentPersonInMasterData, setCurrentPersonInMasterData] = useState(modalInfoInitialState);
-  const [spendingType, setSpendingType] = useState("TAXI");
+  const [spendingType, setSpendingType] = useState('TAXI');
 
   const getRealValue = (v) => {
-    return customReplaceAll(v, THOUSAND_SEPARATOR, "");
+    return customReplaceAll(v, THOUSAND_SEPARATOR, '');
   };
 
   useEffect(() => {
@@ -134,7 +134,7 @@ const ExpenseModalComponent = ({
         <Input
           value={showValue.toString()}
           onChangeText={(rawText) => {
-            const text = customReplaceAll(rawText, THOUSAND_SEPARATOR, "");
+            const text = customReplaceAll(rawText, THOUSAND_SEPARATOR, '');
 
             const handledValue =
               text.length > 0 && parseInt(text)
@@ -147,14 +147,14 @@ const ExpenseModalComponent = ({
             setShowValue(handledValue && handledValue === '0' ? '' : dottedTextValue)
           }}
           onSubmitEditing={addMoney}
-          keyboardType="number-pad"
-          textAlign={"right"}
-          placeholder={"0"}
-          returnKeyType={"done"}
+          keyboardType='number-pad'
+          textAlign={'right'}
+          placeholder={'0'}
+          returnKeyType={'done'}
           icon={
             <CustomText bold style={{ marginRight: 5 }}>{THOUSAND_SEPARATOR}000{CURRENCY}</CustomText>
           }
-          iconPosition="right"
+          iconPosition='right'
           maxLength={6}
         />
       </CustomView>

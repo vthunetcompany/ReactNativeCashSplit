@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import CustomView from "../../../../shared/Components/CustomView";
-import styles from "./styles";
-import { convertPrice, customReplaceAll, isEmpty, removeItemFromArray } from "../../../../shared/Helpers";
-import { CURRENCY, THOUSAND_SEPARATOR } from "../../../../shared/GlobalConstants";
-import CustomText from "../../../../shared/Components/CustomText";
-import Input from "../../../../shared/Input";
-import { TouchableOpacity } from "react-native";
-import { GlobalColors } from "../../../../shared/GlobalStyles";
-import Icon from "../../../../shared/Icon";
-import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
+import React, { useEffect, useState } from 'react';
+import CustomView from '../../../../shared/Components/CustomView';
+import styles from './styles';
+import { convertPrice, customReplaceAll, isEmpty, removeItemFromArray } from '../../../../shared/Helpers';
+import { CURRENCY, THOUSAND_SEPARATOR } from '../../../../shared/GlobalConstants';
+import CustomText from '../../../../shared/Components/CustomText';
+import Input from '../../../../shared/Input';
+import { TouchableOpacity } from 'react-native';
+import { GlobalColors } from '../../../../shared/GlobalStyles';
+import Icon from '../../../../shared/Icon';
+import { IconRoutes } from '../../../../shared/Icon/IconRoutes';
 
 const modalInfoInitialState = {
-  id: "",
-  name: "",
-  amount: "",
+  id: '',
+  name: '',
+  amount: '',
 };
 
 const EditNameModalComponent = ({
@@ -95,9 +95,9 @@ const EditNameModalComponent = ({
             setInputValue(text);
           }}
           onSubmitEditing={onSubmit}
-          textAlign="center"
+          textAlign='center'
           placeholder={modalInfo.name}
-          returnKeyType={"done"}
+          returnKeyType={'done'}
           maxLength={25}
           icon={
             <TouchableOpacity
@@ -106,13 +106,13 @@ const EditNameModalComponent = ({
             >
               <Icon
                 type={IconRoutes.Ionicon}
-                name={"close-circle"}
+                name={'close-circle'}
                 size={20}
                 style={{ color: GlobalColors.disabled }}
               />
             </TouchableOpacity>
           }
-          iconPosition="right"
+          iconPosition='right'
           selectTextOnFocus
         />
       </CustomView>

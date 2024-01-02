@@ -1,7 +1,7 @@
-import React from "react";
-import SafeAreaView from "react-native/Libraries/Components/SafeAreaView/SafeAreaView";
-import HistoryHeader from "./HistoryHeader";
-import HistoryScreen from "./HistoryScreen";
+import React from 'react';
+import SafeAreaView from 'react-native/Libraries/Components/SafeAreaView/SafeAreaView';
+import HistoryHeader from './HistoryHeader';
+import HistoryScreen from './HistoryScreen';
 
 const History = ({navigation, dashboardProps}) => {
 

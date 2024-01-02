@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { GlobalColors as GlobalColors } from "../../../../../shared/GlobalStyles";
+import { StyleSheet } from 'react-native';
+import { GlobalColors as GlobalColors } from '../../../../../shared/GlobalStyles';
 
 const dashboardRowContainer = {
   borderRadius: 5,
@@ -18,15 +18,15 @@ const dashboardRowContainer = {
   shadowRadius: 3.84,
   elevation: 5,
 
-  alignSelf: "stretch",
-  alignItems: "center",
-  justifyContent: "center",
+  alignSelf: 'stretch',
+  alignItems: 'center',
+  justifyContent: 'center',
 };
 
 const styles = StyleSheet.create({
   dashboardScreenScrollViewContainer: {
     backgroundColor: GlobalColors.background_color,
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
     flex: 6,
   },
 

@@ -1,5 +1,5 @@
-import { DEBUG_MODE, DEMO_MODE, THOUSAND_SEPARATOR } from "./GlobalConstants";
-import { Names } from "../src/storage/Names";
+import { DEBUG_MODE, DEMO_MODE, THOUSAND_SEPARATOR } from './GlobalConstants';
+import { Names } from '../src/storage/Names';
 
 export const capitalize = (str = '') => {
   if (!str || str.length === 0) return '';
@@ -35,10 +35,10 @@ export const getUuidV4 = () => {
   // Timestamp
   let d = new Date().getTime();
   // Time in microseconds since page-load or 0 if unsupported
-  let d2 = ((typeof performance !== "undefined")
+  let d2 = ((typeof performance !== 'undefined')
     && performance.now && (performance.now() * 1000)) || 0;
 
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
     // random number between 0 and 16
     let r = Math.random() * 16;
 
@@ -51,7 +51,7 @@ export const getUuidV4 = () => {
       r = (d2 + r) % 16 | 0;
       d2 = Math.floor(d2 / 16);
     }
-    return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
   });
 };
 
@@ -81,5 +81,5 @@ export const removeItemFromArray = (array, item) => {
 
 export const handleException = (error, origin) => {
   const logFunction = DEBUG_MODE && !DEMO_MODE ? console.error : console.log
-  logFunction("Error::", origin ? 'in '.concat(origin).concat(' ::') : '', error);
+  logFunction('Error::', origin ? 'in '.concat(origin).concat(' ::') : '', error);
 }

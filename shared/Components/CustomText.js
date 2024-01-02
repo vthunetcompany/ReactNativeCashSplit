@@ -1,6 +1,6 @@
-import React from "react";
-import { Platform, Text, useColorScheme } from "react-native";
-import { DEFAULT_FONTSIZE, GlobalColors as GlobalColors } from "../GlobalStyles";
+import React from 'react';
+import { Platform, Text, useColorScheme } from 'react-native';
+import { DEFAULT_FONTSIZE, GlobalColors as GlobalColors } from '../GlobalStyles';
 
 const CustomText = ({
                       children,
@@ -15,7 +15,7 @@ const CustomText = ({
                       ...props
                     }) => {
   let FONTSIZE = DEFAULT_FONTSIZE;
-  const isDarkMode = useColorScheme() === "dark";
+  const isDarkMode = useColorScheme() === 'dark';
 
   if (small) FONTSIZE = 12;
   else if (medium) FONTSIZE = 16;
@@ -23,8 +23,8 @@ const CustomText = ({
   else if (xLarge) FONTSIZE = 26;
 
   const getFontWeight = () => {
-    if (bold) return Platform.OS === "ios" ? "600" : "bold";
-    return Platform.OS === "ios" ? "400" : "normal";
+    if (bold) return Platform.OS === 'ios' ? '600' : 'bold';
+    return Platform.OS === 'ios' ? '400' : 'normal';
   };
 
   const getColor = () => {
