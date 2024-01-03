@@ -8,7 +8,7 @@ export default StyleSheet.create({
 
   wrapper: {
     height: 42,
-    borderRadius: 5,
+    borderRadius: 10,
     paddingHorizontal: 5,
     marginTop: 5,
   },

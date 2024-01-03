@@ -1,16 +1,23 @@
 import {StyleSheet} from 'react-native'
 import { GlobalColors } from '../../../../shared/GlobalStyles';
+import {getFontWeight} from "../../../../shared/Components/CustomText";
 
+const FONT_SIZE = 30;
 const styles = StyleSheet.create({
-  modalContainer: {
-    height: 200,
-  },
-
   modalButtonsContainer: {
     flexDirection: 'row',
     alignSelf: 'center',
     marginTop: 20,
   },
+
+  textInputContainer: {
+    height: FONT_SIZE * 2,
+  },
+  textInput: {
+    fontSize: FONT_SIZE,
+    fontWeight: getFontWeight('semiBold'),
+  },
+
   leftButton: {
     backgroundColor: GlobalColors.white,
     borderRadius: 5,
@@ -34,4 +41,4 @@ const styles = StyleSheet.create({
   },
 
 })
-export default styles
+export default styles;

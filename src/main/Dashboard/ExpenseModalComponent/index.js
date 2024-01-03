@@ -47,7 +47,7 @@ const ExpenseModalComponent = ({
   const [showValue, setShowValue] = useState('');
   const [currentPersonInMasterData, setCurrentPersonInMasterData] = useState(modalInfoInitialState);
   const pickerItems = Categories;
-  const [category, setCategory] = useState(Categories[0]);
+  const [category, setCategory] = useState(Categories.find(category => category.value.includes('Food')) ?? Categories[Math.floor(Categories.length / 2)]);
 
   const getRealValue = (v) => {
     return customReplaceAll(v, THOUSAND_SEPARATOR, '');
@@ -122,7 +122,7 @@ const ExpenseModalComponent = ({
   const currentSpendingHistory = (change, transactionType) => {
     return {
       id: getUuidV4(),
-      spendingType: category.value === CategoryNone ? null : CategoriesObj[category.key].value,
+      spendingType: category.value === CategoryNone ? null : CategoriesObj[category.key],
       spendingAmount: change,
       spenderId: modalInfo.id,
       spenderName: modalInfo.name,
@@ -135,9 +135,17 @@ const ExpenseModalComponent = ({
   };
 
   return (
-    <CustomView styles={styles.modalContainer}>
+    <CustomView>
       <CustomView style={{ marginVertical: 10 }}>
+        <CommonPickerContent
+          pickerItems={pickerItems}
+          onValueChange={onValueChangeLocal}
+          selectedValue={category.key}
+        />
+
         <Input
+          styleTextInput={styles.textInput}
+          styleWrapper={styles.textInputContainer}
           value={showValue.toString()}
           onChangeText={(rawText) => {
             const text = customReplaceAll(rawText, THOUSAND_SEPARATOR, '');
@@ -158,16 +166,10 @@ const ExpenseModalComponent = ({
           placeholder={'0'}
           returnKeyType={'done'}
           icon={
-            <CustomText bold style={{ marginRight: 5 }}>{THOUSAND_SEPARATOR}000{CURRENCY}</CustomText>
+            <CustomText semiBold style={{ marginRight: 5 }}>{THOUSAND_SEPARATOR}000{CURRENCY}</CustomText>
           }
           iconPosition='right'
           maxLength={6}
-        />
-
-        <CommonPickerContent
-          pickerItems={pickerItems}
-          onValueChange={onValueChangeLocal}
-          selectedValue={category.key}
         />
       </CustomView>
 

@@ -1,13 +1,13 @@
 export const CategoriesObj = [
+  { emoji: '🍝', value: 'Dinner' },
+  { emoji: '🍱', value: 'Lunch' },
+  { emoji: '🍳', value: 'Breakfast' },
   { emoji: '🍕', value: 'Food' },
   { emoji: '🧋', value: 'Drinks' },
-  { emoji: '🍳', value: 'Breakfast' },
-  { emoji: '🍱', value: 'Lunch' },
-  { emoji: '🍝', value: 'Dinner' },
-  { emoji: '🚕', value: 'Taxi' },
-  { emoji: '🛩', value: 'Travel' },
+  { emoji: '🚅', value: 'Travel' },
   { emoji: '⛽', value: 'Gas' },
-  { emoji: '💆', value: 'Therapy' },
+  { emoji: '🏨', value: 'Accommodation' },
+  { emoji: '💆', value: 'Leisure' },
 ];
 
 const CategoriesArray = CategoriesObj.map(category => `${category.emoji} ${category.value} ${category.emoji}`);
