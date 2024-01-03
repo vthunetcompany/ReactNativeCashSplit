@@ -22,10 +22,13 @@ const HistoryScreen = ({
   return (
     <CustomView style={styles.container}>
       <ScrollView style={styles.scrollViewHeader}>
-        {spendingHistory?.map((i1, i2) =>
-          <CustomText>
-            {i1.spenderName + ' ' + i1.transactionType + ' ' + convertPrice(i1.spendingAmount) + CURRENCY}
-          </CustomText>,
+        {spendingHistory?.map((spendingItem, index) => (
+            <CustomView key={index.toString()}>
+              <CustomText>
+                {`${spendingItem.spenderName} ${spendingItem.transactionType} ${convertPrice(spendingItem.spendingAmount)}${CURRENCY} on ${spendingItem.spendingType}`}
+              </CustomText>
+            </CustomView>
+          ),
         )}
       </ScrollView>
     </CustomView>

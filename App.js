@@ -121,7 +121,9 @@ const App = () => {
     setSpendingHistory,
   };
 
-  if (isShowSplash) return <SplashScreen setIsShowSplash={setIsShowSplash}/>;
+  if (isShowSplash) {
+    return <SplashScreen setIsShowSplash={setIsShowSplash}/>;
+  }
 
   return (
     <SafeAreaView style={[backgroundStyle, styles.safeAreaViewContainer]}>

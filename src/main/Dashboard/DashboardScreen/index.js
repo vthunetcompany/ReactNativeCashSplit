@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import DashboardOverviewComponent from '../DashboardOverviewComponent';
 import { useToggle } from '../../../../shared/hooks/useToggle';
 import AppModal from '../../../../shared/AppModal';
-import ExpenseModalComponent from '../ExpenseModalComponent/styles';
+import ExpenseModalComponent from '../ExpenseModalComponent';
 import EditNameModalComponent from '../EditNameModalComponent';
 import { capitalizeEachWord } from '../../../../shared/Helpers';
 
