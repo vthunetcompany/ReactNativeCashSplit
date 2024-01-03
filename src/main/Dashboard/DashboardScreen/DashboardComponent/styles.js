@@ -2,12 +2,12 @@ import { StyleSheet } from 'react-native';
 import { GlobalColors as GlobalColors } from '../../../../../shared/GlobalStyles';
 
 const dashboardRowContainer = {
-  borderRadius: 5,
+  borderRadius: 14,
   marginVertical: 10,
-  marginHorizontal: 20,
+  marginHorizontal: 22,
 
   paddingVertical: 20,
-  paddingHorizontal: 10,
+  paddingHorizontal: 13,
 
   shadowColor: GlobalColors.black,
   shadowOffset: {

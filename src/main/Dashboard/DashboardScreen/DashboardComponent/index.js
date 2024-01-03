@@ -86,7 +86,9 @@ const DashboardComponent = ({ props, modalProp }) => {
           size={18}
           style={{ color: GlobalColors.shadowColor, marginRight: 5 }}
         />
-        <CustomText>Add more people</CustomText>
+        <CustomText semiBold>
+          Add
+        </CustomText>
       </TouchableOpacity>
     );
   };

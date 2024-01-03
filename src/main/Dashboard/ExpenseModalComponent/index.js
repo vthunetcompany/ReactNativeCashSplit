@@ -13,6 +13,7 @@ import {
 } from '../../../../shared/GlobalConstants';
 import { convertPrice, customReplaceAll, getUuidV4, removeItemFromArray } from '../../../../shared/Helpers';
 import CommonPickerContent from "../../../../shared/Components/CommonPickerContent";
+import {Categories} from "../../../storage/Catogories";
 
 const modalInfoInitialState = {
   id: '',
@@ -46,14 +47,8 @@ const ExpenseModalComponent = ({
   const [showValue, setShowValue] = useState('');
   const [currentPersonInMasterData, setCurrentPersonInMasterData] = useState(modalInfoInitialState);
   const [spendingType, setSpendingType] = useState('TAXI');
-  const pickerItems = [{
-    key: 'hello',
-    value: 'world',
-  }]
-  const [state, setState] = useState({
-    itemValue: '',
-    itemIndex: 0,
-  });
+  const pickerItems = Categories;
+  const [category, setCategory] = useState(Categories[0]);
 
   const getRealValue = (v) => {
     return customReplaceAll(v, THOUSAND_SEPARATOR, '');
@@ -137,7 +132,7 @@ const ExpenseModalComponent = ({
   };
 
   const onValueChangeLocal = (itemValue, itemIndex) => {
-    setState({
+    setCategory({
       itemValue,
       itemIndex,
     });
@@ -176,7 +171,7 @@ const ExpenseModalComponent = ({
         <CommonPickerContent
           pickerItems={pickerItems}
           onValueChange={onValueChangeLocal}
-          selectedValue={state?.itemValue}
+          selectedValue={category?.itemValue}
         />
       </CustomView>
 

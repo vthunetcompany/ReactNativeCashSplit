@@ -11,7 +11,7 @@ export default StyleSheet.create({
   modalView: {
     backgroundColor: GlobalColors.white,
     marginHorizontal: 20,
-    borderRadius: 4,
+    borderRadius: 15,
     minHeight: 200,
   },
 
@@ -38,13 +38,6 @@ export default StyleSheet.create({
     paddingVertical: 7,
     alignItems: 'center',
     flexDirection: 'row',
-  },
-
-  termsView: {
-    width: 5,
-    height: 5,
-    borderRadius: 100,
-    backgroundColor: GlobalColors.grey,
   },
 
   footerSeparator: {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Platform, Text, useColorScheme } from 'react-native';
-import { DEFAULT_FONTSIZE, GlobalColors as GlobalColors } from '../GlobalStyles';
+import {Platform, Text, useColorScheme} from 'react-native';
+import {DEFAULT_FONTSIZE, GlobalColors as GlobalColors} from '../GlobalStyles';
 
 const CustomText = ({
                       children,
@@ -11,6 +11,7 @@ const CustomText = ({
                       xLarge,
                       supportDarkMode,
                       bold,
+                      semiBold,
                       color,
                       ...props
                     }) => {
@@ -24,7 +25,8 @@ const CustomText = ({
 
   const getFontWeight = () => {
     if (bold) return Platform.OS === 'ios' ? '600' : 'bold';
-    return Platform.OS === 'ios' ? '400' : 'normal';
+    if (semiBold) return Platform.OS === 'ios' ? '500' : 'bold';
+      return Platform.OS === 'ios' ? '400' : 'normal';
   };
 
   const getColor = () => {
