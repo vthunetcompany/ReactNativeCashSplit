@@ -21,7 +21,7 @@ const HistoryHeader = ({navigation}) => {
 
   return (
     <CustomView style={[styles.headerTitleContainer,
-      isDarkMode ? { backgroundColor: GlobalColors.grey } : {},
+      isDarkMode ? { backgroundColor: GlobalColors.black } : {},
     ]}>
       <TouchableOpacity style={styles.headerLeftButton} onPress={onPressLeft}>
         <Icon

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
 
     borderBottomWidth: 0.25,
-    borderColor: GlobalColors.grey,
+    borderColor: GlobalColors.black,
   },
   headerTitleText: {
     marginLeft: 20,

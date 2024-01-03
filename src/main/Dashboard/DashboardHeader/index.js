@@ -18,7 +18,7 @@ const DashboardHeader = ({navigation}) => {
 
   return (
     <CustomView style={[styles.headerTitleContainer,
-      isDarkMode ? { backgroundColor: GlobalColors.grey } : {},
+      isDarkMode ? { backgroundColor: GlobalColors.black } : {},
     ]}>
       <CustomText style={styles.headerTitleText} supportDarkMode bold xLarge>{APP_NAME}</CustomText>
 
