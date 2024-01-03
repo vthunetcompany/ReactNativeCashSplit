@@ -13,7 +13,7 @@ import {
 } from '../../../../shared/GlobalConstants';
 import { convertPrice, customReplaceAll, getUuidV4, removeItemFromArray } from '../../../../shared/Helpers';
 import CommonPickerContent from "../../../../shared/Components/CommonPickerContent";
-import {Categories} from "../../../storage/Catogories";
+import {Categories, CategoriesObj, CategoryNone} from "../../../storage/Catogories";
 
 const modalInfoInitialState = {
   id: '',
@@ -46,7 +46,6 @@ const ExpenseModalComponent = ({
   const [inputValue, setInputValue] = useState(0);
   const [showValue, setShowValue] = useState('');
   const [currentPersonInMasterData, setCurrentPersonInMasterData] = useState(modalInfoInitialState);
-  const [spendingType, setSpendingType] = useState('TAXI');
   const pickerItems = Categories;
   const [category, setCategory] = useState(Categories[0]);
 
@@ -123,7 +122,7 @@ const ExpenseModalComponent = ({
   const currentSpendingHistory = (change, transactionType) => {
     return {
       id: getUuidV4(),
-      spendingType: spendingType,
+      spendingType: category.value === CategoryNone ? null : CategoriesObj[category.key].value,
       spendingAmount: change,
       spenderId: modalInfo.id,
       spenderName: modalInfo.name,
@@ -131,11 +130,8 @@ const ExpenseModalComponent = ({
     };
   };
 
-  const onValueChangeLocal = (itemValue, itemIndex) => {
-    setCategory({
-      itemValue,
-      itemIndex,
-    });
+  const onValueChangeLocal = (_itemValue, itemIndex) => {
+    setCategory(pickerItems[itemIndex]);
   };
 
   return (
@@ -171,7 +167,7 @@ const ExpenseModalComponent = ({
         <CommonPickerContent
           pickerItems={pickerItems}
           onValueChange={onValueChangeLocal}
-          selectedValue={category?.itemValue}
+          selectedValue={category.key}
         />
       </CustomView>
 
