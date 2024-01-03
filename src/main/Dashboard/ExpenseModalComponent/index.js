@@ -11,7 +11,13 @@ import {
   THOUSAND_SEPARATOR,
   TRANSACTION_TYPE,
 } from '../../../../shared/GlobalConstants';
-import {convertPrice, customReplaceAll, getUuidV4, removeItemFromArray} from '../../../../shared/Helpers';
+import {
+  convertPrice,
+  customReplaceAll,
+  getPrintableDateTime,
+  getUuidV4,
+  removeItemFromArray
+} from '../../../../shared/Helpers';
 import CommonPickerContent from "../../../../shared/Components/CommonPickerContent";
 import {Categories, CategoriesObj, CategoryOther} from "../../../storage/Catogories";
 import {FeatureFlags} from "../../../FeatureFlags";
@@ -123,11 +129,15 @@ const ExpenseModalComponent = ({
     setIsShowExpenseModal(false);
   }
 
+  const getSpendingType = () => !FeatureFlags.CATEGORY_PICKER || category.value === CategoryOther
+    ? null
+    : CategoriesObj[category.key];
+
   const currentSpendingHistory = (change, transactionType) => {
     return {
       id: getUuidV4(),
-      timestamp: Date.now(),
-      spendingType: category.value === CategoryOther ? null : CategoriesObj[category.key],
+      timestamp: getPrintableDateTime(Date.now()),
+      spendingType: getSpendingType(),
       spendingAmount: change,
       spenderId: modalInfo.id,
       spenderName: modalInfo.name,

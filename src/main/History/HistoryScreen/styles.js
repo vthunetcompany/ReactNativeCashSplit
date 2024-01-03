@@ -20,6 +20,29 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
     paddingHorizontal: 12,
   },
+
+  dateGroupContainer: {
+    paddingHorizontal: 12,
+  },
+  dateGroupText: {
+    paddingVertical: 3,
+  },
+  historyRowContainer: {
+    marginVertical: 5,
+    marginHorizontal: 15,
+
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  leftColumn: {
+
+  },
+  rightColumn: {
+
+  },
+  priceText: {
+
+  },
 })
 
 export default styles
