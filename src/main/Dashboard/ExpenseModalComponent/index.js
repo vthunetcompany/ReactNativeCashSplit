@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import CustomView from '../../../../shared/Components/CustomView';
 import styles from './styles';
 import CustomText from '../../../../shared/Components/CustomText';
-import { TouchableOpacity } from 'react-native';
-import { GlobalColors } from '../../../../shared/GlobalStyles';
+import {TouchableOpacity} from 'react-native';
+import {GlobalColors} from '../../../../shared/GlobalStyles';
 import Input from '../../../../shared/Input';
 import {
   CURRENCY,
@@ -11,9 +11,10 @@ import {
   THOUSAND_SEPARATOR,
   TRANSACTION_TYPE,
 } from '../../../../shared/GlobalConstants';
-import { convertPrice, customReplaceAll, getUuidV4, removeItemFromArray } from '../../../../shared/Helpers';
+import {convertPrice, customReplaceAll, getUuidV4, removeItemFromArray} from '../../../../shared/Helpers';
 import CommonPickerContent from "../../../../shared/Components/CommonPickerContent";
 import {Categories, CategoriesObj, CategoryNone} from "../../../storage/Catogories";
+import {FeatureFlags} from "../../../FeatureFlags";
 
 const modalInfoInitialState = {
   id: '',
@@ -45,9 +46,12 @@ const ExpenseModalComponent = ({
 
   const [inputValue, setInputValue] = useState(0);
   const [showValue, setShowValue] = useState('');
+  const [note, setNote] = useState('');
   const [currentPersonInMasterData, setCurrentPersonInMasterData] = useState(modalInfoInitialState);
-  const pickerItems = Categories;
-  const [category, setCategory] = useState(Categories.find(category => category.value.includes('Food')) ?? Categories[Math.floor(Categories.length / 2)]);
+  const [category, setCategory] = useState(
+    Categories.find(category => category.value.includes('Food')) ?? Categories[Math.floor(Categories.length / 2)]
+  );
+  const refInput = useRef(null);
 
   const getRealValue = (v) => {
     return customReplaceAll(v, THOUSAND_SEPARATOR, '');
@@ -122,30 +126,50 @@ const ExpenseModalComponent = ({
   const currentSpendingHistory = (change, transactionType) => {
     return {
       id: getUuidV4(),
+      timestamp: Date.now(),
       spendingType: category.value === CategoryNone ? null : CategoriesObj[category.key],
       spendingAmount: change,
       spenderId: modalInfo.id,
       spenderName: modalInfo.name,
-      transactionType: transactionType,
+      transactionType,
+      spendingNote: note,
     };
   };
 
   const onValueChangeLocal = (_itemValue, itemIndex) => {
-    setCategory(pickerItems[itemIndex]);
+    setCategory(Categories[itemIndex]);
   };
 
   return (
     <CustomView>
-      <CustomView style={{ marginVertical: 10 }}>
-        <CommonPickerContent
-          pickerItems={pickerItems}
-          onValueChange={onValueChangeLocal}
-          selectedValue={category.key}
-        />
+      <CustomView style={{marginVertical: 10}}>
+        {FeatureFlags.CATEGORY_PICKER && (
+          <CommonPickerContent
+            pickerItems={Categories}
+            onValueChange={onValueChangeLocal}
+            selectedValue={category.key}
+          />
+        )}
 
+        {FeatureFlags.NOTES && category.value === CategoryNone && (
+          <Input
+            value={note}
+            onChangeText={(rawText) => {
+              setNote(rawText);
+            }}
+            onSubmitEditing={() => {
+              refInput.current?.focus();
+            }}
+            textAlign={'left'}
+            placeholder={'Notes'}
+            returnKeyType={'done'}
+            maxLength={100}
+          />
+        )}
         <Input
-          styleTextInput={styles.textInput}
-          styleWrapper={styles.textInputContainer}
+          innerRef={refInput}
+          styleTextInput={styles.priceInput}
+          styleWrapper={styles.priceInputContainer}
           value={showValue.toString()}
           onChangeText={(rawText) => {
             const text = customReplaceAll(rawText, THOUSAND_SEPARATOR, '');
@@ -166,7 +190,7 @@ const ExpenseModalComponent = ({
           placeholder={'0'}
           returnKeyType={'done'}
           icon={
-            <CustomText semiBold style={{ marginRight: 5 }}>{THOUSAND_SEPARATOR}000{CURRENCY}</CustomText>
+            <CustomText semiBold style={{marginRight: 5}}>{THOUSAND_SEPARATOR}000{CURRENCY}</CustomText>
           }
           iconPosition='right'
           maxLength={6}
@@ -178,14 +202,18 @@ const ExpenseModalComponent = ({
           style={styles.leftButton}
           onPress={subtractMoney}
         >
-          <CustomText bold color={GlobalColors.pure_red}>SUBTRACT</CustomText>
+          <CustomText bold color={GlobalColors.darkPink3}>
+            SUBTRACT
+          </CustomText>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.rightButton}
           onPress={addMoney}
         >
-          <CustomText bold color={GlobalColors.white}>ADD</CustomText>
+          <CustomText bold color={GlobalColors.white}>
+            ADD
+          </CustomText>
         </TouchableOpacity>
       </CustomView>
     </CustomView>

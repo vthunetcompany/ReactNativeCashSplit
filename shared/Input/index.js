@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { TextInput, View } from 'react-native';
 import styles from './styles';
 import { GlobalColors } from '../GlobalStyles';

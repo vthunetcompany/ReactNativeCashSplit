@@ -23,9 +23,12 @@ const HistoryScreen = ({
     <CustomView style={styles.container}>
       <ScrollView style={styles.scrollViewHeader}>
         {spendingHistory?.map((spendingItem, index) => (
-            <CustomView key={index.toString()}>
+            <CustomView
+              key={index.toString()}
+              style={styles.rowContainer}
+            >
               <CustomText>
-                {`${spendingItem.spenderName} ${spendingItem.transactionType} ${convertPrice(spendingItem.spendingAmount)}${CURRENCY} on ${spendingItem.spendingType?.value}`}
+                {`${spendingItem.spenderName} ${spendingItem.transactionType} ${convertPrice(spendingItem.spendingAmount)}${CURRENCY} on ${spendingItem.spendingType?.value} at ${spendingItem.timestamp}`}
               </CustomText>
             </CustomView>
           ),

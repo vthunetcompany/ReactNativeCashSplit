@@ -11,12 +11,13 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 20,
     paddingBottom: 5,
-
-    alignSelf: 'stretch',
-    flexDirection: 'row',
   },
 
-
+  rowContainer: {
+    marginBottom: 5,
+    borderBottomWidth: 1,
+    borderColor: GlobalColors.black,
+  },
 })
 
 export default styles

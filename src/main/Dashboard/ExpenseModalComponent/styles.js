@@ -10,10 +10,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 
-  textInputContainer: {
+  priceInputContainer: {
     height: FONT_SIZE * 2,
   },
-  textInput: {
+  priceInput: {
     fontSize: FONT_SIZE,
     fontWeight: getFontWeight('semiBold'),
   },
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalColors.white,
     borderRadius: 5,
     borderWidth: 1.5,
-    borderColor: GlobalColors.pure_red,
+    borderColor: GlobalColors.pink3,
 
     flex: 1,
     alignItems: 'center',
