@@ -17,4 +17,4 @@ const History = ({navigation, dashboardProps}) => {
   )
 }
 
-export default History
+export default History;

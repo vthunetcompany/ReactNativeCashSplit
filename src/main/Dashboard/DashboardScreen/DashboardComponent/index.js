@@ -1,6 +1,6 @@
 import FlatListWithSpinner from '../../../../../shared/FlatListWithSpinner';
 import styles from './styles';
-import { GlobalColors as GlobalColors } from '../../../../../shared/GlobalStyles';
+import { GlobalColors } from '../../../../../shared/GlobalStyles';
 import React, { useRef, useState } from 'react';
 import CustomView from '../../../../../shared/Components/CustomView';
 import CustomText from '../../../../../shared/Components/CustomText';

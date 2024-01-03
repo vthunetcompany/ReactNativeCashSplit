@@ -7,7 +7,7 @@ import { CURRENCY, CURRENCY_CODE, MONEY_INCREMENT_LEVEL } from '../../../../shar
 import { convertPrice, isEmpty } from '../../../../shared/Helpers';
 import Icon from '../../../../shared/Icon';
 import { IconRoutes } from '../../../../shared/Icon/IconRoutes';
-import { GlobalColors as GlobalColors } from '../../../../shared/GlobalStyles';
+import { GlobalColors } from '../../../../shared/GlobalStyles';
 
 const DashboardOverviewComponent = ({ props }) => {
   const [totalSpending, setTotalSpending] = useState(0);

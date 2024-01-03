@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { LogBox, StyleSheet, useColorScheme } from 'react-native';
-import { GlobalColors as GlobalColors } from './shared/GlobalStyles';
+import { GlobalColors } from './shared/GlobalStyles';
 import { NavigationContainer } from '@react-navigation/native';
 import { ROUTES } from './src/storage/Routes';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';

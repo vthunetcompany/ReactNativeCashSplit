@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { GlobalColors as GlobalColors } from '../../../../shared/GlobalStyles';
+import { GlobalColors } from '../../../../shared/GlobalStyles';
 
 const CLOCK_SIZE = 165
 const styles = StyleSheet.create({

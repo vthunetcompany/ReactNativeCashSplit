@@ -1,6 +1,6 @@
 import React from 'react';
 import {Platform, Text, useColorScheme} from 'react-native';
-import {DEFAULT_FONTSIZE, GlobalColors as GlobalColors} from '../GlobalStyles';
+import {DEFAULT_FONTSIZE, GlobalColors} from '../GlobalStyles';
 
 const boldStyle = Platform.OS === 'ios' ? '600' : 'bold';
 const semiBoldStyle = Platform.OS === 'ios' ? '500' : 'bold';

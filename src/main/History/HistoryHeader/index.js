@@ -3,7 +3,7 @@ import CustomText from '../../../../shared/Components/CustomText';
 import { TouchableOpacity, useColorScheme } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { GlobalColors as GlobalColors } from '../../../../shared/GlobalStyles';
+import { GlobalColors } from '../../../../shared/GlobalStyles';
 import Icon from '../../../../shared/Icon';
 import { IconRoutes } from '../../../../shared/Icon/IconRoutes';
 import { ROUTES } from '../../../storage/Routes';
