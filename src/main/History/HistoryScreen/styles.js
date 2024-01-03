@@ -7,9 +7,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  scrollViewHeader: {
-    paddingTop: 20,
-    paddingHorizontal: 20,
+  scrollViewContentContainer: {
+    paddingTop: 12,
     paddingBottom: 5,
   },
 
@@ -17,6 +16,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     borderBottomWidth: 1,
     borderColor: GlobalColors.black,
+
+    paddingVertical: 7,
+    paddingHorizontal: 12,
   },
 })
 

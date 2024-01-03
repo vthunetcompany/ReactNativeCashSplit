@@ -1,10 +1,10 @@
 import React from 'react';
 import CustomView from '../../../../shared/Components/CustomView';
 import styles from './styles';
-import { ScrollView } from 'react-native';
+import {ScrollView} from 'react-native';
 import CustomText from '../../../../shared/Components/CustomText';
-import { CURRENCY } from '../../../../shared/GlobalConstants';
-import { convertPrice } from '../../../../shared/Helpers';
+import {CURRENCY} from '../../../../shared/GlobalConstants';
+import {convertPrice, getPrintableDateTime} from '../../../../shared/Helpers';
 
 const HistoryScreen = ({
                          dashboardProps,
@@ -21,17 +21,31 @@ const HistoryScreen = ({
 
   return (
     <CustomView style={styles.container}>
-      <ScrollView style={styles.scrollViewHeader}>
-        {spendingHistory?.map((spendingItem, index) => (
-            <CustomView
-              key={index.toString()}
-              style={styles.rowContainer}
-            >
-              <CustomText>
-                {`${spendingItem.spenderName} ${spendingItem.transactionType} ${convertPrice(spendingItem.spendingAmount)}${CURRENCY} on ${spendingItem.spendingType?.value} at ${spendingItem.timestamp}`}
-              </CustomText>
-            </CustomView>
-          ),
+      <ScrollView
+        contentContainerStyle={styles.scrollViewContentContainer}
+      >
+        {spendingHistory?.map((spendingItem, index) => {
+            const {
+              id,
+              spenderId,
+              timestamp,
+              spendingType,
+              spendingAmount,
+              spenderName,
+              transactionType,
+              spendingNote,
+            } = spendingItem;
+            return (
+              <CustomView
+                key={index.toString()}
+                style={styles.rowContainer}
+              >
+                <CustomText selectable>
+                  {`${spenderName} ${transactionType} ${convertPrice(spendingAmount)}${CURRENCY} on ${spendingType?.value ?? spendingNote} at ${getPrintableDateTime(timestamp)}`}
+                </CustomText>
+              </CustomView>
+            )
+          }
         )}
       </ScrollView>
     </CustomView>

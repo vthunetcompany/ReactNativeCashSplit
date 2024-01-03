@@ -13,7 +13,7 @@ import {
 } from '../../../../shared/GlobalConstants';
 import {convertPrice, customReplaceAll, getUuidV4, removeItemFromArray} from '../../../../shared/Helpers';
 import CommonPickerContent from "../../../../shared/Components/CommonPickerContent";
-import {Categories, CategoriesObj, CategoryNone} from "../../../storage/Catogories";
+import {Categories, CategoriesObj, CategoryOther} from "../../../storage/Catogories";
 import {FeatureFlags} from "../../../FeatureFlags";
 
 const modalInfoInitialState = {
@@ -127,7 +127,7 @@ const ExpenseModalComponent = ({
     return {
       id: getUuidV4(),
       timestamp: Date.now(),
-      spendingType: category.value === CategoryNone ? null : CategoriesObj[category.key],
+      spendingType: category.value === CategoryOther ? null : CategoriesObj[category.key],
       spendingAmount: change,
       spenderId: modalInfo.id,
       spenderName: modalInfo.name,
@@ -151,7 +151,7 @@ const ExpenseModalComponent = ({
           />
         )}
 
-        {FeatureFlags.NOTES && category.value === CategoryNone && (
+        {FeatureFlags.NOTES && category.value === CategoryOther && (
           <Input
             value={note}
             onChangeText={(rawText) => {
@@ -161,9 +161,10 @@ const ExpenseModalComponent = ({
               refInput.current?.focus();
             }}
             textAlign={'left'}
-            placeholder={'Notes'}
+            placeholder={'Notes 📝'}
             returnKeyType={'done'}
             maxLength={100}
+            autoCapitalize
           />
         )}
         <Input

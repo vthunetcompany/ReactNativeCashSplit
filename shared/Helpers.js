@@ -1,5 +1,5 @@
-import { DEBUG_MODE, DEMO_MODE, THOUSAND_SEPARATOR } from './GlobalConstants';
-import { Names } from '../src/storage/Names';
+import {DEBUG_MODE, DEMO_MODE, THOUSAND_SEPARATOR} from './GlobalConstants';
+import {Names} from '../src/storage/Names';
 
 export const capitalize = (str = '') => {
   if (!str || str.length === 0) return '';
@@ -82,4 +82,19 @@ export const removeItemFromArray = (array, item) => {
 export const handleException = (error, origin) => {
   const logFunction = DEBUG_MODE && !DEMO_MODE ? console.error : console.log
   logFunction('Error::', origin ? 'in '.concat(origin).concat(' ::') : '', error);
+}
+
+export const getPrintableDateTime = (date) => {
+  if (!date) {
+    return '';
+  }
+  const processedDate = new Date(date);
+  const year = processedDate.getFullYear();
+  const month = String(processedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+  const day = String(processedDate.getDate()).padStart(2, '0');
+  const hours = String(processedDate.getHours()).padStart(2, '0');
+  const minutes = String(processedDate.getMinutes()).padStart(2, '0');
+  const seconds = String(processedDate.getSeconds()).padStart(2, '0');
+
+  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 }
