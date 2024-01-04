@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
 
-    // backgroundColor: GlobalColors.white,
     ...Shadow3,
     borderRadius: 10,
   },

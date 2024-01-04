@@ -104,7 +104,11 @@ const HistoryScreen = ({
                         <CustomView style={styles.leftColumn}>
                           <CustomText semiBold>{spenderName}
                           </CustomText>
-                          <CustomText light>{spendingType?.value || `Other: ${spendingNote}`}</CustomText>
+                          <CustomText light>{
+                            spendingType?.value
+                              ? `${spendingType.value} ${spendingType.emoji ?? ''}`
+                              : `Other: ${spendingNote}`
+                          }</CustomText>
                           <CustomText xLight>{getPrintableHoursFromDatetime(timestamp)}</CustomText>
                         </CustomView>
                         <CustomView style={styles.rightColumn}>
