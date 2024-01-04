@@ -97,7 +97,9 @@ const HistoryScreen = ({
                 key={dateGroupIdx.toString()}
                 style={styles.dateGroupContainer}
               >
-                <CustomText style={styles.dateGroupText}>{dateGroup}</CustomText>
+                <CustomView style={styles.dateContainer}>
+                  <CustomText style={styles.dateText}>{dateGroup}</CustomText>
+                </CustomView>
                 {
                   spendingHistoryGroupedByDate[dateGroup].map((historyRecord, historyRecordIdx) => {
                     const {
@@ -116,8 +118,8 @@ const HistoryScreen = ({
                         style={styles.historyRowContainer}
                       >
                         <CustomView style={styles.leftColumn}>
-                          <CustomText>{spenderName}</CustomText>
-                          <CustomText>{spendingType?.value}</CustomText>
+                          <CustomText semiBold>{spenderName}</CustomText>
+                          <CustomText light>{spendingType?.value}</CustomText>
                         </CustomView>
                         <CustomView style={styles.rightColumn}>
                           <CustomText style={styles.priceText}>

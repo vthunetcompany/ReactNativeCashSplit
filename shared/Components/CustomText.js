@@ -30,6 +30,8 @@ const CustomText = ({
                       supportDarkMode,
                       bold,
                       semiBold,
+                      light,
+                      xLight,
                       color,
                       ...props
                     }) => {
@@ -48,7 +50,9 @@ const CustomText = ({
   };
 
   const getColor = () => {
-    if (!!color) return color
+    if (!!light) return GlobalColors.light_black;
+    if (!!xLight) return GlobalColors.grey;
+    if (!!color) return color;
     return supportDarkMode && isDarkMode ? GlobalColors.white : GlobalColors.shadowColor
   }
 

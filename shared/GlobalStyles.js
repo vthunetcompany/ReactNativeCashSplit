@@ -52,4 +52,50 @@ export const GlobalColors = {
   darkPink3: '#ff1483',
 };
 
+export const Shadow1 = {
+  shadowColor: GlobalColors.shadowColor,
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.18,
+  shadowRadius: 1.00,
+
+  elevation: 1,
+};
+export const Shadow2 = {
+  shadowColor: GlobalColors.shadowColor,
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.18,
+  shadowRadius: 1.00,
+
+  elevation: 1,
+};
+export const Shadow3 = {
+  shadowColor: GlobalColors.shadowColor,
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
+
+  elevation: 3,
+};
+
+export const Shadow5 = {
+  shadowColor: GlobalColors.shadowColor,
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 3.84,
+
+  elevation: 5,
+};
+
 export const DEFAULT_FONTSIZE = 14

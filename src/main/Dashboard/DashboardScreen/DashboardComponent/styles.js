@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { GlobalColors } from '../../../../../shared/GlobalStyles';
+import {GlobalColors, Shadow5} from '../../../../../shared/GlobalStyles';
 
 const dashboardRowContainer = {
   borderRadius: 14,
@@ -9,14 +9,7 @@ const dashboardRowContainer = {
   paddingVertical: 20,
   paddingHorizontal: 13,
 
-  shadowColor: GlobalColors.black,
-  shadowOffset: {
-    width: 0,
-    height: 2,
-  },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
-  elevation: 5,
+  ...Shadow5,
 
   alignSelf: 'stretch',
   alignItems: 'center',
