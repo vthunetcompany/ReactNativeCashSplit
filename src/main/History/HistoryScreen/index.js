@@ -23,23 +23,37 @@ const HistoryScreen = ({
   const [spendingHistoryGroupedByDate, setSpendingHistoryGroupByDate] = useState({});
 
   useEffect(() => {
+    // group spendingHistory by date, when spendingHistory changes
+    // update the result to spendingHistoryGroupedByDate
     spendingHistory.forEach(spending => {
       const date = spending.timestamp.split('T')[0];
       const prevState = spendingHistoryGroupedByDate;
 
-      setSpendingHistoryGroupByDate(_prevState => {
-        // console.log('run in setSpendingHistoryGroupByDate', prevState)
+      const getNewSpending = () => {
         if (isEmpty(prevState)) {
+          // create a new entry if first spending
           return {
             [date]: [spending],
           };
         }
 
+        if (!Object.keys(prevState).includes(date)) {
+          // create a new entry on a new date
+          return {
+            ...prevState,
+            [date]: [spending],
+          }
+        }
+
+        // write on past entry
         return {
           ...prevState,
           [date]: [...prevState?.[date], spending],
         }
-      });
+      }
+      const newSpending = getNewSpending();
+
+      setSpendingHistoryGroupByDate(newSpending);
     });
   }, [spendingHistory]);
 
@@ -76,13 +90,16 @@ const HistoryScreen = ({
         {/*  }*/}
         {/*)}*/}
         {
-          Object.keys(spendingHistoryGroupedByDate).map(dateGroup => {
+          Object.keys(spendingHistoryGroupedByDate).map((dateGroup, dateGroupIdx)  => {
             console.log('dateGroup', dateGroup)
             return (
-              <CustomView style={styles.dateGroupContainer}>
+              <CustomView
+                key={dateGroupIdx.toString()}
+                style={styles.dateGroupContainer}
+              >
                 <CustomText style={styles.dateGroupText}>{dateGroup}</CustomText>
                 {
-                  spendingHistoryGroupedByDate[dateGroup].map(historyRecord => {
+                  spendingHistoryGroupedByDate[dateGroup].map((historyRecord, historyRecordIdx) => {
                     const {
                       id,
                       spenderId,
@@ -94,7 +111,10 @@ const HistoryScreen = ({
                       spendingNote,
                     } = historyRecord;
                     return (
-                      <CustomView style={styles.historyRowContainer}>
+                      <CustomView
+                        key={historyRecordIdx}
+                        style={styles.historyRowContainer}
+                      >
                         <CustomView style={styles.leftColumn}>
                           <CustomText>{spenderName}</CustomText>
                           <CustomText>{spendingType?.value}</CustomText>

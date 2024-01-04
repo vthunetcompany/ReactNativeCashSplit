@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     marginHorizontal: 15,
 
+    borderWidth: 1,
+
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -45,4 +47,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default styles
+export default styles;

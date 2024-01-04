@@ -85,6 +85,7 @@ export const handleException = (error, origin) => {
 }
 
 export const getPrintableDateTime = (date) => {
+  // return '2024-13-12T00:00:00';
   if (!date) {
     return '';
   }
