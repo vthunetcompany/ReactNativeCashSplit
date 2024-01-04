@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import CustomView from '../../../../shared/Components/CustomView';
 import styles from './styles';
-import {ScrollView, unstable_enableLogBox} from 'react-native';
+import {ScrollView} from 'react-native';
 import CustomText from '../../../../shared/Components/CustomText';
 import {CURRENCY, TRANSACTION_TYPE} from '../../../../shared/GlobalConstants';
-import {convertPrice} from '../../../../shared/Helpers';
+import {convertPrice, getPrintableDateFromDatetime, getPrintableHoursFromDatetime} from '../../../../shared/Helpers';
 import isEmpty from 'lodash.isempty';
 
 const HistoryScreen = ({
@@ -66,29 +66,6 @@ const HistoryScreen = ({
       <ScrollView
         contentContainerStyle={styles.scrollViewContentContainer}
       >
-        {/*{spendingHistory?.map((spendingItem, index) => {*/}
-        {/*    const {*/}
-        {/*      id,*/}
-        {/*      spenderId,*/}
-        {/*      timestamp,*/}
-        {/*      spendingType,*/}
-        {/*      spendingAmount,*/}
-        {/*      spenderName,*/}
-        {/*      transactionType,*/}
-        {/*      spendingNote,*/}
-        {/*    } = spendingItem;*/}
-        {/*    return (*/}
-        {/*      <CustomView*/}
-        {/*        key={index.toString()}*/}
-        {/*        style={styles.rowContainer}*/}
-        {/*      >*/}
-        {/*        <CustomText selectable>*/}
-        {/*          {`${spenderName} ${transactionType} ${convertPrice(spendingAmount)}${CURRENCY} on ${spendingType?.value ?? spendingNote} at ${timestamp}`}*/}
-        {/*        </CustomText>*/}
-        {/*      </CustomView>*/}
-        {/*    )*/}
-        {/*  }*/}
-        {/*)}*/}
         {
           Object.keys(spendingHistoryGroupedByDate).map((dateGroup, dateGroupIdx)  => {
             console.log('dateGroup', dateGroup)
@@ -98,7 +75,7 @@ const HistoryScreen = ({
                 style={styles.dateGroupContainer}
               >
                 <CustomView style={styles.dateContainer}>
-                  <CustomText style={styles.dateText}>{dateGroup}</CustomText>
+                  <CustomText style={styles.dateText}>{getPrintableDateFromDatetime(dateGroup)}</CustomText>
                 </CustomView>
                 {
                   spendingHistoryGroupedByDate[dateGroup].map((historyRecord, historyRecordIdx) => {
@@ -115,14 +92,23 @@ const HistoryScreen = ({
                     return (
                       <CustomView
                         key={historyRecordIdx}
-                        style={styles.historyRowContainer}
+                        style={{
+                          ...styles.historyRowContainer,
+                          ...(
+                            transactionType === TRANSACTION_TYPE.ADD
+                              ? styles.historyRowContainerAdd
+                              : styles.historyRowContainerSubtract
+                          )
+                      }}
                       >
                         <CustomView style={styles.leftColumn}>
-                          <CustomText semiBold>{spenderName}</CustomText>
-                          <CustomText light>{spendingType?.value}</CustomText>
+                          <CustomText semiBold>{spenderName}
+                          </CustomText>
+                          <CustomText light>{spendingType?.value || `Other: ${spendingNote}`}</CustomText>
+                          <CustomText xLight>{getPrintableHoursFromDatetime(timestamp)}</CustomText>
                         </CustomView>
                         <CustomView style={styles.rightColumn}>
-                          <CustomText style={styles.priceText}>
+                          <CustomText style={styles.priceText} bold>
                             {`${transactionType === TRANSACTION_TYPE.ADD ? '+' : '-'} ${convertPrice(spendingAmount)}${CURRENCY}`}
                           </CustomText>
                         </CustomView>

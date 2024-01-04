@@ -14,6 +14,8 @@ export const GlobalColors = {
   light_red: '#FEE9ED',
   disabled_new_orange: '#EFB489',
   new_orange: '#FF6B00',
+
+  lightRed: '#ffdbdb',
   pure_red: '#DA0000',
 
   light_yellow: '#FBE9C7',
@@ -21,7 +23,7 @@ export const GlobalColors = {
   yellow_text: '#664D03',
 
   light_green: '#DEF0DF',
-  light_carsten_green: '#c8f4ca',
+  light_carsten_green: '#d2ffd4',
   disabled_carsten_green: '#8BD09E',
   carsten_green: '#05B134',
   dark_green: '#006F46',

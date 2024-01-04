@@ -62,7 +62,7 @@ export const getRandomInt = (min, max) => {
 }
 
 export const getRandomName = (isMale) => {
-  if (!isMale) isMale = !!getRandomInt(0,2)
+  if (!isMale) isMale = !!getRandomInt(0, 2)
 
   let nameArr
   if (isMale) nameArr = Names.male
@@ -99,3 +99,26 @@ export const getPrintableDateTime = (date) => {
 
   return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 }
+
+export const getPrintableDateFromDatetime = (datetime) => {
+  if (datetime.includes('T')) {
+    datetime = datetime.split('T')[0];
+  }
+  // Parse the input date
+  const parts = datetime.split('-');
+  const year = parts[0];
+  const month = parts[1];
+  const day = parts[2];
+
+  // Format the date in 'dd/mm/yy' format
+  return `${day}/${month}/${year.slice(-2)}`;
+};
+
+export const getPrintableHoursFromDatetime = (datetime) => {
+  // Parse the input date and time
+  const [_datePart, timePart] = datetime.split('T');
+  const [hours, minutes] = timePart.split(':');
+
+  // Format the time in 'hh:mm' format
+  return `${hours}:${minutes}`;
+};

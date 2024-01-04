@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
 
   scrollViewContentContainer: {
-    paddingBottom: 5,
+    paddingBottom: 10,
   },
 
   rowContainer: {
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   dateContainer: {
     marginTop: 12,
     marginBottom: 2,
-    // backgroundColor: 'red',
   },
   dateText: {
     paddingVertical: 3,
@@ -40,15 +39,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
 
-    backgroundColor: GlobalColors.white,
+    // backgroundColor: GlobalColors.white,
     ...Shadow3,
     borderRadius: 10,
   },
-  leftColumn: {
-
+  historyRowContainerSubtract: {
+    backgroundColor: GlobalColors.lightRed,
   },
-  rightColumn: {
+  historyRowContainerAdd: {
+    backgroundColor: GlobalColors.light_carsten_green,
+  },
 
+  leftColumn: {
+    flex: 3,
+  },
+
+  rightColumn: {
+    flex: 1,
+    alignItems: 'flex-end',
+    alignSelf: 'center',
   },
   priceText: {
 
