@@ -67,7 +67,7 @@ const HistoryScreen = ({
         contentContainerStyle={styles.scrollViewContentContainer}
       >
         {
-          Object.keys(spendingHistoryGroupedByDate).map((dateGroup, dateGroupIdx)  => {
+          Object.keys(spendingHistoryGroupedByDate).map((dateGroup, dateGroupIdx) => {
             console.log('dateGroup', dateGroup)
             return (
               <CustomView
@@ -99,17 +99,23 @@ const HistoryScreen = ({
                               ? styles.historyRowContainerAdd
                               : styles.historyRowContainerSubtract
                           )
-                      }}
+                        }}
                       >
                         <CustomView style={styles.leftColumn}>
-                          <CustomText semiBold>{spenderName}
-                          </CustomText>
-                          <CustomText light>{
-                            spendingType?.value
-                              ? `${spendingType.value} ${spendingType.emoji ?? ''}`
-                              : `Other: ${spendingNote}`
-                          }</CustomText>
-                          <CustomText xLight>{getPrintableHoursFromDatetime(timestamp)}</CustomText>
+                          <CustomView style={styles.leftColumnLeftEmojiContainer}>
+                            <CustomText xxLarge>{spendingType?.emoji ?? ''}</CustomText>
+                          </CustomView>
+
+                          <CustomView>
+                            <CustomText semiBold>{spenderName}
+                            </CustomText>
+                            <CustomText light>{
+                              spendingType?.value
+                                ? spendingType.value
+                                : `Other: ${spendingNote}`
+                            }</CustomText>
+                            <CustomText xLight>{getPrintableHoursFromDatetime(timestamp)}</CustomText>
+                          </CustomView>
                         </CustomView>
                         <CustomView style={styles.rightColumn}>
                           <CustomText style={styles.priceText} bold>
@@ -126,7 +132,8 @@ const HistoryScreen = ({
         }
       </ScrollView>
     </CustomView>
-  );
+  )
+    ;
 };
 
 export default HistoryScreen;

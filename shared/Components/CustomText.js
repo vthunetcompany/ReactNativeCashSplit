@@ -27,6 +27,7 @@ const CustomText = ({
                       medium,
                       large,
                       xLarge,
+                      xxLarge,
                       supportDarkMode,
                       bold,
                       semiBold,
@@ -42,6 +43,7 @@ const CustomText = ({
   else if (medium) FONTSIZE = 16;
   else if (large) FONTSIZE = 20;
   else if (xLarge) FONTSIZE = 26;
+  else if (xxLarge) FONTSIZE = 36;
 
   const getFontWeight = () => {
     if (bold) return boldStyle;

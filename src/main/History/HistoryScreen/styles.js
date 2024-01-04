@@ -50,7 +50,12 @@ const styles = StyleSheet.create({
   },
 
   leftColumn: {
+    flexDirection: 'row',
     flex: 3,
+  },
+  leftColumnLeftEmojiContainer: {
+    alignSelf: 'center',
+    marginRight: 3,
   },
 
   rightColumn: {
