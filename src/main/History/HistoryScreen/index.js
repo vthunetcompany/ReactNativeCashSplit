@@ -4,7 +4,12 @@ import styles from './styles';
 import {ScrollView, TouchableOpacity} from 'react-native';
 import CustomText from '../../../../shared/Components/CustomText';
 import {CURRENCY, TRANSACTION_TYPE} from '../../../../shared/GlobalConstants';
-import {convertPrice, getPrintableDateFromDatetime, getPrintableHoursFromDatetime} from '../../../../shared/Helpers';
+import {
+  convertPrice,
+  getPrintableDateFromDatetime,
+  getPrintableHoursFromDatetime,
+  resetSpending
+} from '../../../../shared/Helpers';
 import isEmpty from 'lodash.isempty';
 import {GlobalColors} from "../../../../shared/GlobalStyles";
 
@@ -23,6 +28,14 @@ const HistoryScreen = ({
   const [spendingHistoryGroupedByDate, setSpendingHistoryGroupByDate] = useState({});
 
   useEffect(() => {
+    if (isEmpty(spendingHistory)) {
+      // clear history
+      setSpendingHistoryGroupByDate({});
+
+      // clear spending in masterData
+      setMasterData(resetSpending(masterData));
+    }
+
     // group spendingHistory by date, when spendingHistory changes
     // update the result to spendingHistoryGroupedByDate
     spendingHistory.forEach(spending => {
@@ -56,6 +69,11 @@ const HistoryScreen = ({
       setSpendingHistoryGroupByDate(newSpending);
     });
   }, [spendingHistory]);
+
+  const clearHistory = () => {
+    console.log('clear history');
+    setSpendingHistory([]);
+  };
 
   return (
     <CustomView style={styles.container}>
@@ -131,6 +149,19 @@ const HistoryScreen = ({
           })
         }
       </ScrollView>
+      <CustomView style={styles.footerContainer}>
+        <TouchableOpacity
+          style={styles.removeButton}
+          onLongPress={clearHistory}
+        >
+          <CustomText
+            large
+            color={GlobalColors.pure_red}
+          >
+            𝕏
+          </CustomText>
+        </TouchableOpacity>
+      </CustomView>
     </CustomView>
   );
 };

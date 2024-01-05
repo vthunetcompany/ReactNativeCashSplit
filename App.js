@@ -32,7 +32,7 @@ const App = () => {
   const [isLoading, toggleLoading] = useToggle(true);
   const [masterData, setMasterData] = useState([]);
   const [isShowSplash, setIsShowSplash] = useState(true);
-  const [spendingHistory, setSpendingHistory] = useState([])
+  const [spendingHistory, setSpendingHistory] = useState([]);
 
   const loadData = async () => {
     if (RESET_ALL_DATA) {

@@ -122,3 +122,15 @@ export const getPrintableHoursFromDatetime = (datetime) => {
   // Format the time in 'hh:mm' format
   return `${hours}:${minutes}`;
 };
+
+export const resetSpending = (masterData) => {
+  if (isEmpty(masterData)) {
+    return [];
+  }
+  return masterData.map(datum => {
+    return {
+      ...datum,
+      amount: 0,
+    }
+  })
+}

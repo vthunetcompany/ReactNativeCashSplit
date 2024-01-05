@@ -66,6 +66,22 @@ const styles = StyleSheet.create({
   priceText: {
 
   },
+
+  footerContainer: {
+    flexDirection:  'row',
+    justifyContent: 'flex-end',
+  },
+  removeButton: {
+    backgroundColor: GlobalColors.white,
+    borderRadius: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 25,
+    marginRight: 13,
+    marginBottom: 10,
+    marginTop: 5,
+
+    ...Shadow2,
+  },
 })
 
 export default styles;
