@@ -51,15 +51,15 @@ const styles = StyleSheet.create({
 
   leftColumn: {
     flexDirection: 'row',
-    flex: 3,
+    flex: 5,
   },
   leftColumnLeftEmojiContainer: {
     alignSelf: 'center',
-    marginRight: 3,
+    marginRight: 8,
   },
 
   rightColumn: {
-    flex: 1,
+    flex: 2,
     alignItems: 'flex-end',
     alignSelf: 'center',
   },

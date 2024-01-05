@@ -68,14 +68,13 @@ const HistoryScreen = ({
       >
         {
           Object.keys(spendingHistoryGroupedByDate).map((dateGroup, dateGroupIdx) => {
-            console.log('dateGroup', dateGroup)
             return (
               <CustomView
                 key={dateGroupIdx.toString()}
                 style={styles.dateGroupContainer}
               >
                 <CustomView style={styles.dateContainer}>
-                  <CustomText style={styles.dateText}>{getPrintableDateFromDatetime(dateGroup)}</CustomText>
+                  <CustomText medium style={styles.dateText}>{getPrintableDateFromDatetime(dateGroup)}</CustomText>
                 </CustomView>
                 {
                   spendingHistoryGroupedByDate[dateGroup].map((historyRecord, historyRecordIdx) => {
