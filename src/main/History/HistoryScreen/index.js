@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import CustomView from '../../../../shared/Components/CustomView';
 import styles from './styles';
-import {ScrollView} from 'react-native';
+import {ScrollView, TouchableOpacity} from 'react-native';
 import CustomText from '../../../../shared/Components/CustomText';
 import {CURRENCY, TRANSACTION_TYPE} from '../../../../shared/GlobalConstants';
 import {convertPrice, getPrintableDateFromDatetime, getPrintableHoursFromDatetime} from '../../../../shared/Helpers';
@@ -19,7 +19,6 @@ const HistoryScreen = ({
     spendingHistory,
     setSpendingHistory,
   } = dashboardProps;
-  // console.log('spendingHistory', spendingHistory);
 
   const [spendingHistoryGroupedByDate, setSpendingHistoryGroupByDate] = useState({});
 
@@ -58,10 +57,6 @@ const HistoryScreen = ({
     });
   }, [spendingHistory]);
 
-  useEffect(() => {
-    console.log('spendingHistoryGroupedByDate', JSON.stringify(spendingHistoryGroupedByDate))
-  }, [spendingHistoryGroupedByDate]);
-
   return (
     <CustomView style={styles.container}>
       <ScrollView
@@ -90,7 +85,7 @@ const HistoryScreen = ({
                       spendingNote,
                     } = historyRecord;
                     return (
-                      <CustomView
+                      <TouchableOpacity
                         key={historyRecordIdx}
                         style={{
                           ...styles.historyRowContainer,
@@ -100,6 +95,7 @@ const HistoryScreen = ({
                               : styles.historyRowContainerSubtract
                           )
                         }}
+                        activeOpacity={0.4}
                       >
                         <CustomView style={styles.leftColumn}>
                           <CustomView style={styles.leftColumnLeftEmojiContainer}>
@@ -126,7 +122,7 @@ const HistoryScreen = ({
                             {`${transactionType === TRANSACTION_TYPE.ADD ? '' : '-'} ${convertPrice(spendingAmount)}${CURRENCY}`}
                           </CustomText>
                         </CustomView>
-                      </CustomView>
+                      </TouchableOpacity>
                     )
                   })
                 }
@@ -136,8 +132,7 @@ const HistoryScreen = ({
         }
       </ScrollView>
     </CustomView>
-  )
-    ;
+  );
 };
 
 export default HistoryScreen;
