@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalColors.lightRed,
   },
   historyRowContainerAdd: {
-    backgroundColor: GlobalColors.light_carsten_green,
+    backgroundColor: GlobalColors.white,
   },
 
   leftColumn: {

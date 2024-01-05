@@ -6,6 +6,7 @@ import CustomText from '../../../../shared/Components/CustomText';
 import {CURRENCY, TRANSACTION_TYPE} from '../../../../shared/GlobalConstants';
 import {convertPrice, getPrintableDateFromDatetime, getPrintableHoursFromDatetime} from '../../../../shared/Helpers';
 import isEmpty from 'lodash.isempty';
+import {GlobalColors} from "../../../../shared/GlobalStyles";
 
 const HistoryScreen = ({
                          dashboardProps,
@@ -117,8 +118,12 @@ const HistoryScreen = ({
                           </CustomView>
                         </CustomView>
                         <CustomView style={styles.rightColumn}>
-                          <CustomText style={styles.priceText} bold>
-                            {`${transactionType === TRANSACTION_TYPE.ADD ? '+' : '-'} ${convertPrice(spendingAmount)}${CURRENCY}`}
+                          <CustomText
+                            style={styles.priceText}
+                            color={transactionType === TRANSACTION_TYPE.ADD ? null : GlobalColors.pure_red}
+                            bold
+                          >
+                            {`${transactionType === TRANSACTION_TYPE.ADD ? '' : '-'} ${convertPrice(spendingAmount)}${CURRENCY}`}
                           </CustomText>
                         </CustomView>
                       </CustomView>
