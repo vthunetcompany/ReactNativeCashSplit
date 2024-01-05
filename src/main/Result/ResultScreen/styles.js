@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
 
   scrollViewHeader: {
-    paddingTop: 20,
+    paddingTop: 13,
     paddingHorizontal: 20,
     paddingBottom: 5,
 
