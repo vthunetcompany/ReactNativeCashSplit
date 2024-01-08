@@ -173,8 +173,8 @@ const ExpenseModalComponent = ({
             textAlign={'left'}
             placeholder={'Notes 📝'}
             returnKeyType={'done'}
-            maxLength={100}
-            autoCapitalize
+            maxLength={80}
+            autoCapitalize={'sentences'}
           />
         )}
         <Input

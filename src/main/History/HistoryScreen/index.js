@@ -29,18 +29,17 @@ const HistoryScreen = ({
 
   useEffect(() => {
     if (isEmpty(spendingHistory)) {
-      // clear history
+      // clear all date group spending
       setSpendingHistoryGroupByDate({});
-
-      // clear spending in masterData
-      setMasterData(resetSpending(masterData));
+      return;
     }
+
+    let prevState = spendingHistoryGroupedByDate;
 
     // group spendingHistory by date, when spendingHistory changes
     // update the result to spendingHistoryGroupedByDate
     spendingHistory.forEach(spending => {
       const date = spending.timestamp.split('T')[0];
-      const prevState = spendingHistoryGroupedByDate;
 
       const getNewSpending = () => {
         if (isEmpty(prevState)) {
@@ -66,13 +65,20 @@ const HistoryScreen = ({
       }
       const newSpending = getNewSpending();
 
+      if (isEmpty(spendingHistoryGroupedByDate)) {
+        // on init, append value to `prevState` to populate `spendingHistoryGroupedByDate`
+        prevState = newSpending;
+      }
       setSpendingHistoryGroupByDate(newSpending);
     });
   }, [spendingHistory]);
 
   const clearHistory = () => {
-    console.log('clear history');
+    console.debug('CLEAR HISTORY');
     setSpendingHistory([]);
+
+    // clear spending in masterData
+    setMasterData(resetSpending(masterData));
   };
 
   return (
@@ -149,7 +155,7 @@ const HistoryScreen = ({
           })
         }
       </ScrollView>
-      <CustomView style={styles.footerContainer}>
+      {!isEmpty(spendingHistory) && <CustomView style={styles.footerContainer}>
         <TouchableOpacity
           style={styles.removeButton}
           onLongPress={clearHistory}
@@ -162,6 +168,7 @@ const HistoryScreen = ({
           </CustomText>
         </TouchableOpacity>
       </CustomView>
+      }
     </CustomView>
   );
 };

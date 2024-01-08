@@ -63,7 +63,7 @@ const App = () => {
 
   const saveData = masterData => {
     AsyncStorage.setItem(AsyncStorageKeys.masterData, JSON.stringify(masterData));
-    AsyncStorage.setItem(AsyncStorageKeys.spendingHistory, JSON.stringify(spendingHistory))
+    AsyncStorage.setItem(AsyncStorageKeys.spendingHistory, JSON.stringify(spendingHistory));
   };
 
   useEffect(() => {
@@ -105,12 +105,13 @@ const App = () => {
 
   useEffect(() => {
     if (!!masterData) {
-      console.log('masterData changes::', masterData);
+      // console.log('masterData changes::', masterData);
+      // console.log('spendingHistory changes::', spendingHistory);
 
       setMasterData(masterData.sort((a, b) => b.amount - a.amount))
       saveData(masterData);
     }
-  }, [masterData]);
+  }, [masterData, spendingHistory]);
 
   const masterDataProps = {
     isLoading,
