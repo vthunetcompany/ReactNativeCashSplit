@@ -1,6 +1,24 @@
-import React from "react";
-import { Platform, Text, useColorScheme } from "react-native";
-import { DEFAULT_FONTSIZE, GlobalColors as GlobalColors } from "../GlobalStyles";
+import React from 'react';
+import {Platform, Text, useColorScheme} from 'react-native';
+import {DEFAULT_FONTSIZE, GlobalColors} from '../GlobalStyles';
+
+const boldStyle = Platform.OS === 'ios' ? '600' : 'bold';
+const semiBoldStyle = Platform.OS === 'ios' ? '500' : 'bold';
+const normalStyle = Platform.OS === 'ios' ? '400' : 'normal';
+export const getFontWeight = (fontWeight) => {
+  if (!fontWeight) {
+    return normalStyle;
+  }
+
+  switch (fontWeight) {
+    case 'bold':
+      return boldStyle;
+    case 'semiBold':
+      return semiBoldStyle;
+    default:
+      return normalStyle;
+  }
+};
 
 const CustomText = ({
                       children,
@@ -9,26 +27,34 @@ const CustomText = ({
                       medium,
                       large,
                       xLarge,
+                      xxLarge,
                       supportDarkMode,
                       bold,
+                      semiBold,
+                      light,
+                      xLight,
                       color,
                       ...props
                     }) => {
   let FONTSIZE = DEFAULT_FONTSIZE;
-  const isDarkMode = useColorScheme() === "dark";
+  const isDarkMode = useColorScheme() === 'dark';
 
   if (small) FONTSIZE = 12;
   else if (medium) FONTSIZE = 16;
   else if (large) FONTSIZE = 20;
   else if (xLarge) FONTSIZE = 26;
+  else if (xxLarge) FONTSIZE = 36;
 
   const getFontWeight = () => {
-    if (bold) return Platform.OS === "ios" ? "600" : "bold";
-    return Platform.OS === "ios" ? "400" : "normal";
+    if (bold) return boldStyle;
+    if (semiBold) return semiBoldStyle;
+    return normalStyle;
   };
 
   const getColor = () => {
-    if (!!color) return color
+    if (!!light) return GlobalColors.light_black;
+    if (!!xLight) return GlobalColors.grey;
+    if (!!color) return color;
     return supportDarkMode && isDarkMode ? GlobalColors.white : GlobalColors.shadowColor
   }
 

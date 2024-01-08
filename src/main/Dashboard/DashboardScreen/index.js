@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import DashboardComponent from "./DashboardComponent";
-import PropTypes from "prop-types";
-import DashboardOverviewComponent from "../DashboardOverviewComponent";
-import { useToggle } from "../../../../shared/hooks/useToggle";
-import AppModal from "../../../../shared/AppModal";
-import ExpenseModalComponent from "../ExpenseModalComponent/styles";
-import EditNameModalComponent from "../EditNameModalComponent";
-import { capitalizeEachWord } from "../../../../shared/Helpers";
+import React, { useState } from 'react';
+import DashboardComponent from './DashboardComponent';
+import PropTypes from 'prop-types';
+import DashboardOverviewComponent from '../DashboardOverviewComponent';
+import { useToggle } from '../../../../shared/hooks/useToggle';
+import AppModal from '../../../../shared/AppModal';
+import ExpenseModalComponent from '../ExpenseModalComponent';
+import EditNameModalComponent from '../EditNameModalComponent';
+import { capitalizeEachWord } from '../../../../shared/Helpers';
 
 const modalInfoInitialState = {
   id: '',
@@ -54,7 +54,7 @@ const DashboardScreen = ({ dashboardProps }) => {
         showExitIcon />
 
       <AppModal
-        title={"Edit name"}
+        title={'Edit name'}
         modalBody={
           <EditNameModalComponent
             masterDataProp={dashboardProps}

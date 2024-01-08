@@ -1,32 +1,25 @@
-import { StyleSheet } from "react-native";
-import { GlobalColors as GlobalColors } from "../../../../../shared/GlobalStyles";
+import { StyleSheet } from 'react-native';
+import {GlobalColors, Shadow5} from '../../../../../shared/GlobalStyles';
 
 const dashboardRowContainer = {
-  borderRadius: 5,
+  borderRadius: 14,
   marginVertical: 10,
-  marginHorizontal: 20,
+  marginHorizontal: 22,
 
   paddingVertical: 20,
-  paddingHorizontal: 10,
+  paddingHorizontal: 13,
 
-  shadowColor: GlobalColors.black,
-  shadowOffset: {
-    width: 0,
-    height: 2,
-  },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
-  elevation: 5,
+  ...Shadow5,
 
-  alignSelf: "stretch",
-  alignItems: "center",
-  justifyContent: "center",
+  alignSelf: 'stretch',
+  alignItems: 'center',
+  justifyContent: 'center',
 };
 
 const styles = StyleSheet.create({
   dashboardScreenScrollViewContainer: {
     backgroundColor: GlobalColors.background_color,
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
     flex: 6,
   },
 

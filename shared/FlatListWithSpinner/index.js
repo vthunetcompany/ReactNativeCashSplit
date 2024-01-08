@@ -7,8 +7,8 @@ import {
   StyleSheet, Text,
   TouchableOpacity,
   View,
-} from "react-native";
-import { GlobalColors as GlobalColors } from "../GlobalStyles";
+} from 'react-native';
+import { GlobalColors } from '../GlobalStyles';
 
 const FlatListWithSpinner = ({
   loading,
@@ -40,7 +40,7 @@ const FlatListWithSpinner = ({
         <View style={{ flex: 1, justifyContent: 'center' }}>
           <View>
             <ActivityIndicator
-              size="large"
+              size='large'
               color={GlobalColors.pink1}
             />
           </View>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   emptyListRefresh: {
     color: GlobalColors.pink3,
-    fontWeight: Platform.OS === "ios" ? "700" : "bold",
+    fontWeight: Platform.OS === 'ios' ? '700' : 'bold',
     paddingTop: 4,
     paddingBottom: 10,
     paddingHorizontal: 70,

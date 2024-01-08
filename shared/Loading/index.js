@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import styles from './styles';
-import { GlobalColors } from "../GlobalStyles";
+import { GlobalColors } from '../GlobalStyles';
 
 const Loading = ({ loading, style }) => {
   if (!loading) {

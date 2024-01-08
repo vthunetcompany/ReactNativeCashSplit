@@ -1,13 +1,13 @@
-import CustomView from "../../../../shared/Components/CustomView";
-import React, { useEffect, useState } from "react";
-import styles from "./styles";
-import CustomText from "../../../../shared/Components/CustomText";
-import { TouchableOpacity } from "react-native";
-import { CURRENCY, CURRENCY_CODE, MONEY_INCREMENT_LEVEL } from "../../../../shared/GlobalConstants";
-import { convertPrice, isEmpty } from "../../../../shared/Helpers";
-import Icon from "../../../../shared/Icon";
-import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
-import { GlobalColors as GlobalColors } from "../../../../shared/GlobalStyles";
+import CustomView from '../../../../shared/Components/CustomView';
+import React, { useEffect, useState } from 'react';
+import styles from './styles';
+import CustomText from '../../../../shared/Components/CustomText';
+import { TouchableOpacity } from 'react-native';
+import { CURRENCY, CURRENCY_CODE, MONEY_INCREMENT_LEVEL } from '../../../../shared/GlobalConstants';
+import { convertPrice, isEmpty } from '../../../../shared/Helpers';
+import Icon from '../../../../shared/Icon';
+import { IconRoutes } from '../../../../shared/Icon/IconRoutes';
+import { GlobalColors } from '../../../../shared/GlobalStyles';
 
 const DashboardOverviewComponent = ({ props }) => {
   const [totalSpending, setTotalSpending] = useState(0);
@@ -35,19 +35,20 @@ const DashboardOverviewComponent = ({ props }) => {
       return (
         <Icon
           type={IconRoutes.MaterialCommunityIcons}
-          name={"sleep"}
+          name={'sleep'}
           size={20}
           style={{ color: GlobalColors.darkPink1 }}
         />
       );
     } else
-      return masterData.map((item, index) => {
+      return masterData.map((_item, index) => {
         return (
           <Icon
             type={IconRoutes.Ionicon}
-            name={"person"}
+            name={'person'}
             size={20}
             style={{ color: GlobalColors.pink2, marginRight: 1 }}
+            key={index.toString()}
           />
         );
       });
@@ -72,7 +73,7 @@ const DashboardOverviewComponent = ({ props }) => {
       <CustomView style={styles.overviewInfoContainer}>
         <CustomText bold large>Headcount: {masterData.length}</CustomText>
 
-        <CustomView style={{ flexDirection: "row", marginTop: 2 }}>
+        <CustomView style={{ flexDirection: 'row', marginTop: 2 }}>
           {getHeadcountIcons()}
         </CustomView>
 

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
-import styles from "./styles";
-import CustomText from "../../../../shared/Components/CustomText";
-import CustomView from "../../../../shared/Components/CustomView";
-import { CURRENCY, MONEY_INCREMENT_LEVEL } from "../../../../shared/GlobalConstants";
-import { capitalizeEachWord, convertPrice, isEmpty } from "../../../../shared/Helpers";
-import Icon from "../../../../shared/Icon";
-import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
-import { GlobalColors } from "../../../../shared/GlobalStyles";
-import { useToggle } from "../../../../shared/hooks/useToggle";
+import React, { useEffect, useState } from 'react';
+import { ScrollView } from 'react-native';
+import styles from './styles';
+import CustomText from '../../../../shared/Components/CustomText';
+import CustomView from '../../../../shared/Components/CustomView';
+import { CURRENCY, MONEY_INCREMENT_LEVEL } from '../../../../shared/GlobalConstants';
+import { capitalizeEachWord, convertPrice, isEmpty } from '../../../../shared/Helpers';
+import Icon from '../../../../shared/Icon';
+import { IconRoutes } from '../../../../shared/Icon/IconRoutes';
+import { GlobalColors } from '../../../../shared/GlobalStyles';
+import { useToggle } from '../../../../shared/hooks/useToggle';
 
 const ResultScreen = ({
                         dashboardProps,
@@ -19,6 +19,7 @@ const ResultScreen = ({
     setMasterData,
     loadData,
   } = dashboardProps;
+
   const [calculateLoading, setCalculateLoading] = useToggle(true)
 
   const AVG = masterData.reduce((p, c) => p + c.amount, 0) / masterData.length;
@@ -31,20 +32,20 @@ const ResultScreen = ({
   let currentSpendBalance = [];
 
   const calculateTransactions = () => {
-    console.log("currentBalance", currentSpendBalance);
+    console.log('currentBalance', currentSpendBalance);
 
     let differenceBalance = [];
     masterData.forEach(datum => differenceBalance.push(Math.floor(datum.amount - AVG)));
-    console.log("differenceBalance", differenceBalance);
+    console.log('differenceBalance', differenceBalance);
 
     for (let i = 0; i < numberOfChecks; i++) {
-      // start from first person, end at half the list
+      // start from first person, end at final person of the list
       while (differenceBalance[i] > 0) {
         for (let j = differenceBalance.length - 1; j > i; j--) {
           setTimeout(() => {},1000)
           if (differenceBalance[i] === 0) break
 
-          // start from the last person, end at the current person "i"
+          // start from the last person, end at the current person 'i'
           console.log('Current:', i, j);
           if (differenceBalance[j] < 0) {
             differenceBalance = doTransfer(
@@ -57,7 +58,6 @@ const ResultScreen = ({
         }
       }
     }
-
   };
 
   const doTransfer = (sender, receiver, amount, statusArray = []) => {
@@ -137,7 +137,10 @@ const ResultScreen = ({
 
   const getGroupedSection = (item, index) => {
     return (
-      <CustomView style={styles.sectionViewContainer}>
+      <CustomView
+        style={styles.sectionViewContainer}
+        key={index.toString()}
+      >
         <CustomView style={styles.leftCol}>
           <CustomText medium bold>
             {capitalizeEachWord(item.sender.name)}
@@ -155,18 +158,21 @@ const ResultScreen = ({
 
   const renderGroupedReceiver = (item, index) => {
     return (
-      <CustomView style={styles.midAndRightRowContainer}>
+      <CustomView
+        style={styles.midAndRightRowContainer}
+        key={index.toString()}
+      >
         <CustomView style={styles.midCol}>
           <CustomView style={styles.midColIcons}>
             <Icon
               type={IconRoutes.Ionicon}
-              name={"send"}
+              name={'send'}
               size={15}
               style={{ color: GlobalColors.darkPink1, marginRight: 3 }}
             />
             <Icon
               type={IconRoutes.FAIcon}
-              name={"money"}
+              name={'money'}
               size={18}
               style={{ color: GlobalColors.darkPink3 }}
             />
@@ -209,7 +215,7 @@ const ResultScreen = ({
           </CustomView>
         </ScrollView>
         : <CustomView style={[{
-          alignItems: "center",
+          alignItems: 'center',
           marginTop: 100,
         }, styles.resultScrollContainer]}>
           <CustomText style={styles.resultScrollContainer}>

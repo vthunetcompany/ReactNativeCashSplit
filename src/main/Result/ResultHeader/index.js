@@ -1,31 +1,35 @@
-import CustomView from "../../../../shared/Components/CustomView";
-import CustomText from "../../../../shared/Components/CustomText";
-import { TouchableOpacity, useColorScheme } from "react-native";
-import React from "react";
-import styles from "./styles";
-import { GlobalColors } from "../../../../shared/GlobalStyles";
-import Icon from "../../../../shared/Icon";
-import { IconRoutes } from "../../../../shared/Icon/IconRoutes";
-import { ROUTES } from "../../../storage/Routes";
+import CustomView from '../../../../shared/Components/CustomView';
+import CustomText from '../../../../shared/Components/CustomText';
+import { TouchableOpacity, useColorScheme } from 'react-native';
+import React from 'react';
+import styles from './styles';
+import { GlobalColors } from '../../../../shared/GlobalStyles';
+import Icon from '../../../../shared/Icon';
+import { IconRoutes } from '../../../../shared/Icon/IconRoutes';
+import { ROUTES } from '../../../storage/Routes';
 
 const ResultHeader = ({
                         navigation,
                         dashboardProps,
                       }) => {
-  const isDarkMode = useColorScheme() === "dark";
+  const isDarkMode = useColorScheme() === 'dark';
 
   const {
     isLoading,
     masterData,
     setMasterData,
     loadData,
+    setSpendingHistory,
   } = dashboardProps;
 
   const onPressLeft = () => {
-    navigation.navigate(ROUTES.DASHBOARD_SCREEN)
+    navigation.navigate(ROUTES.HISTORY_SCREEN)
   }
 
   const onPressRight = () => {
+    setSpendingHistory([])
+
+    // to be set last because masterData changing triggers local storage save
     setMasterData([])
   }
 
@@ -36,7 +40,7 @@ const ResultHeader = ({
       <TouchableOpacity style={styles.headerLeftButton} onPress={onPressLeft}>
         <Icon
           type={IconRoutes.AntDesign}
-          name={"left"}
+          name={'left'}
           size={24}
           style={{ color: GlobalColors.pink2 }}
         />
@@ -50,7 +54,7 @@ const ResultHeader = ({
       <TouchableOpacity style={styles.headerRightButton} onLongPress={onPressRight}>
         <Icon
           type={IconRoutes.Feather}
-          name={"refresh-ccw"}
+          name={'refresh-ccw'}
           size={24}
           style={{ color: GlobalColors.pink2 }}
         />

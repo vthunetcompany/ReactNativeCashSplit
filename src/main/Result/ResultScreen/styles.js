@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { GlobalColors } from "../../../../shared/GlobalStyles";
+import { StyleSheet } from 'react-native';
+import { GlobalColors } from '../../../../shared/GlobalStyles';
 
 const leftColFlex = 2,
   midColFlex = 3, rightColFlex = 2
@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
   },
 
   scrollViewHeader: {
-    paddingTop: 20,
+    paddingTop: 13,
     paddingHorizontal: 20,
     paddingBottom: 5,
 
-    alignSelf: "stretch",
-    flexDirection: "row",
+    alignSelf: 'stretch',
+    flexDirection: 'row',
   },
   leftColHeader: {
     flex: leftColFlex,
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
   },
   rightColHeader: {
     flex: rightColFlex,
-    alignItems: "flex-end",
-    textAlign: "right",
+    alignItems: 'flex-end',
+    textAlign: 'right',
   },
 
   resultScrollContainer: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
 
-    borderRadius: 5,
+    borderRadius: 12,
 
     paddingHorizontal: 10,
     paddingTop: 20,

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { GlobalColors } from "../GlobalStyles";
+import { GlobalColors } from '../GlobalStyles';
 
 export default StyleSheet.create({
   inputContainer: {
@@ -8,7 +8,7 @@ export default StyleSheet.create({
 
   wrapper: {
     height: 42,
-    borderRadius: 5,
+    borderRadius: 10,
     paddingHorizontal: 5,
     marginTop: 5,
   },

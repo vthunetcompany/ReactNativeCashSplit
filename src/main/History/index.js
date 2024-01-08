@@ -1,21 +1,20 @@
 import React from 'react';
-import ResultHeader from './ResultHeader';
 import SafeAreaView from 'react-native/Libraries/Components/SafeAreaView/SafeAreaView';
-import ResultScreen from './ResultScreen';
+import HistoryHeader from './HistoryHeader';
+import HistoryScreen from './HistoryScreen';
 
-const Result = ({navigation, dashboardProps}) => {
+const History = ({navigation, dashboardProps}) => {
 
   return (
     <SafeAreaView style={{flex: 1,}}>
-      <ResultHeader
+      <HistoryHeader
         navigation={navigation}
-        dashboardProps={dashboardProps}
       />
-      <ResultScreen
+      <HistoryScreen
         dashboardProps={dashboardProps}
       />
     </SafeAreaView>
   )
 }
 
-export default Result
+export default History;

@@ -14,6 +14,8 @@ export const GlobalColors = {
   light_red: '#FEE9ED',
   disabled_new_orange: '#EFB489',
   new_orange: '#FF6B00',
+
+  lightRed: '#ffdbdb',
   pure_red: '#DA0000',
 
   light_yellow: '#FBE9C7',
@@ -21,7 +23,7 @@ export const GlobalColors = {
   yellow_text: '#664D03',
 
   light_green: '#DEF0DF',
-  light_carsten_green: '#c8f4ca',
+  light_carsten_green: '#d2ffd4',
   disabled_carsten_green: '#8BD09E',
   carsten_green: '#05B134',
   dark_green: '#006F46',
@@ -50,6 +52,52 @@ export const GlobalColors = {
   darkPink1: '#ff4aa2',
   darkPink2: '#ff2d91',
   darkPink3: '#ff1483',
+};
+
+export const Shadow1 = {
+  shadowColor: GlobalColors.shadowColor,
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.18,
+  shadowRadius: 1.00,
+
+  elevation: 1,
+};
+export const Shadow2 = {
+  shadowColor: GlobalColors.shadowColor,
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.18,
+  shadowRadius: 1.00,
+
+  elevation: 1,
+};
+export const Shadow3 = {
+  shadowColor: GlobalColors.shadowColor,
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
+
+  elevation: 3,
+};
+
+export const Shadow5 = {
+  shadowColor: GlobalColors.shadowColor,
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 3.84,
+
+  elevation: 5,
 };
 
 export const DEFAULT_FONTSIZE = 14
