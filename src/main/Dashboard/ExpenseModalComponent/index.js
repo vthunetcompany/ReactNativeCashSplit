@@ -175,6 +175,7 @@ const ExpenseModalComponent = ({
             returnKeyType={'done'}
             maxLength={80}
             autoCapitalize={'sentences'}
+            autoCorrect
           />
         )}
         <Input
