@@ -25,7 +25,7 @@ const App = () => {
   ]);
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? GlobalColors.grey : GlobalColors.white,
+    backgroundColor: isDarkMode ? GlobalColors.black : GlobalColors.white,
   };
 
   // start configuring masterData
