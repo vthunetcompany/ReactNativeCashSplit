@@ -12,6 +12,7 @@ import {
 } from '../../../../shared/Helpers';
 import isEmpty from 'lodash.isempty';
 import {GlobalColors} from "../../../../shared/GlobalStyles";
+import {FeatureFlags} from "../../../FeatureFlags";
 
 const HistoryScreen = ({
                          dashboardProps,
@@ -51,16 +52,23 @@ const HistoryScreen = ({
 
         if (!Object.keys(prevState).includes(date)) {
           // create a new entry on a new date
-          return {
-            ...prevState,
-            [date]: [spending],
-          }
+          return FeatureFlags.ORDER_HISTORY_CHRONOLOGICALLY
+            ? {
+              [date]: [spending],
+              ...prevState,
+            }
+            : {
+              ...prevState,
+              [date]: [spending],
+            };
         }
 
         // write on past entry
         return {
           ...prevState,
-          [date]: [...prevState?.[date], spending],
+          [date]: FeatureFlags.ORDER_HISTORY_CHRONOLOGICALLY
+            ? [spending, ...prevState?.[date]]
+            : [...prevState?.[date], spending],
         }
       }
       const newSpending = getNewSpending();
