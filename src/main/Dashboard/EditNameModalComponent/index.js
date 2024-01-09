@@ -58,9 +58,7 @@ const EditNameModalComponent = ({
 
   const removePerson = index => {
     const clonedMasterData = Object.assign([], masterData)
-    console.log('before splice', clonedMasterData, index);
-    clonedMasterData.splice(index, 1)
-    console.log('after splice', clonedMasterData);
+    clonedMasterData.splice(index, 1);
 
     setMasterData(clonedMasterData)
     setIsShowNameModal(false)

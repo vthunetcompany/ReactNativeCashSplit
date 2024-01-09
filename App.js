@@ -92,14 +92,20 @@ const App = () => {
     }
 
     // load masterData from local storage on startup
-    loadData().then(res => {
-      console.log('Startup::', res);
-      if (!!res) {
-        setMasterData(res.masterData ?? []);
-        setSpendingHistory(res?.spendingHistory);
-      }
-      toggleLoading(false)
-    });
+    loadData()
+      .then(res => {
+        console.log('Startup::', res);
+        if (!!res) {
+          setMasterData(res?.masterData ?? []);
+          setSpendingHistory(res?.spendingHistory ?? []);
+        }
+      })
+      .catch((err) => {
+        handleException(err);
+      })
+      .finally(() => {
+        toggleLoading(false);
+      });
   }, []);
 
   useEffect(() => {

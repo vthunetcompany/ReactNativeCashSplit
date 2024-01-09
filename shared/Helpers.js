@@ -1,4 +1,4 @@
-import {DEBUG_MODE, DEMO_MODE, THOUSAND_SEPARATOR} from './GlobalConstants';
+import {CURRENCY, DEBUG_MODE, DEMO_MODE, MONEY_INCREMENT_LEVEL, THOUSAND_SEPARATOR} from './GlobalConstants';
 import {Names} from '../src/storage/Names';
 
 export const capitalize = (str = '') => {
@@ -62,14 +62,10 @@ export const getRandomInt = (min, max) => {
 }
 
 export const getRandomName = (isMale) => {
-  if (!isMale) isMale = !!getRandomInt(0, 2)
+  if (!isMale) isMale = !!getRandomInt(0, 2);
 
-  let nameArr
-  if (isMale) nameArr = Names.male
-  else nameArr = Names.female
-
-  return nameArr[getRandomInt(0, nameArr.length)].concat(' ')
-    .concat(Names.surname[getRandomInt(0, Names.surname.length)])
+  const nameArr = isMale ? Names.male : Names.female;
+  return `${nameArr[getRandomInt(0, nameArr.length)]} ${Names.surname[getRandomInt(0, Names.surname.length)]}`;
 }
 
 export const removeItemFromArray = (array, item) => {
@@ -133,4 +129,13 @@ export const resetSpending = (masterData) => {
       amount: 0,
     }
   })
-}
+};
+
+export const getPrintableUnit = () => {
+  const incrementLvl = MONEY_INCREMENT_LEVEL.toString();
+  return `${convertPrice(incrementLvl).slice(-(incrementLvl.length))}${CURRENCY}`;
+};
+
+export const cloneDeep = object => JSON.parse(JSON.stringify(object));
+
+export const removeItem = (array, index) => array.splice(index, 1);
