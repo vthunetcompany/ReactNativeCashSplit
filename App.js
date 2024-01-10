@@ -95,7 +95,7 @@ const App = () => {
     loadData().then(res => {
       console.log('Startup::', res);
       if (!!res) {
-        setMasterData(res?.masterData);
+        setMasterData(res.masterData ?? []);
         setSpendingHistory(res?.spendingHistory);
       }
       toggleLoading(false)
