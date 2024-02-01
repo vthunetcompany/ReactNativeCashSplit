@@ -8,7 +8,7 @@ import ExpenseModalComponent from '../ExpenseModalComponent';
 import EditNameModalComponent from '../EditNameModalComponent';
 import { capitalizeEachWord } from '../../../../shared/Helpers';
 
-const modalInfoInitialState = {
+export const modalInfoInitialState = {
   id: '',
   name: '',
   amount: ''

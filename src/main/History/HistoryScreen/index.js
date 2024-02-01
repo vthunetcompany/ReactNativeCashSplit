@@ -13,6 +13,8 @@ import {
 import isEmpty from 'lodash.isempty';
 import {GlobalColors} from "../../../../shared/GlobalStyles";
 import {FeatureFlags} from "../../../FeatureFlags";
+import AppModal from "../../../../shared/AppModal";
+import {ExpenseModalHistoryComponent} from "./ExpenseModalHistoryComponent";
 
 const HistoryScreen = ({
                          dashboardProps,
@@ -27,8 +29,17 @@ const HistoryScreen = ({
   } = dashboardProps;
 
   const [spendingHistoryGroupedByDate, setSpendingHistoryGroupByDate] = useState({});
+  const [isShowExpenseModal, setIsShowExpenseModal] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [indices, setIndices] = useState({});
+  const [isSkipProcessHistoryGroup, toggleSkipProcessHistoryGroup] = useState(false);
 
   useEffect(() => {
+    if (isSkipProcessHistoryGroup) {
+      toggleSkipProcessHistoryGroup(false);
+      return;
+    }
+
     if (isEmpty(spendingHistory)) {
       // clear all date group spending
       setSpendingHistoryGroupByDate({});
@@ -72,12 +83,13 @@ const HistoryScreen = ({
         }
       }
       const newSpending = getNewSpending();
+      setSpendingHistoryGroupByDate(newSpending);
 
+      // post-processing
       if (isEmpty(spendingHistoryGroupedByDate)) {
         // on init, append value to `prevState` to populate `spendingHistoryGroupedByDate`
         prevState = newSpending;
       }
-      setSpendingHistoryGroupByDate(newSpending);
     });
   }, [spendingHistory]);
 
@@ -87,6 +99,15 @@ const HistoryScreen = ({
 
     // clear spending in masterData
     setMasterData(resetSpending(masterData));
+  };
+
+  const modalProp = {
+    setIsShowExpenseModal,
+    selectedRow,
+    spendingHistoryGroupedByDate,
+    setSpendingHistoryGroupByDate,
+    toggleSkipProcessHistoryGroup,
+    indices,
   };
 
   return (
@@ -116,6 +137,7 @@ const HistoryScreen = ({
                       transactionType,
                       spendingNote,
                     } = historyRecord;
+
                     return (
                       <TouchableOpacity
                         key={historyRecordIdx}
@@ -128,6 +150,11 @@ const HistoryScreen = ({
                           )
                         }}
                         activeOpacity={0.4}
+                        onPress={() => {
+                          setIsShowExpenseModal(true);
+                          setSelectedRow(historyRecord);
+                          setIndices({ dateGroupIdx, historyRecordIdx });
+                        }}
                       >
                         <CustomView style={styles.leftColumn}>
                           <CustomView style={styles.leftColumnLeftEmojiContainer}>
@@ -163,20 +190,33 @@ const HistoryScreen = ({
           })
         }
       </ScrollView>
-      {!isEmpty(spendingHistory) && <CustomView style={styles.footerContainer}>
-        <TouchableOpacity
-          style={styles.removeButton}
-          onLongPress={clearHistory}
-        >
-          <CustomText
-            large
-            color={GlobalColors.pure_red}
-          >
-            𝕏
-          </CustomText>
-        </TouchableOpacity>
-      </CustomView>
+      {
+        !isEmpty(spendingHistory) && (
+          <CustomView style={styles.footerContainer}>
+            <TouchableOpacity
+              style={styles.removeButton}
+              onLongPress={clearHistory}
+            >
+              <CustomText
+                large
+                color={GlobalColors.pure_red}
+              >
+                𝕏
+              </CustomText>
+            </TouchableOpacity>
+          </CustomView>
+        )
       }
+      <AppModal
+        title={selectedRow?.spenderName}
+        modalBody={<ExpenseModalHistoryComponent
+          modalProp={modalProp}
+          masterDataProp={dashboardProps}
+        />}
+        modalVisible={isShowExpenseModal}
+        modalFooter={<></>}
+        setModalVisible={setIsShowExpenseModal}
+        showExitIcon />
     </CustomView>
   );
 };

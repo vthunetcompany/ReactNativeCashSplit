@@ -15,6 +15,7 @@ import {
   convertPrice,
   customReplaceAll,
   getPrintableDateTime,
+  getPrintableUnit,
   getUuidV4,
   removeItemFromArray
 } from '../../../../shared/Helpers';
@@ -59,16 +60,16 @@ const ExpenseModalComponent = ({
   );
   const refInput = useRef(null);
 
-  const getRealValue = (v) => {
-    return customReplaceAll(v, THOUSAND_SEPARATOR, '');
-  };
-
   useEffect(() => {
     const clonedMasterData = Object.assign([], masterData);
     const currentPersonInMasterData = clonedMasterData.find(ele => ele.id === modalInfo.id);
 
     setCurrentPersonInMasterData(currentPersonInMasterData);
   }, []);
+
+  const getRealValue = (v) => {
+    return customReplaceAll(v, THOUSAND_SEPARATOR, '');
+  };
 
   useEffect(() => {
     setInputValue(parseInt(getRealValue(showValue)))
@@ -202,7 +203,7 @@ const ExpenseModalComponent = ({
           placeholder={'0'}
           returnKeyType={'done'}
           icon={
-            <CustomText semiBold style={{marginRight: 5}}>{THOUSAND_SEPARATOR}000{CURRENCY}</CustomText>
+            <CustomText semiBold style={{marginRight: 5}}>{getPrintableUnit()}</CustomText>
           }
           iconPosition='right'
           maxLength={6}
